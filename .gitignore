@@ -1,0 +1,9 @@
+# Ignore local data caches
+premier_league_data.json
+
+# Ignore environment variables / secrets
+.env
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
