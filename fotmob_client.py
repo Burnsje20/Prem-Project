@@ -16,6 +16,7 @@ import requests
 # The older /api/matches route now returns 404; this is FotMob's current
 # public website feed for match listings.
 FOTMOB_MATCHES_URL = "https://www.fotmob.com/api/data/matches"
+FOTMOB_LEAGUE_URL = "https://www.fotmob.com/api/data/leagues"
 PREMIER_LEAGUE_ID = 47
 
 # FotMob's display names differ from the historical CSV's team names.
@@ -29,6 +30,7 @@ TEAM_NAME_ALIASES = {
     "Manchester City": "Man City",
     "Manchester United": "Man United",
     "Newcastle United": "Newcastle",
+    "Nottm Forest": "Nottingham",
     "Nottingham Forest": "Nottingham",
     "Sheffield United": "Sheffield",
     "Tottenham Hotspur": "Tottenham",
@@ -45,6 +47,19 @@ class Fixture:
     season: str
     home_team: str
     away_team: str
+    status: str
+    source: str = "fotmob"
+
+
+@dataclass(frozen=True)
+class CompletedMatch:
+    fixture_id: int
+    date: datetime
+    season: str
+    home_team: str
+    away_team: str
+    home_goals: int
+    away_goals: int
     status: str
     source: str = "fotmob"
 
@@ -94,6 +109,39 @@ class FotMobClient:
             for fixture in self.matches_on(start_date.fromordinal(start_date.toordinal() + day_offset)):
                 fixtures[fixture.fixture_id] = fixture
         return sorted(fixtures.values(), key=lambda fixture: fixture.kickoff_utc)
+
+    def current_premier_league_results(self) -> list[CompletedMatch]:
+        """Return completed matches from FotMob's currently selected PL season."""
+        response = self.session.get(
+            FOTMOB_LEAGUE_URL,
+            params={"id": PREMIER_LEAGUE_ID},
+            timeout=self.timeout,
+        )
+        response.raise_for_status()
+        matches = response.json().get("overview", {}).get("leagueOverviewMatches", [])
+
+        completed_matches = []
+        for match in matches:
+            status = match.get("status", {})
+            home, away = match.get("home", {}), match.get("away", {})
+            if not status.get("finished") or home.get("score") is None or away.get("score") is None:
+                continue
+
+            kickoff = datetime.fromisoformat(status["utcTime"].replace("Z", "+00:00"))
+            kickoff = kickoff.astimezone(timezone.utc)
+            completed_matches.append(
+                CompletedMatch(
+                    fixture_id=int(match["id"]),
+                    date=kickoff,
+                    season=season_for(kickoff),
+                    home_team=normalize_team_name(home["name"]),
+                    away_team=normalize_team_name(away["name"]),
+                    home_goals=int(home["score"]),
+                    away_goals=int(away["score"]),
+                    status=status.get("reason", {}).get("short", "FT"),
+                )
+            )
+        return sorted(completed_matches, key=lambda match: match.date)
 
     @staticmethod
     def _parse_fixtures(payload: dict[str, Any]) -> list[Fixture]:
