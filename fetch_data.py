@@ -13,7 +13,9 @@ URL = "https://v3.football.api-sports.io/fixtures"
 HEADERS = {
     "x-apisports-key": API_KEY
 }
-SEASONS = ["2020","2021","2022","2023","2024","2025"]
+# The free API-Football plan provides only three seasons. The training data is
+# sourced from the CSV through 2025-26, so never request the target 2026-27 season.
+SEASONS = ["2023", "2024", "2025"]
 # Prem api is 39
 
 my_dict = {}
