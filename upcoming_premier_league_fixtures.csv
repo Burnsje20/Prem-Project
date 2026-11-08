@@ -1,0 +1,41 @@
+fixture_id,kickoff_utc,season,home_team,away_team,status,source
+5795522,2026-11-21 12:30:00+00:00,2026-27,Man City,Fulham,Scheduled,fotmob
+5795515,2026-11-21 15:00:00+00:00,2026-27,Bournemouth,Nottingham,Scheduled,fotmob
+5795516,2026-11-21 15:00:00+00:00,2026-27,Aston Villa,Sunderland,Scheduled,fotmob
+5795518,2026-11-21 15:00:00+00:00,2026-27,Chelsea,Leeds,Scheduled,fotmob
+5795519,2026-11-21 15:00:00+00:00,2026-27,Coventry,Crystal Palace,Scheduled,fotmob
+5795524,2026-11-21 15:00:00+00:00,2026-27,Tottenham,Ipswich,Scheduled,fotmob
+5795523,2026-11-21 17:30:00+00:00,2026-27,Newcastle,Arsenal,Scheduled,fotmob
+5795520,2026-11-22 14:00:00+00:00,2026-27,Hull,Brighton,Scheduled,fotmob
+5795521,2026-11-22 16:30:00+00:00,2026-27,Liverpool,Man United,Scheduled,fotmob
+5795517,2026-11-23 20:00:00+00:00,2026-27,Brentford,Everton,Scheduled,fotmob
+5795533,2026-11-27 20:00:00+00:00,2026-27,Nottingham,Chelsea,Scheduled,fotmob
+5795531,2026-11-28 15:00:00+00:00,2026-27,Leeds,Coventry,Scheduled,fotmob
+5795532,2026-11-28 15:00:00+00:00,2026-27,Man United,Brentford,Scheduled,fotmob
+5795530,2026-11-28 17:30:00+00:00,2026-27,Ipswich,Aston Villa,Scheduled,fotmob
+5795528,2026-11-29 12:00:00+00:00,2026-27,Everton,Liverpool,Scheduled,fotmob
+5795526,2026-11-29 14:05:00+00:00,2026-27,Brighton,Newcastle,Scheduled,fotmob
+5795527,2026-11-29 14:05:00+00:00,2026-27,Crystal Palace,Hull,Scheduled,fotmob
+5795529,2026-11-29 14:05:00+00:00,2026-27,Fulham,Bournemouth,Scheduled,fotmob
+5795534,2026-11-29 14:05:00+00:00,2026-27,Sunderland,Tottenham,Scheduled,fotmob
+5795525,2026-11-29 16:30:00+00:00,2026-27,Arsenal,Man City,Scheduled,fotmob
+5795539,2026-12-01 20:00:00+00:00,2026-27,Coventry,Ipswich,Scheduled,fotmob
+5795538,2026-12-02 19:30:00+00:00,2026-27,Chelsea,Crystal Palace,Scheduled,fotmob
+5795540,2026-12-02 19:30:00+00:00,2026-27,Hull,Nottingham,Scheduled,fotmob
+5795541,2026-12-02 19:30:00+00:00,2026-27,Liverpool,Sunderland,Scheduled,fotmob
+5795542,2026-12-02 19:30:00+00:00,2026-27,Man City,Leeds,Scheduled,fotmob
+5795535,2026-12-02 20:15:00+00:00,2026-27,Bournemouth,Brighton,Scheduled,fotmob
+5795536,2026-12-02 20:15:00+00:00,2026-27,Aston Villa,Everton,Scheduled,fotmob
+5795537,2026-12-02 20:15:00+00:00,2026-27,Brentford,Arsenal,Scheduled,fotmob
+5795543,2026-12-02 20:15:00+00:00,2026-27,Newcastle,Man United,Scheduled,fotmob
+5795544,2026-12-03 20:00:00+00:00,2026-27,Tottenham,Fulham,Scheduled,fotmob
+5795548,2026-12-05 12:30:00+00:00,2026-27,Chelsea,Liverpool,Scheduled,fotmob
+5795545,2026-12-05 15:00:00+00:00,2026-27,Bournemouth,Hull,Scheduled,fotmob
+5795546,2026-12-05 15:00:00+00:00,2026-27,Aston Villa,Crystal Palace,Scheduled,fotmob
+5795550,2026-12-05 15:00:00+00:00,2026-27,Leeds,Ipswich,Scheduled,fotmob
+5795551,2026-12-05 15:00:00+00:00,2026-27,Man United,Coventry,Scheduled,fotmob
+5795553,2026-12-05 17:30:00+00:00,2026-27,Nottingham,Brighton,Scheduled,fotmob
+5795547,2026-12-05 20:00:00+00:00,2026-27,Brentford,Man City,Scheduled,fotmob
+5795549,2026-12-06 14:00:00+00:00,2026-27,Everton,Fulham,Scheduled,fotmob
+5795552,2026-12-06 14:00:00+00:00,2026-27,Newcastle,Sunderland,Scheduled,fotmob
+5795554,2026-12-06 16:30:00+00:00,2026-27,Tottenham,Arsenal,Scheduled,fotmob
