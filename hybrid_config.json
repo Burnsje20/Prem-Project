@@ -1,0 +1,20 @@
+{
+  "seed": 42,
+  "tuning_season": "2022-23",
+  "ensemble_start": "2023-08-01",
+  "calibration_start": "2024-01-01",
+  "selection_start": "2024-08-01",
+  "test_start": "2025-08-01",
+  "current_start": "2026-08-01",
+  "as_of": "2026-11-09",
+  "dc_candidates": [
+    {"half_life": 180, "prior_weight": 8},
+    {"half_life": 365, "prior_weight": 8},
+    {"half_life": 365, "prior_weight": 20}
+  ],
+  "xgb_candidates": [
+    {"max_depth": 2, "learning_rate": 0.03, "n_estimators": 180, "min_child_weight": 15, "subsample": 0.9, "colsample_bytree": 0.9, "reg_alpha": 0.1, "reg_lambda": 8},
+    {"max_depth": 3, "learning_rate": 0.03, "n_estimators": 220, "min_child_weight": 20, "subsample": 0.8, "colsample_bytree": 0.8, "reg_alpha": 0.5, "reg_lambda": 12},
+    {"max_depth": 2, "learning_rate": 0.05, "n_estimators": 100, "min_child_weight": 10, "subsample": 1.0, "colsample_bytree": 1.0, "reg_alpha": 0.0, "reg_lambda": 5}
+  ]
+}

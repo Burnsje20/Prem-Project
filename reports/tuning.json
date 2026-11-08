@@ -1,0 +1,92 @@
+[
+  {
+    "kind": "dixon_coles",
+    "settings": {
+      "half_life": 180,
+      "prior_weight": 8
+    },
+    "matches": 380,
+    "log_loss": 0.9973980165597661,
+    "brier": 0.5944933388121635,
+    "accuracy": 0.5263157894736842,
+    "calibration_ece": 0.03463807836029873
+  },
+  {
+    "kind": "dixon_coles",
+    "settings": {
+      "half_life": 365,
+      "prior_weight": 8
+    },
+    "matches": 380,
+    "log_loss": 1.006318918744118,
+    "brier": 0.600782421585427,
+    "accuracy": 0.5210526315789473,
+    "calibration_ece": 0.07147985516750188
+  },
+  {
+    "kind": "dixon_coles",
+    "settings": {
+      "half_life": 365,
+      "prior_weight": 20
+    },
+    "matches": 380,
+    "log_loss": 1.005865239906788,
+    "brier": 0.6002283624072492,
+    "accuracy": 0.5184210526315789,
+    "calibration_ece": 0.06357058529267913
+  },
+  {
+    "kind": "xgboost",
+    "settings": {
+      "max_depth": 2,
+      "learning_rate": 0.03,
+      "n_estimators": 180,
+      "min_child_weight": 15,
+      "subsample": 0.9,
+      "colsample_bytree": 0.9,
+      "reg_alpha": 0.1,
+      "reg_lambda": 8
+    },
+    "matches": 380,
+    "log_loss": 1.01591992050993,
+    "brier": 0.606193457879526,
+    "accuracy": 0.5131578947368421,
+    "calibration_ece": 0.031146356221624406
+  },
+  {
+    "kind": "xgboost",
+    "settings": {
+      "max_depth": 3,
+      "learning_rate": 0.03,
+      "n_estimators": 220,
+      "min_child_weight": 20,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "reg_alpha": 0.5,
+      "reg_lambda": 12
+    },
+    "matches": 380,
+    "log_loss": 1.0381200079116597,
+    "brier": 0.6201378444680619,
+    "accuracy": 0.5026315789473684,
+    "calibration_ece": 0.04082959568417619
+  },
+  {
+    "kind": "xgboost",
+    "settings": {
+      "max_depth": 2,
+      "learning_rate": 0.05,
+      "n_estimators": 100,
+      "min_child_weight": 10,
+      "subsample": 1.0,
+      "colsample_bytree": 1.0,
+      "reg_alpha": 0.0,
+      "reg_lambda": 5
+    },
+    "matches": 380,
+    "log_loss": 1.011534957461987,
+    "brier": 0.6026219074672201,
+    "accuracy": 0.5236842105263158,
+    "calibration_ece": 0.03790379625398676
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "home_team": "Arsenal",
+    "away_team": "Coventry",
+    "kickoff_utc": "2026-11-21T15:00:00+00:00",
+    "home_win_probability": 0.8169172436850751,
+    "draw_probability": 0.13516746368625357,
+    "away_win_probability": 0.04791529262867146,
+    "most_likely_outcome": "H",
+    "expected_home_goals": 2.551241677019365,
+    "expected_away_goals": 0.4878038614685137,
+    "most_likely_score": "2-0",
+    "top_five_scorelines": [
+      {
+        "score": "2-0",
+        "probability": 0.15582333624684183
+      },
+      {
+        "score": "3-0",
+        "probability": 0.13251432989562806
+      },
+      {
+        "score": "1-0",
+        "probability": 0.11896154070114419
+      },
+      {
+        "score": "4-0",
+        "probability": 0.08451902030837456
+      },
+      {
+        "score": "2-1",
+        "probability": 0.07601122512811605
+      }
+    ],
+    "both_teams_to_score": 0.3591158683597323,
+    "over_2_5": 0.5855005847935718,
+    "under_2_5": 0.4144994152064282,
+    "probability_units": "fraction (multiply by 100 for percent)",
+    "model": "dixon_coles",
+    "data_cutoff": "2026-11-09T00:00:00+00:00",
+    "trained_at": "2026-11-08T23:28:36.921676+00:00",
+    "fallback_reason": null,
+    "promotion_prior_teams": [
+      "Coventry"
+    ],
+    "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+    "player_features_used_in_model": false,
+    "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+    "player_context": {
+      "Arsenal": {
+        "ea": {
+          "lineups_estimated": true,
+          "talent_proxy": "position_depth",
+          "unknown_positions": 0,
+          "snapshot_available": true,
+          "ea_GK_talent": 86.75,
+          "ea_GK_players": 1,
+          "ea_GK_overall": 88.0,
+          "ea_DEF_talent": 87.93333333333332,
+          "ea_DEF_players": 3,
+          "ea_DEF_overall": 87.0,
+          "ea_MID_talent": 86.53333333333335,
+          "ea_MID_players": 3,
+          "ea_MID_overall": 86.66666666666667,
+          "ea_ATT_talent": 83.2,
+          "ea_ATT_players": 3,
+          "ea_ATT_overall": 85.0
+        },
+        "fotmob": null
+      },
+      "Coventry": {
+        "ea": {
+          "lineups_estimated": true,
+          "talent_proxy": "position_depth",
+          "unknown_positions": 0,
+          "snapshot_available": true,
+          "ea_GK_talent": 75.75,
+          "ea_GK_players": 1,
+          "ea_GK_overall": 76.0,
+          "ea_DEF_talent": 72.73333333333333,
+          "ea_DEF_players": 3,
+          "ea_DEF_overall": 74.33333333333333,
+          "ea_MID_talent": 74.06666666666666,
+          "ea_MID_players": 3,
+          "ea_MID_overall": 75.33333333333333,
+          "ea_ATT_talent": 73.93333333333334,
+          "ea_ATT_players": 3,
+          "ea_ATT_overall": 73.66666666666667
+        },
+        "fotmob": null
+      }
+    },
+    "explanation_inputs": {
+      "goal_model_home_log_advantage": 0.21708291173332495,
+      "pre_match_elo_difference": 292.29184043501664,
+      "home_prior_league_matches": 276,
+      "away_prior_league_matches": 10,
+      "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+    },
+    "evaluation": {
+      "selection": {
+        "matches": 380,
+        "log_loss": 0.9746605156306195,
+        "brier": 0.5828390055000492,
+        "accuracy": 0.5210526315789473,
+        "calibration_ece": 0.03864373781952092
+      },
+      "test": {
+        "model": "dixon_coles",
+        "phase": "test",
+        "matches": 380,
+        "log_loss": 1.037000361761227,
+        "brier": 0.6247041846237398,
+        "accuracy": 0.46842105263157896,
+        "calibration_ece": 0.046038591896550546,
+        "score_log_loss": 2.8999564721627005,
+        "exact_score_accuracy": 0.10526315789473684,
+        "selected": true
+      }
+    }
+  }
+]

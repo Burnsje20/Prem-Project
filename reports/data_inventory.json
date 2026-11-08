@@ -1,0 +1,6005 @@
+[
+  {
+    "file": "championship_match_history.csv",
+    "rows": 3864,
+    "duplicate_rows": 0,
+    "sha256": "b8561357bbc44fbc9d58b60f7494b47f4198ea725ea0b8551dca875d954270a7",
+    "columns": {
+      "date": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "season": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "home_team": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "away_team": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "home_goals": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "away_goals": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "result": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "status": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "competition": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "source": {
+        "dtype": "object",
+        "missing": 0
+      }
+    },
+    "observation_type": "match_records",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "parsed_date": {
+      "first": "2019-08-02T00:00:00+00:00",
+      "last": "2026-05-02T00:00:00+00:00",
+      "invalid": 0
+    },
+    "date": {
+      "min": "2019-08-02",
+      "max": "2026-05-02",
+      "unique_count": 814
+    },
+    "season": {
+      "min": "2019-20",
+      "max": "2025-26",
+      "unique_count": 7,
+      "counts": {
+        "2019-20": 552,
+        "2020-21": 552,
+        "2021-22": 552,
+        "2022-23": 552,
+        "2023-24": 552,
+        "2024-25": 552,
+        "2025-26": 552
+      }
+    },
+    "home_team": {
+      "unique_count": 42,
+      "values": [
+        "Barnsley",
+        "Birmingham",
+        "Blackburn",
+        "Blackpool",
+        "Bournemouth",
+        "Brentford",
+        "Bristol City",
+        "Burnley",
+        "Cardiff",
+        "Charlton",
+        "Coventry",
+        "Derby",
+        "Fulham",
+        "Huddersfield",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Leicester",
+        "Luton",
+        "Middlesbrough",
+        "Millwall",
+        "Norwich",
+        "Nott'm Forest",
+        "Oxford",
+        "Peterboro",
+        "Plymouth",
+        "Portsmouth",
+        "Preston",
+        "QPR",
+        "Reading",
+        "Rotherham",
+        "Sheffield United",
+        "Sheffield Weds",
+        "Southampton",
+        "Stoke",
+        "Sunderland",
+        "Swansea",
+        "Watford",
+        "West Brom",
+        "Wigan",
+        "Wrexham",
+        "Wycombe"
+      ]
+    },
+    "away_team": {
+      "unique_count": 42,
+      "values": [
+        "Barnsley",
+        "Birmingham",
+        "Blackburn",
+        "Blackpool",
+        "Bournemouth",
+        "Brentford",
+        "Bristol City",
+        "Burnley",
+        "Cardiff",
+        "Charlton",
+        "Coventry",
+        "Derby",
+        "Fulham",
+        "Huddersfield",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Leicester",
+        "Luton",
+        "Middlesbrough",
+        "Millwall",
+        "Norwich",
+        "Nott'm Forest",
+        "Oxford",
+        "Peterboro",
+        "Plymouth",
+        "Portsmouth",
+        "Preston",
+        "QPR",
+        "Reading",
+        "Rotherham",
+        "Sheffield United",
+        "Sheffield Weds",
+        "Southampton",
+        "Stoke",
+        "Sunderland",
+        "Swansea",
+        "Watford",
+        "West Brom",
+        "Wigan",
+        "Wrexham",
+        "Wycombe"
+      ]
+    }
+  },
+  {
+    "file": "current_premier_league_results.csv",
+    "rows": 100,
+    "duplicate_rows": 0,
+    "sha256": "1ce73874bfd8dbc2308115b92460c72142797eedea5d965bb4cd72f0f40c205f",
+    "columns": {
+      "fixture_id": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "date": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "season": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "home_team": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "away_team": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "home_goals": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "away_goals": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "status": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "source": {
+        "dtype": "object",
+        "missing": 0
+      }
+    },
+    "observation_type": "match_records",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "parsed_date": {
+      "first": "2026-08-21T19:00:00+00:00",
+      "last": "2026-11-08T16:30:00+00:00",
+      "invalid": 0
+    },
+    "date": {
+      "min": "2026-08-21 19:00:00+00:00",
+      "max": "2026-11-08 16:30:00+00:00",
+      "unique_count": 62
+    },
+    "season": {
+      "min": "2026-27",
+      "max": "2026-27",
+      "unique_count": 1,
+      "counts": {
+        "2026-27": 100
+      }
+    },
+    "home_team": {
+      "unique_count": 20,
+      "values": [
+        "Arsenal",
+        "Aston Villa",
+        "Bournemouth",
+        "Brentford",
+        "Brighton",
+        "Chelsea",
+        "Coventry",
+        "Crystal Palace",
+        "Everton",
+        "Fulham",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Liverpool",
+        "Man City",
+        "Man United",
+        "Newcastle",
+        "Nottingham",
+        "Sunderland",
+        "Tottenham"
+      ]
+    },
+    "away_team": {
+      "unique_count": 20,
+      "values": [
+        "Arsenal",
+        "Aston Villa",
+        "Bournemouth",
+        "Brentford",
+        "Brighton",
+        "Chelsea",
+        "Coventry",
+        "Crystal Palace",
+        "Everton",
+        "Fulham",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Liverpool",
+        "Man City",
+        "Man United",
+        "Newcastle",
+        "Nottingham",
+        "Sunderland",
+        "Tottenham"
+      ]
+    },
+    "fixture_id": {
+      "unique_count": 100
+    }
+  },
+  {
+    "file": "E1 (1).csv",
+    "rows": 552,
+    "duplicate_rows": 0,
+    "sha256": "f34c340446c916374be66bdc2fb25b87ee7f2662712ca009653d03ac705535f9",
+    "columns": {
+      "Div": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Date": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Time": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "AwayTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "FTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Referee": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "B365H": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365D": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365A": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWH": {
+        "dtype": "float64",
+        "missing": 184
+      },
+      "BWD": {
+        "dtype": "float64",
+        "missing": 184
+      },
+      "BWA": {
+        "dtype": "float64",
+        "missing": 184
+      },
+      "BFH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHH": {
+        "dtype": "float64",
+        "missing": 97
+      },
+      "WHD": {
+        "dtype": "float64",
+        "missing": 97
+      },
+      "WHA": {
+        "dtype": "float64",
+        "missing": 97
+      },
+      "1XBH": {
+        "dtype": "float64",
+        "missing": 10
+      },
+      "1XBD": {
+        "dtype": "float64",
+        "missing": 10
+      },
+      "1XBA": {
+        "dtype": "float64",
+        "missing": 10
+      },
+      "MaxH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFEH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFED": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFEA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "P>2.5": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "P<2.5": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "Max>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Max<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFE>2.5": {
+        "dtype": "float64",
+        "missing": 5
+      },
+      "BFE<2.5": {
+        "dtype": "float64",
+        "missing": 5
+      },
+      "AHh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365AHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365AHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFEAHH": {
+        "dtype": "float64",
+        "missing": 27
+      },
+      "BFEAHA": {
+        "dtype": "float64",
+        "missing": 27
+      },
+      "B365CH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCH": {
+        "dtype": "float64",
+        "missing": 184
+      },
+      "BWCD": {
+        "dtype": "float64",
+        "missing": 184
+      },
+      "BWCA": {
+        "dtype": "float64",
+        "missing": 184
+      },
+      "BFCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCH": {
+        "dtype": "float64",
+        "missing": 96
+      },
+      "WHCD": {
+        "dtype": "float64",
+        "missing": 96
+      },
+      "WHCA": {
+        "dtype": "float64",
+        "missing": 96
+      },
+      "1XBCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "1XBCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "1XBCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFECH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFECD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFECA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365C>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365C<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFEC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFEC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AHCh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFECAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFECAHA": {
+        "dtype": "float64",
+        "missing": 0
+      }
+    },
+    "observation_type": "match_records",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "parsed_Date": {
+      "first": "2024-08-09T00:00:00+00:00",
+      "last": "2025-05-03T00:00:00+00:00",
+      "invalid": 0
+    },
+    "Date": {
+      "min": "01/01/2025",
+      "max": "31/08/2024",
+      "unique_count": 126
+    },
+    "HomeTeam": {
+      "unique_count": 24,
+      "values": [
+        "Blackburn",
+        "Bristol City",
+        "Burnley",
+        "Cardiff",
+        "Coventry",
+        "Derby",
+        "Hull",
+        "Leeds",
+        "Luton",
+        "Middlesbrough",
+        "Millwall",
+        "Norwich",
+        "Oxford",
+        "Plymouth",
+        "Portsmouth",
+        "Preston",
+        "QPR",
+        "Sheffield United",
+        "Sheffield Weds",
+        "Stoke",
+        "Sunderland",
+        "Swansea",
+        "Watford",
+        "West Brom"
+      ]
+    },
+    "AwayTeam": {
+      "unique_count": 24,
+      "values": [
+        "Blackburn",
+        "Bristol City",
+        "Burnley",
+        "Cardiff",
+        "Coventry",
+        "Derby",
+        "Hull",
+        "Leeds",
+        "Luton",
+        "Middlesbrough",
+        "Millwall",
+        "Norwich",
+        "Oxford",
+        "Plymouth",
+        "Portsmouth",
+        "Preston",
+        "QPR",
+        "Sheffield United",
+        "Sheffield Weds",
+        "Stoke",
+        "Sunderland",
+        "Swansea",
+        "Watford",
+        "West Brom"
+      ]
+    }
+  },
+  {
+    "file": "E1 (2).csv",
+    "rows": 552,
+    "duplicate_rows": 0,
+    "sha256": "5737f6cc95c95092b28317f41d3123e2fb09345434efc1c84bbdf15830849ab3",
+    "columns": {
+      "Div": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Date": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Time": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "AwayTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "FTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Referee": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "B365H": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365D": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365A": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWH": {
+        "dtype": "float64",
+        "missing": 2
+      },
+      "BWD": {
+        "dtype": "float64",
+        "missing": 2
+      },
+      "BWA": {
+        "dtype": "float64",
+        "missing": 2
+      },
+      "IWH": {
+        "dtype": "float64",
+        "missing": 240
+      },
+      "IWD": {
+        "dtype": "float64",
+        "missing": 240
+      },
+      "IWA": {
+        "dtype": "float64",
+        "missing": 240
+      },
+      "PSH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "P>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "P<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Max>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Max<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AHh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365AHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365AHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCH": {
+        "dtype": "float64",
+        "missing": 14
+      },
+      "BWCD": {
+        "dtype": "float64",
+        "missing": 14
+      },
+      "BWCA": {
+        "dtype": "float64",
+        "missing": 14
+      },
+      "IWCH": {
+        "dtype": "float64",
+        "missing": 240
+      },
+      "IWCD": {
+        "dtype": "float64",
+        "missing": 240
+      },
+      "IWCA": {
+        "dtype": "float64",
+        "missing": 240
+      },
+      "PSCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365C>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365C<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AHCh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      }
+    },
+    "observation_type": "match_records",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "parsed_Date": {
+      "first": "2023-08-04T00:00:00+00:00",
+      "last": "2024-05-04T00:00:00+00:00",
+      "invalid": 0
+    },
+    "Date": {
+      "min": "01/01/2024",
+      "max": "31/01/2024",
+      "unique_count": 112
+    },
+    "HomeTeam": {
+      "unique_count": 24,
+      "values": [
+        "Birmingham",
+        "Blackburn",
+        "Bristol City",
+        "Cardiff",
+        "Coventry",
+        "Huddersfield",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Leicester",
+        "Middlesbrough",
+        "Millwall",
+        "Norwich",
+        "Plymouth",
+        "Preston",
+        "QPR",
+        "Rotherham",
+        "Sheffield Weds",
+        "Southampton",
+        "Stoke",
+        "Sunderland",
+        "Swansea",
+        "Watford",
+        "West Brom"
+      ]
+    },
+    "AwayTeam": {
+      "unique_count": 24,
+      "values": [
+        "Birmingham",
+        "Blackburn",
+        "Bristol City",
+        "Cardiff",
+        "Coventry",
+        "Huddersfield",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Leicester",
+        "Middlesbrough",
+        "Millwall",
+        "Norwich",
+        "Plymouth",
+        "Preston",
+        "QPR",
+        "Rotherham",
+        "Sheffield Weds",
+        "Southampton",
+        "Stoke",
+        "Sunderland",
+        "Swansea",
+        "Watford",
+        "West Brom"
+      ]
+    }
+  },
+  {
+    "file": "E1 (3).csv",
+    "rows": 552,
+    "duplicate_rows": 0,
+    "sha256": "cd38ab0586ea8cb4d573c363ff70749117f116da5b2741e5b0ea37da05860b1b",
+    "columns": {
+      "Div": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Date": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Time": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "AwayTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "FTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Referee": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "B365H": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365D": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365A": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWH": {
+        "dtype": "float64",
+        "missing": 11
+      },
+      "IWD": {
+        "dtype": "float64",
+        "missing": 11
+      },
+      "IWA": {
+        "dtype": "float64",
+        "missing": 11
+      },
+      "PSH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "P>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "P<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Max>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Max<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AHh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365AHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365AHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365C>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365C<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AHCh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      }
+    },
+    "observation_type": "match_records",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "parsed_Date": {
+      "first": "2022-07-29T00:00:00+00:00",
+      "last": "2023-05-08T00:00:00+00:00",
+      "invalid": 0
+    },
+    "Date": {
+      "min": "01/01/2023",
+      "max": "31/08/2022",
+      "unique_count": 118
+    },
+    "HomeTeam": {
+      "unique_count": 24,
+      "values": [
+        "Birmingham",
+        "Blackburn",
+        "Blackpool",
+        "Bristol City",
+        "Burnley",
+        "Cardiff",
+        "Coventry",
+        "Huddersfield",
+        "Hull",
+        "Luton",
+        "Middlesbrough",
+        "Millwall",
+        "Norwich",
+        "Preston",
+        "QPR",
+        "Reading",
+        "Rotherham",
+        "Sheffield United",
+        "Stoke",
+        "Sunderland",
+        "Swansea",
+        "Watford",
+        "West Brom",
+        "Wigan"
+      ]
+    },
+    "AwayTeam": {
+      "unique_count": 24,
+      "values": [
+        "Birmingham",
+        "Blackburn",
+        "Blackpool",
+        "Bristol City",
+        "Burnley",
+        "Cardiff",
+        "Coventry",
+        "Huddersfield",
+        "Hull",
+        "Luton",
+        "Middlesbrough",
+        "Millwall",
+        "Norwich",
+        "Preston",
+        "QPR",
+        "Reading",
+        "Rotherham",
+        "Sheffield United",
+        "Stoke",
+        "Sunderland",
+        "Swansea",
+        "Watford",
+        "West Brom",
+        "Wigan"
+      ]
+    }
+  },
+  {
+    "file": "E1 (4).csv",
+    "rows": 552,
+    "duplicate_rows": 0,
+    "sha256": "a181451be4801b9f838daf5f6aaf21e9f09d36042be9e6c15388e71001e772ea",
+    "columns": {
+      "Div": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Date": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Time": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "AwayTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "FTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Referee": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "B365H": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365D": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365A": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "P>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "P<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Max>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Max<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AHh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365AHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365AHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365C>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365C<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AHCh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      }
+    },
+    "observation_type": "match_records",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "parsed_Date": {
+      "first": "2021-08-06T00:00:00+00:00",
+      "last": "2022-05-07T00:00:00+00:00",
+      "invalid": 0
+    },
+    "Date": {
+      "min": "01/01/2022",
+      "max": "30/12/2021",
+      "unique_count": 116
+    },
+    "HomeTeam": {
+      "unique_count": 24,
+      "values": [
+        "Barnsley",
+        "Birmingham",
+        "Blackburn",
+        "Blackpool",
+        "Bournemouth",
+        "Bristol City",
+        "Cardiff",
+        "Coventry",
+        "Derby",
+        "Fulham",
+        "Huddersfield",
+        "Hull",
+        "Luton",
+        "Middlesbrough",
+        "Millwall",
+        "Nott'm Forest",
+        "Peterboro",
+        "Preston",
+        "QPR",
+        "Reading",
+        "Sheffield United",
+        "Stoke",
+        "Swansea",
+        "West Brom"
+      ]
+    },
+    "AwayTeam": {
+      "unique_count": 24,
+      "values": [
+        "Barnsley",
+        "Birmingham",
+        "Blackburn",
+        "Blackpool",
+        "Bournemouth",
+        "Bristol City",
+        "Cardiff",
+        "Coventry",
+        "Derby",
+        "Fulham",
+        "Huddersfield",
+        "Hull",
+        "Luton",
+        "Middlesbrough",
+        "Millwall",
+        "Nott'm Forest",
+        "Peterboro",
+        "Preston",
+        "QPR",
+        "Reading",
+        "Sheffield United",
+        "Stoke",
+        "Swansea",
+        "West Brom"
+      ]
+    }
+  },
+  {
+    "file": "E1 (5).csv",
+    "rows": 552,
+    "duplicate_rows": 0,
+    "sha256": "cf93295e310c60e5b97ae7466d772f8ec6a908ad401e38fceb7e8617369d5073",
+    "columns": {
+      "Div": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Date": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Time": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "AwayTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "FTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Referee": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "B365H": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365D": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365A": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSH": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "PSD": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "PSA": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "WHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365>2.5": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "B365<2.5": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "P>2.5": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "P<2.5": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "Max>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Max<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AHh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365AHH": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "B365AHA": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "PAHH": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "PAHA": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "MaxAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCH": {
+        "dtype": "float64",
+        "missing": 2
+      },
+      "PSCD": {
+        "dtype": "float64",
+        "missing": 2
+      },
+      "PSCA": {
+        "dtype": "float64",
+        "missing": 2
+      },
+      "WHCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365C>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365C<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PC>2.5": {
+        "dtype": "float64",
+        "missing": 2
+      },
+      "PC<2.5": {
+        "dtype": "float64",
+        "missing": 2
+      },
+      "MaxC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AHCh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PCAHH": {
+        "dtype": "float64",
+        "missing": 2
+      },
+      "PCAHA": {
+        "dtype": "float64",
+        "missing": 2
+      },
+      "MaxCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      }
+    },
+    "observation_type": "match_records",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "parsed_Date": {
+      "first": "2020-09-11T00:00:00+00:00",
+      "last": "2021-05-08T00:00:00+00:00",
+      "invalid": 0
+    },
+    "Date": {
+      "min": "01/01/2021",
+      "max": "31/10/2020",
+      "unique_count": 110
+    },
+    "HomeTeam": {
+      "unique_count": 24,
+      "values": [
+        "Barnsley",
+        "Birmingham",
+        "Blackburn",
+        "Bournemouth",
+        "Brentford",
+        "Bristol City",
+        "Cardiff",
+        "Coventry",
+        "Derby",
+        "Huddersfield",
+        "Luton",
+        "Middlesbrough",
+        "Millwall",
+        "Norwich",
+        "Nott'm Forest",
+        "Preston",
+        "QPR",
+        "Reading",
+        "Rotherham",
+        "Sheffield Weds",
+        "Stoke",
+        "Swansea",
+        "Watford",
+        "Wycombe"
+      ]
+    },
+    "AwayTeam": {
+      "unique_count": 24,
+      "values": [
+        "Barnsley",
+        "Birmingham",
+        "Blackburn",
+        "Bournemouth",
+        "Brentford",
+        "Bristol City",
+        "Cardiff",
+        "Coventry",
+        "Derby",
+        "Huddersfield",
+        "Luton",
+        "Middlesbrough",
+        "Millwall",
+        "Norwich",
+        "Nott'm Forest",
+        "Preston",
+        "QPR",
+        "Reading",
+        "Rotherham",
+        "Sheffield Weds",
+        "Stoke",
+        "Swansea",
+        "Watford",
+        "Wycombe"
+      ]
+    }
+  },
+  {
+    "file": "E1 (6).csv",
+    "rows": 552,
+    "duplicate_rows": 0,
+    "sha256": "f31450c623c0b74b89692584a85924cc652d33ec89757acf4b2dda5e26261d57",
+    "columns": {
+      "Div": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Date": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Time": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "AwayTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "FTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Referee": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "B365H": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365D": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365A": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSH": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "PSD": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "PSA": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "WHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "P>2.5": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "P<2.5": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "Max>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Max<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AHh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365AHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365AHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PAHH": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "PAHA": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "MaxAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCH": {
+        "dtype": "float64",
+        "missing": 4
+      },
+      "BWCD": {
+        "dtype": "float64",
+        "missing": 4
+      },
+      "BWCA": {
+        "dtype": "float64",
+        "missing": 4
+      },
+      "IWCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "IWCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PSCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "WHCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "VCCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365C>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365C<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AHCh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      }
+    },
+    "observation_type": "match_records",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "parsed_Date": {
+      "first": "2019-08-02T00:00:00+00:00",
+      "last": "2020-07-22T00:00:00+00:00",
+      "invalid": 0
+    },
+    "Date": {
+      "min": "01/01/2020",
+      "max": "31/08/2019",
+      "unique_count": 116
+    },
+    "HomeTeam": {
+      "unique_count": 24,
+      "values": [
+        "Barnsley",
+        "Birmingham",
+        "Blackburn",
+        "Brentford",
+        "Bristol City",
+        "Cardiff",
+        "Charlton",
+        "Derby",
+        "Fulham",
+        "Huddersfield",
+        "Hull",
+        "Leeds",
+        "Luton",
+        "Middlesbrough",
+        "Millwall",
+        "Nott'm Forest",
+        "Preston",
+        "QPR",
+        "Reading",
+        "Sheffield Weds",
+        "Stoke",
+        "Swansea",
+        "West Brom",
+        "Wigan"
+      ]
+    },
+    "AwayTeam": {
+      "unique_count": 24,
+      "values": [
+        "Barnsley",
+        "Birmingham",
+        "Blackburn",
+        "Brentford",
+        "Bristol City",
+        "Cardiff",
+        "Charlton",
+        "Derby",
+        "Fulham",
+        "Huddersfield",
+        "Hull",
+        "Leeds",
+        "Luton",
+        "Middlesbrough",
+        "Millwall",
+        "Nott'm Forest",
+        "Preston",
+        "QPR",
+        "Reading",
+        "Sheffield Weds",
+        "Stoke",
+        "Swansea",
+        "West Brom",
+        "Wigan"
+      ]
+    }
+  },
+  {
+    "file": "E1.csv",
+    "rows": 552,
+    "duplicate_rows": 0,
+    "sha256": "98954c319950f19158624b17a154ef1c56eb7b8d169ef317f28f06d11d0b9a74",
+    "columns": {
+      "Div": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Date": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Time": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "AwayTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "FTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "FTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HTHG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTAG": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HTR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Referee": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AS": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AST": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AF": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AC": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AY": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AR": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "B365H": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365D": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365A": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFDH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFDD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFDA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BMGMH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BMGMD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BMGMA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BVH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BVD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BVA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWH": {
+        "dtype": "float64",
+        "missing": 9
+      },
+      "BWD": {
+        "dtype": "float64",
+        "missing": 9
+      },
+      "BWA": {
+        "dtype": "float64",
+        "missing": 9
+      },
+      "CLH": {
+        "dtype": "float64",
+        "missing": 124
+      },
+      "CLD": {
+        "dtype": "float64",
+        "missing": 124
+      },
+      "CLA": {
+        "dtype": "float64",
+        "missing": 124
+      },
+      "LBH": {
+        "dtype": "float64",
+        "missing": 124
+      },
+      "LBD": {
+        "dtype": "float64",
+        "missing": 124
+      },
+      "LBA": {
+        "dtype": "float64",
+        "missing": 124
+      },
+      "PSH": {
+        "dtype": "float64",
+        "missing": 292
+      },
+      "PSD": {
+        "dtype": "float64",
+        "missing": 292
+      },
+      "PSA": {
+        "dtype": "float64",
+        "missing": 292
+      },
+      "MaxH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFEH": {
+        "dtype": "float64",
+        "missing": 36
+      },
+      "BFED": {
+        "dtype": "float64",
+        "missing": 36
+      },
+      "BFEA": {
+        "dtype": "float64",
+        "missing": 36
+      },
+      "B365>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "P>2.5": {
+        "dtype": "float64",
+        "missing": 292
+      },
+      "P<2.5": {
+        "dtype": "float64",
+        "missing": 292
+      },
+      "Max>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Max<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Avg<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFE>2.5": {
+        "dtype": "float64",
+        "missing": 38
+      },
+      "BFE<2.5": {
+        "dtype": "float64",
+        "missing": 38
+      },
+      "AHh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365AHH": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "B365AHA": {
+        "dtype": "float64",
+        "missing": 1
+      },
+      "PAHH": {
+        "dtype": "float64",
+        "missing": 292
+      },
+      "PAHA": {
+        "dtype": "float64",
+        "missing": 292
+      },
+      "MaxAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFEAHH": {
+        "dtype": "float64",
+        "missing": 65
+      },
+      "BFEAHA": {
+        "dtype": "float64",
+        "missing": 65
+      },
+      "B365CH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFDCH": {
+        "dtype": "float64",
+        "missing": 6
+      },
+      "BFDCD": {
+        "dtype": "float64",
+        "missing": 6
+      },
+      "BFDCA": {
+        "dtype": "float64",
+        "missing": 6
+      },
+      "BMGMCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BMGMCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BMGMCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BVCH": {
+        "dtype": "float64",
+        "missing": 6
+      },
+      "BVCD": {
+        "dtype": "float64",
+        "missing": 6
+      },
+      "BVCA": {
+        "dtype": "float64",
+        "missing": 6
+      },
+      "BWCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BWCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "CLCH": {
+        "dtype": "float64",
+        "missing": 154
+      },
+      "CLCD": {
+        "dtype": "float64",
+        "missing": 154
+      },
+      "CLCA": {
+        "dtype": "float64",
+        "missing": 154
+      },
+      "LBCH": {
+        "dtype": "float64",
+        "missing": 132
+      },
+      "LBCD": {
+        "dtype": "float64",
+        "missing": 132
+      },
+      "LBCA": {
+        "dtype": "float64",
+        "missing": 132
+      },
+      "PSCH": {
+        "dtype": "float64",
+        "missing": 281
+      },
+      "PSCD": {
+        "dtype": "float64",
+        "missing": 281
+      },
+      "PSCA": {
+        "dtype": "float64",
+        "missing": 281
+      },
+      "MaxCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCD": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFECH": {
+        "dtype": "float64",
+        "missing": 36
+      },
+      "BFECD": {
+        "dtype": "float64",
+        "missing": 36
+      },
+      "BFECA": {
+        "dtype": "float64",
+        "missing": 36
+      },
+      "B365C>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365C<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PC>2.5": {
+        "dtype": "float64",
+        "missing": 281
+      },
+      "PC<2.5": {
+        "dtype": "float64",
+        "missing": 281
+      },
+      "MaxC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC>2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgC<2.5": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFEC>2.5": {
+        "dtype": "float64",
+        "missing": 36
+      },
+      "BFEC<2.5": {
+        "dtype": "float64",
+        "missing": 36
+      },
+      "AHCh": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "B365CAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "PCAHH": {
+        "dtype": "float64",
+        "missing": 281
+      },
+      "PCAHA": {
+        "dtype": "float64",
+        "missing": 281
+      },
+      "MaxCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "MaxCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHH": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AvgCAHA": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "BFECAHH": {
+        "dtype": "float64",
+        "missing": 36
+      },
+      "BFECAHA": {
+        "dtype": "float64",
+        "missing": 36
+      }
+    },
+    "observation_type": "match_records",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "parsed_Date": {
+      "first": "2025-08-08T00:00:00+00:00",
+      "last": "2026-05-02T00:00:00+00:00",
+      "invalid": 0
+    },
+    "Date": {
+      "min": "01/01/2026",
+      "max": "31/10/2025",
+      "unique_count": 116
+    },
+    "HomeTeam": {
+      "unique_count": 24,
+      "values": [
+        "Birmingham",
+        "Blackburn",
+        "Bristol City",
+        "Charlton",
+        "Coventry",
+        "Derby",
+        "Hull",
+        "Ipswich",
+        "Leicester",
+        "Middlesbrough",
+        "Millwall",
+        "Norwich",
+        "Oxford",
+        "Portsmouth",
+        "Preston",
+        "QPR",
+        "Sheffield United",
+        "Sheffield Weds",
+        "Southampton",
+        "Stoke",
+        "Swansea",
+        "Watford",
+        "West Brom",
+        "Wrexham"
+      ]
+    },
+    "AwayTeam": {
+      "unique_count": 24,
+      "values": [
+        "Birmingham",
+        "Blackburn",
+        "Bristol City",
+        "Charlton",
+        "Coventry",
+        "Derby",
+        "Hull",
+        "Ipswich",
+        "Leicester",
+        "Middlesbrough",
+        "Millwall",
+        "Norwich",
+        "Oxford",
+        "Portsmouth",
+        "Preston",
+        "QPR",
+        "Sheffield United",
+        "Sheffield Weds",
+        "Southampton",
+        "Stoke",
+        "Swansea",
+        "Watford",
+        "West Brom",
+        "Wrexham"
+      ]
+    }
+  },
+  {
+    "file": "EPL_Match_Data_2000_2026.csv",
+    "rows": 9880,
+    "duplicate_rows": 0,
+    "sha256": "f4145b15e6838ffe825d172130debb0be6f2f4e982df3b8582911310c2086997",
+    "columns": {
+      "Season": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "Year": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "Month": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "Day": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "WeekDay": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Time": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Round": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "HomeTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "AwayTeam": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeGoal": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AwayGoal": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "Result": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeGoal-HalfTime": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AwayGoal-HalfTime": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Result-HalfTime": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "Attendance": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "Referee": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeShot": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AwayShot": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "HomeOnTargetShot": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AwayOnTargetShot": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "HomeFoul": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AwayFoul": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "HomeCorner": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AwayCorner": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "HomeYellow": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AwayYellow": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "HomeRed": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "AwayRed": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "XGHome": {
+        "dtype": "float64",
+        "missing": 7022
+      },
+      "XGAway": {
+        "dtype": "float64",
+        "missing": 7023
+      },
+      "SeasonPosHome": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonPlayedHome": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonWinHome": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonDrawHome": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonLossHome": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonGFHome": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonGAHome": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonGDHome": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonPointsHome": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "QualificationOrRelegationHome": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "SeasonPosAway": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonPlayedAway": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonWinAway": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonDrawAway": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonLossAway": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonGFAway": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonGAAway": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonGDAway": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "SeasonPointsAway": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "QualificationOrRelegationAway": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeCity": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeRegion": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "AwayCity": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "AwayRegion": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "IsDerby": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeStadium": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeManager": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "AwayManager": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "HomeTrophies": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "AwayTrophies": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "HomeForm": {
+        "dtype": "object",
+        "missing": 20
+      },
+      "AwayForm": {
+        "dtype": "object",
+        "missing": 26
+      },
+      "H2HForm": {
+        "dtype": "object",
+        "missing": 797
+      },
+      "VAR": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "PremierLeagueHome": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "PremierLeagueAway": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "FACupHome": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "FACupAway": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "CarabaoCupHome": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "CarabaoCupAway": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "CommunityShieldHome": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "CommunityShieldAway": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "ChampionsLeagueHome": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "ChampionsLeagueAway": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "EuropaLeagueHome": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "EuropaLeagueAway": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "ConferenceLeagueHome": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "ConferenceLeagueAway": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "SuperCupHome": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "SuperCupAway": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "ClubWorldCupHome": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "ClubWorldCupAway": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "IntercontinentalCupHome": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "IntercontinentalCupAway": {
+        "dtype": "object",
+        "missing": 0
+      }
+    },
+    "observation_type": "match_records",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "Season": {
+      "min": "1",
+      "max": "910",
+      "unique_count": 26,
+      "counts": {
+        "1": 380,
+        "102": 380,
+        "203": 380,
+        "304": 380,
+        "405": 380,
+        "506": 380,
+        "607": 380,
+        "708": 380,
+        "809": 380,
+        "910": 380,
+        "1011": 380,
+        "1112": 380,
+        "1213": 380,
+        "1314": 380,
+        "1415": 380,
+        "1516": 380,
+        "1617": 380,
+        "1718": 380,
+        "1819": 380,
+        "1920": 380,
+        "2021": 380,
+        "2122": 380,
+        "2223": 380,
+        "2324": 380,
+        "2425": 380,
+        "2526": 380
+      }
+    },
+    "HomeTeam": {
+      "unique_count": 46,
+      "values": [
+        "Arsenal",
+        "Aston Villa",
+        "Birmingham",
+        "Blackburn",
+        "Blackpool",
+        "Bolton",
+        "Bournemouth",
+        "Bradford",
+        "Brentford",
+        "Brighton",
+        "Burnley",
+        "Cardiff",
+        "Charlton",
+        "Chelsea",
+        "Coventry",
+        "Crystal Palace",
+        "Derby",
+        "Everton",
+        "Fulham",
+        "Huddersfield",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Leicester",
+        "Liverpool",
+        "Luton",
+        "Man City",
+        "Man United",
+        "Middlesbrough",
+        "Newcastle",
+        "Norwich",
+        "Nottingham",
+        "Portsmouth",
+        "QPR",
+        "Reading",
+        "Sheffield",
+        "Southampton",
+        "Stoke",
+        "Sunderland",
+        "Swansea",
+        "Tottenham",
+        "Watford",
+        "West Brom",
+        "West Ham",
+        "Wigan",
+        "Wolves"
+      ]
+    },
+    "AwayTeam": {
+      "unique_count": 46,
+      "values": [
+        "Arsenal",
+        "Aston Villa",
+        "Birmingham",
+        "Blackburn",
+        "Blackpool",
+        "Bolton",
+        "Bournemouth",
+        "Bradford",
+        "Brentford",
+        "Brighton",
+        "Burnley",
+        "Cardiff",
+        "Charlton",
+        "Chelsea",
+        "Coventry",
+        "Crystal Palace",
+        "Derby",
+        "Everton",
+        "Fulham",
+        "Huddersfield",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Leicester",
+        "Liverpool",
+        "Luton",
+        "Man City",
+        "Man United",
+        "Middlesbrough",
+        "Newcastle",
+        "Norwich",
+        "Nottingham",
+        "Portsmouth",
+        "QPR",
+        "Reading",
+        "Sheffield",
+        "Southampton",
+        "Stoke",
+        "Sunderland",
+        "Swansea",
+        "Tottenham",
+        "Watford",
+        "West Brom",
+        "West Ham",
+        "Wigan",
+        "Wolves"
+      ]
+    }
+  },
+  {
+    "file": "players.csv",
+    "rows": 19789,
+    "duplicate_rows": 0,
+    "sha256": "e2fe9d848fa21b04f0b76d851a94ad2d44b8a8c695bc202d4e0f1f5843db1264",
+    "columns": {
+      "player_id": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "common_name": {
+        "dtype": "object",
+        "missing": 16910
+      },
+      "first_name": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "last_name": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "overall_rating": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "position": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "alternate_positions": {
+        "dtype": "object",
+        "missing": 6893
+      },
+      "club": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "league": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "nationality": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "gender": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "preferred_foot": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "skill_moves": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "weak_foot": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "height_cm": {
+        "dtype": "float64",
+        "missing": 19789
+      },
+      "weight_kg": {
+        "dtype": "float64",
+        "missing": 19789
+      },
+      "birthdate": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "playstyles": {
+        "dtype": "object",
+        "missing": 11738
+      },
+      "pace": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "shooting": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "passing": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "dribbling": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "defending": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "physicality": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "attacking_crossing": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "attacking_finishing": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "attacking_heading_accuracy": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "attacking_short_passing": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "attacking_volleys": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "skill_dribbling": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "skill_curve": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "skill_fk_accuracy": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "skill_long_passing": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "skill_ball_control": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "movement_acceleration": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "movement_sprint_speed": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "movement_agility": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "movement_reactions": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "movement_balance": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "power_shot_power": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "power_jumping": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "power_stamina": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "power_strength": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "power_long_shots": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "mentality_aggression": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "mentality_interceptions": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "mentality_positioning": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "mentality_vision": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "mentality_penalties": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "mentality_composure": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "defending_awareness": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "defending_standing_tackle": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "defending_sliding_tackle": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "goalkeeping_diving": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "goalkeeping_handling": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "goalkeeping_kicking": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "goalkeeping_positioning": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "goalkeeping_reflexes": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "edition": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "snapshot_date": {
+        "dtype": "object",
+        "missing": 0
+      }
+    },
+    "observation_type": "player_snapshot",
+    "availability_policy": "snapshot date + 1 day; no historical backfill",
+    "parsed_snapshot_date": {
+      "first": "2026-09-12T00:00:00+00:00",
+      "last": "2026-09-12T00:00:00+00:00",
+      "invalid": 0
+    },
+    "snapshot_date": {
+      "min": "2026-09-12",
+      "max": "2026-09-12",
+      "unique_count": 1,
+      "counts": {
+        "2026-09-12": 19789
+      }
+    },
+    "edition": {
+      "min": "fc27",
+      "max": "fc27",
+      "unique_count": 1,
+      "counts": {
+        "fc27": 19789
+      }
+    },
+    "league": {
+      "min": "1A Pro League",
+      "max": "\u010cesk\u00e1 Liga",
+      "unique_count": 63
+    },
+    "gender": {
+      "min": "Men's Football",
+      "max": "Women's Football",
+      "unique_count": 2,
+      "counts": {
+        "Men's Football": 17849,
+        "Women's Football": 1940
+      }
+    },
+    "club": {
+      "unique_count": 702,
+      "values": [
+        "1. FC K\u00f6ln",
+        "1. FC Magdeburg",
+        "1. FC N\u00fcrnberg",
+        "1. FSV Mainz 05",
+        "AC Horsens",
+        "AD Ceuta FC",
+        "ADO Den Haag",
+        "AEK Athens",
+        "AFC Bournemouth",
+        "AFC Wimbledon",
+        "AGF",
+        "AIK",
+        "AJ Auxerre",
+        "APOEL FC",
+        "AS Monaco",
+        "AS Nancy Lorraine",
+        "AS Roma",
+        "AS Saint-\u00c9tienne",
+        "AZ",
+        "Aalesunds FK",
+        "Aberdeen",
+        "Abha Club",
+        "Acad\u00e9mico de Viseu FC",
+        "Accrington",
+        "Adelaide United",
+        "Ajax",
+        "Al Ahli",
+        "Al Ain FC",
+        "Al Diriyah",
+        "Al Ettifaq",
+        "Al Faisaly",
+        "Al Fateh",
+        "Al Fayha",
+        "Al Hazem",
+        "Al Hilal",
+        "Al Ittihad",
+        "Al Khaleej",
+        "Al Kholood",
+        "Al Nassr",
+        "Al Qadsiah",
+        "Al Riyadh",
+        "Al Shabab",
+        "Al Taawoun",
+        "Alanyaspor",
+        "Albacete BP",
+        "Aldosivi",
+        "Aleman. Aachen",
+        "Alianza Atltico",
+        "Always Ready",
+        "Amed Sportif Faaliyetler",
+        "Am\u00e9rica de Cali",
+        "Angel City FC",
+        "Angers SCO",
+        "Arezzo",
+        "Argentinos Jrs.",
+        "Arminia Bielefeld",
+        "Arouca",
+        "Arsenal",
+        "Ascoli",
+        "Asociaci\u00f3n Atl\u00e9tica Estudiantes",
+        "Aston Villa",
+        "Athletic Club",
+        "Atl. Nacional",
+        "Atlanta United",
+        "Atlante FC",
+        "Atlas FC",
+        "Atltico de SL",
+        "Atl\u00e9tico Tucum\u00e1n",
+        "Atl\u00e9tico de Madrid",
+        "Auckland FC",
+        "Audax Italiano",
+        "Austin FC",
+        "Avellino",
+        "BK Hcken",
+        "BK H\u00e4cken",
+        "BSC Young Boys",
+        "Badalona Women",
+        "Bahia",
+        "Banfield",
+        "Barcelona SC",
+        "Barnet",
+        "Barnsley",
+        "Barracas Central",
+        "Bay FC",
+        "Ba\u015fak\u015fehir",
+        "Beijing FC",
+        "Belgrano",
+        "Benevento",
+        "Bengaluru FC",
+        "Bergamo Calcio",
+        "Be\u015fikta\u015f",
+        "Birmingham City",
+        "Blackburn Rovers",
+        "Blackpool",
+        "Blooming",
+        "Boca Juniors",
+        "Bohemians",
+        "Bologna",
+        "Bolton",
+        "Bol\u00edvar",
+        "Borussia Dortmund",
+        "Boston Legacy FC",
+        "Boston River",
+        "Botafogo",
+        "Bradford City",
+        "Braunschweig",
+        "Breidablik",
+        "Brentford",
+        "Brighton",
+        "Brisbane Roar",
+        "Bristol City",
+        "Bristol Rovers",
+        "Bromley FC",
+        "Brommapojkarna",
+        "Br\u00f8ndby IF",
+        "Bucheon FC 1995",
+        "Burgos CF",
+        "Buriram United",
+        "Burnley",
+        "Burton Albion",
+        "C. Adeje Tenerife",
+        "CA Osasuna",
+        "CD Castell\u00f3n",
+        "CD Eldense",
+        "CD Legan\u00e9s",
+        "CD Tenerife",
+        "CE Sabadell FC",
+        "CF Cruz Azul",
+        "CF Montr\u00e9al",
+        "CFR 1907 Cluj",
+        "Cagliari",
+        "Cambridge Utd",
+        "Carabobo FC",
+        "Caracas FC",
+        "Cardiff City",
+        "Carrarese Calcio",
+        "Casa Pia AC",
+        "Catanzaro",
+        "Celta",
+        "Celta Fortuna",
+        "Celtic",
+        "Central Coast",
+        "Central C\u00f3rdoba",
+        "Cercle Brugge",
+        "Cerro Porte\u00f1o",
+        "Cesena",
+        "Charlotte FC",
+        "Charlton Ath",
+        "Charlton Athletic",
+        "Chelsea",
+        "Cheltenham Town",
+        "Chengdu FC",
+        "Chennaiyin FC",
+        "Chesterfield",
+        "Chicago Fire FC",
+        "Chicago Stars FC",
+        "Chongqing FC",
+        "Cienciano",
+        "City Torque",
+        "Clermont Foot 63",
+        "Club Am\u00e9rica",
+        "Club Atl\u00e9tico Gimnasia y Esgrima",
+        "Club Brugge",
+        "Club Guadalajara",
+        "Club Len",
+        "Club Necaxa",
+        "Club Pachuca",
+        "Club Puebla",
+        "Club Tigres",
+        "Club Tijuana",
+        "Colchester",
+        "Colorado Rapids",
+        "Columbus Crew",
+        "Como",
+        "Coquimbo Unido",
+        "Coventry City",
+        "Cracovia",
+        "Crawley Town",
+        "Cremonese",
+        "Crewe Alexandra",
+        "Crystal Palace",
+        "Cusco FC",
+        "C\u00e1diz CF",
+        "C\u00f3rdoba CF",
+        "D. Alav\u00e9s",
+        "D.C. United",
+        "DUX Logro\u00f1o",
+        "Daejeon Hana",
+        "Dalian Yingbo",
+        "Defensa",
+        "Degerfors IF",
+        "Denver Summit FC",
+        "Dep. Cuenca",
+        "Dep. La Guaira",
+        "Dep. Riestra",
+        "Deportes Tolima",
+        "Deportivo Alav\u00e9s",
+        "Derby County",
+        "Derry City",
+        "Dijon Football C\u00f4te d\u2019Or",
+        "Dinamo Zagreb",
+        "Djurg\u00e5rdens IF",
+        "Doncaster",
+        "Drogheda United",
+        "Dundalk",
+        "Dundee FC",
+        "Dundee United",
+        "Dynamo Dresden",
+        "Dynamo Kyiv",
+        "D\u00fcsseldorf",
+        "ESTAC Troyes",
+        "Elche CF",
+        "Empoli",
+        "En Avant Guingamp",
+        "Energie Cottbus",
+        "Entella",
+        "Erzurumspor Futbol Kul\u00fcb\u00fc",
+        "Estoril Praia",
+        "Estrela Amadora",
+        "Estudiantes",
+        "Everton",
+        "Excelsior",
+        "Exeter City",
+        "Ey\u00fcpspor",
+        "F.C. K\u00f8benhavn",
+        "FC Alverca",
+        "FC Andorra",
+        "FC Annecy",
+        "FC Anyang",
+        "FC Arge\u0219",
+        "FC Augsburg",
+        "FC Barcelona",
+        "FC Basel 1893",
+        "FC Bayern M\u00fcnchen",
+        "FC Boto\u0219ani",
+        "FC Cincinnati",
+        "FC Corvinul 1921 Hunedoara",
+        "FC Dallas",
+        "FC Dinamo 1948",
+        "FC Famalic\u00e3o",
+        "FC Fleury 91",
+        "FC Goa",
+        "FC Groningen",
+        "FC Hansa Rostock",
+        "FC Ingolstadt 04",
+        "FC Jurez",
+        "FC Lorient",
+        "FC Lugano",
+        "FC Luzern",
+        "FC Metz",
+        "FC Midtjylland",
+        "FC Nantes",
+        "FC Nordsj\u00e6lland",
+        "FC Petrolul",
+        "FC Porto",
+        "FC Rapid 1923",
+        "FC Roseng\u00e5rd",
+        "FC Schalke 04",
+        "FC Seoul",
+        "FC Sion",
+        "FC Sochaux-Montb\u00e9liard",
+        "FC St. Gallen",
+        "FC St. Pauli",
+        "FC Thun",
+        "FC Twente",
+        "FC Univ. Cluj",
+        "FC Utrecht",
+        "FC Vaduz",
+        "FC Voluntari",
+        "FC W\u00fcrzburger Kickers",
+        "FC Z\u00fcrich",
+        "FCSB",
+        "FK Austria Wien",
+        "FK Bod\u00f8/Glimt",
+        "FK Cs\u00edkszereda",
+        "Falkirk",
+        "Farul Constan\u021ba",
+        "Fenerbah\u00e7e",
+        "Ferencv\u00e1rosi TC",
+        "Feyenoord",
+        "Fiorentina",
+        "Fleetwood Town",
+        "Fortuna Sittard",
+        "Frankfurt",
+        "Fredrikstad FK",
+        "Frosinone",
+        "Fulham",
+        "F\u00fcrth",
+        "GAIS",
+        "GC Z\u00fcrich",
+        "GKS Katowice",
+        "Galatasaray",
+        "Galway United",
+        "Gangwon FC",
+        "Gaziantep",
+        "Genoa",
+        "Gen\u00e7lerbirli\u011fi",
+        "Getafe CF",
+        "Gil Vicente",
+        "Gillingham",
+        "Gimcheon Sangmu",
+        "Gimnasia",
+        "Girona FC",
+        "Glasgow City FC",
+        "Go Ahead Eagles",
+        "Gotham FC",
+        "Granada CF",
+        "Grazer AK",
+        "Grenoble Foot 38",
+        "Grimsby Town",
+        "Gwangju FC",
+        "G\u00f3rnik Zabrze",
+        "G\u00f6ztepe",
+        "HJK Helsinki",
+        "Hajduk Split",
+        "Halmstads BK",
+        "HamKam Fotball",
+        "Hamburger SV",
+        "Hammarby IF",
+        "Hannover 96",
+        "Havre AC",
+        "Hearts",
+        "Heidenheim",
+        "Hellas Verona",
+        "Henan FC",
+        "Hertha BSC",
+        "Hibernian",
+        "Holstein Kiel",
+        "Houston Dash",
+        "Houston Dynamo",
+        "Huddersfield",
+        "Hull City",
+        "Hurac\u00e1n",
+        "Hyderabad FC",
+        "IDV",
+        "IF Elfsborg",
+        "IFK G\u00f6teborg",
+        "IK Sirius",
+        "IK Start",
+        "Incheon United",
+        "Ind. Petrolero",
+        "Ind. Rivadavia",
+        "Indep. Medell\u00edn",
+        "Indep. Santa Fe",
+        "Independiente",
+        "Instituto",
+        "Inter Kashi",
+        "Inter Miami CF",
+        "Ipswich",
+        "Jagiellonia",
+        "Jahn Regensburg",
+        "Jeju United",
+        "Jeonbuk Hyundai",
+        "Junior",
+        "Juventud",
+        "Juventus",
+        "KAA Gent",
+        "KC Current",
+        "KFUM-Kameratene",
+        "KRC Genk",
+        "KS Wieczysta Krak\u00f3w",
+        "KV Kortrijk",
+        "KV Mechelen",
+        "KVC Westerlo",
+        "Kaiserslautern",
+        "Kalmar FF",
+        "Karlsruher SC",
+        "Kas\u0131mpa\u015fa",
+        "Kerala Blasters",
+        "Kilmarnock",
+        "Kocaelispor",
+        "Konyaspor",
+        "Korona Kielce",
+        "Kristiansund BK",
+        "L. R. Vicenza",
+        "LA Galaxy",
+        "LAFC",
+        "LASK",
+        "LDU Quito",
+        "LOSC Lille",
+        "Lan\u00fas",
+        "Latium",
+        "Lausanne-Sport",
+        "Laval MFC",
+        "Le Mans FC",
+        "Lecce",
+        "Lech Pozna\u0144",
+        "Leeds United",
+        "Legia Warszawa",
+        "Leicester City",
+        "Levante UD",
+        "Leverkusen",
+        "Leyton Orient",
+        "Liaoning FC",
+        "Libertad",
+        "Lillestr\u00f8m SK",
+        "Lincoln City",
+        "Liverpool",
+        "Lombardia FC",
+        "Lommel SK",
+        "London City",
+        "Luton Town",
+        "Lyngby BK",
+        "M'gladbach",
+        "MK Dons",
+        "MSV Duisburg",
+        "Macar",
+        "Macarthur FC",
+        "Madrid CFF",
+        "Malm\u00f6 FF",
+        "Man Utd",
+        "Manchester City",
+        "Manchester Utd",
+        "Mansfield Town",
+        "Mantova",
+        "Marseille",
+        "Mar\u00edtimo da Madeira",
+        "Melb. Victory",
+        "Melbourne City",
+        "Middlesbrough",
+        "Milano FC",
+        "Millonarios",
+        "Millwall",
+        "Minnesota United",
+        "Mj\u00e4llby AIF",
+        "Modena",
+        "Mohun Bagan SG",
+        "Molde FK",
+        "Monterrey",
+        "Montpellier",
+        "Monza",
+        "Moreirense FC",
+        "Motherwell",
+        "Motor Lublin",
+        "Mumbai City FC",
+        "M\u00e1laga CF",
+        "N.E.C. Nijmegen",
+        "NC Courage",
+        "Nacional",
+        "Nashville SC",
+        "Neom",
+        "New England",
+        "New York City FC",
+        "Newcastle Jets",
+        "Newcastle Utd",
+        "Newell's",
+        "Newport County",
+        "NorthEast United",
+        "Northampton",
+        "Norwich",
+        "Nott'm Forest",
+        "Notts County",
+        "O'Higgins",
+        "OGC Nice",
+        "OH Leuven",
+        "OL",
+        "OL Lyonnes",
+        "OM",
+        "Odense BK",
+        "Odisha FC",
+        "Oldham Athletic",
+        "Olimpia",
+        "Olympiacos FC",
+        "Omonia FC",
+        "Orlando City",
+        "Orlando Pride",
+        "Oxford United",
+        "PAOK FC",
+        "PEC Zwolle",
+        "PFC Ludogorets",
+        "PSV",
+        "Padova",
+        "Palermo",
+        "Palestino",
+        "Panathinaikos",
+        "Paris FC",
+        "Paris SG",
+        "Parma",
+        "Pau FC",
+        "Perth Glory",
+        "Peterborough",
+        "Pe\u00f1arol",
+        "Philadelphia",
+        "Piast Gliwice",
+        "Pisa",
+        "Platense",
+        "Plymouth Argyle",
+        "Pogo\u0144 Szczecin",
+        "Pohang Steelers",
+        "Port Vale",
+        "Portland Thorns",
+        "Portland Timbers",
+        "Portsmouth",
+        "Preston",
+        "Preu\u00dfen M\u00fcnster",
+        "Puerto Cabello",
+        "Pumas",
+        "Punjab FC",
+        "QPR",
+        "Qaraba\u011f FK",
+        "Qingdao Hainiu",
+        "Qingdao W. Coast",
+        "Quertaro FC",
+        "R. Oviedo",
+        "R. Racing Club",
+        "R. Sporting",
+        "R. Union St.-G.",
+        "R. Valladolid CF",
+        "RAAL La Louvi\u00e8re",
+        "RB Leipzig",
+        "RB Salzburg",
+        "RC Deportivo",
+        "RC Lens",
+        "RCD Espanyol",
+        "RCD Mallorca",
+        "RSC Anderlecht",
+        "Rac. Louisville",
+        "Racing Club",
+        "Radomiak Radom",
+        "Rak\u00f3w",
+        "Randers FC",
+        "Rangers",
+        "Rayo Vallecano",
+        "Reading",
+        "Real Betis",
+        "Real Madrid",
+        "Real Salt Lake",
+        "Real Sociedad",
+        "Real Sociedad B",
+        "Recoleta",
+        "Red Bulls",
+        "Red Star FC",
+        "Rio Ave FC",
+        "River Plate",
+        "Rochdale",
+        "Rodez AF",
+        "Roma",
+        "Rosario Central",
+        "Rosenborg BK",
+        "Rot-Weiss Essen",
+        "Rotherham Utd",
+        "Royal Antwerp FC",
+        "SC Austria",
+        "SC Braga",
+        "SC Cambuur",
+        "SC Fortuna K\u00f6ln",
+        "SC Freiburg",
+        "SC O\u021belul Gala\u021bi",
+        "SC Paderborn 07",
+        "SC Telstar",
+        "SC Verl",
+        "SCR Altach",
+        "SD Eibar",
+        "SG Sonnenhof Gro\u00dfaspach",
+        "SJ Earthquakes",
+        "SK Brann",
+        "SK Rapid",
+        "SK Sturm Graz",
+        "SL Benfica",
+        "SS Juve Stabia",
+        "SSC Napoli",
+        "STVV",
+        "SV Darmstadt 98",
+        "SV Elversberg",
+        "SV Meppen",
+        "SV Oberbank Ried",
+        "SV Waldhof",
+        "SV Werder Bremen",
+        "SZ Peng City",
+        "Saarbr\u00fccken",
+        "Salford City",
+        "Sampdoria",
+        "Samsunspor",
+        "San Diego FC",
+        "San Diego Wave",
+        "San Lorenzo",
+        "Sandefjord",
+        "Santa Clara",
+        "Santos Laguna",
+        "Sarmiento",
+        "Sarpsborg 08",
+        "Sassuolo",
+        "Seattle Reign",
+        "Sepsi OSK",
+        "Servette FC",
+        "Sevilla FC",
+        "Shakhtar Donetsk",
+        "Shamrock Rovers",
+        "Shandong Taishan",
+        "Shanghai Port FC",
+        "Shanghai Shenhua",
+        "Sheffield Utd",
+        "Sheffield Wed",
+        "Shelbourne",
+        "Shrewsbury",
+        "Silkeborg IF",
+        "Slavia Praha",
+        "Sligo Rovers",
+        "Sounders FC",
+        "Southampton",
+        "Sp. Charleroi",
+        "Sparta Praha",
+        "Sparta Rotterdam",
+        "Sporting CP",
+        "Sporting Cristal",
+        "Sporting KC",
+        "Spurs",
+        "St. Johnstone",
+        "St. Louis CITY SC",
+        "St. Mirren",
+        "St. Pats",
+        "Stade Brestois 29",
+        "Stade Rennais FC",
+        "Stade de Reims",
+        "Standard Li\u00e8ge",
+        "Stevenage",
+        "Stockport",
+        "Stoke City",
+        "Strasbourg",
+        "Sunderland",
+        "Swansea City",
+        "Swindon Town",
+        "Sydney FC",
+        "S\u00f8nderjyske",
+        "S\u00fcdtirol",
+        "TSG Hoffenheim",
+        "TSG Hoffenheim II",
+        "TSV Hartberg",
+        "TSV Havelse",
+        "Talleres",
+        "Tianjin JMT FC",
+        "Tigre",
+        "Toluca FC",
+        "Torino",
+        "Toronto FC",
+        "Toulouse FC",
+        "Trabzonspor",
+        "Tranmere Rovers",
+        "Troms\u00f8 IL",
+        "UCV FC",
+        "UD Almer\u00eda",
+        "UD Las Palmas",
+        "US Boulogne",
+        "US Saint-Malo",
+        "USL Dunkerque",
+        "UTA Arad",
+        "Udinese",
+        "Ulsan HD FC",
+        "Uni. Cat\u00f3lica",
+        "Union Berlin",
+        "Univ. Craiova",
+        "Universitario",
+        "Uni\u00f3n",
+        "Utah Royals FC",
+        "Valencia CF",
+        "Venezia",
+        "VfB Stuttgart",
+        "VfB Stuttgart II",
+        "VfL Bochum 1848",
+        "VfL Osnabr\u00fcck",
+        "VfL Wolfsburg",
+        "Viborg FF",
+        "Viking FK",
+        "Viktoria K\u00f6ln",
+        "Viktoria Plze\u0148",
+        "Villarreal CF",
+        "Vit\u00f3ria SC",
+        "V\u00e4ster\u00e5s SK",
+        "V\u00e5lerenga Fotball",
+        "V\u00e9lez Sarsfield",
+        "WS Wanderers",
+        "WSG Tirol",
+        "Waasland-Beveren",
+        "Walsall",
+        "Washington Spirit",
+        "Waterford",
+        "Watford",
+        "Wehen Wiesbaden",
+        "Well. Phoenix",
+        "West Brom",
+        "West Ham",
+        "Whitecaps FC",
+        "Widzew \u0141\u00f3d\u017a",
+        "Wigan Athletic",
+        "Willem II",
+        "Wis\u0142a Krak\u00f3w",
+        "Wis\u0142a P\u0142ock",
+        "Wolfsberger AC",
+        "Wolves",
+        "Wrexham",
+        "Wuhan Three Towns",
+        "Wycombe",
+        "York City",
+        "Yunnan Yukun",
+        "Zag\u0142\u0119bie Lubin",
+        "Zhejiang Pro",
+        "Zulte Waregem",
+        "sc Heerenveen",
+        "\u00c7aykur Rizespor",
+        "\u00c7orum Futbol Kul\u00fcb\u00fc",
+        "\u00d6rgryte IS",
+        "\u015al\u0105sk Wroc\u0142aw"
+      ]
+    },
+    "player_id": {
+      "unique_count": 19789
+    }
+  },
+  {
+    "file": "poisson_backtest_predictions.csv",
+    "rows": 300,
+    "duplicate_rows": 0,
+    "sha256": "b4ccfd1fe4d7f4be6c88b41729748bd1aa954ad6ebc62ec9adc2d9a0ff40f888",
+    "columns": {
+      "kickoff_utc": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "home_team": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "away_team": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "expected_home_goals": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "expected_away_goals": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "home_win_probability": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "draw_probability": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "away_win_probability": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "most_likely_score": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "mode": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "fixture_id": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "season": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "information_cutoff_utc": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "current_results_used": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "latest_result_used_utc": {
+        "dtype": "object",
+        "missing": 201
+      },
+      "current_promotion_weight": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "actual_home_goals": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "actual_away_goals": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "actual_score": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "actual_result": {
+        "dtype": "object",
+        "missing": 0
+      }
+    },
+    "observation_type": "prediction_output",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "parsed_kickoff_utc": {
+      "first": "2026-08-21T19:00:00+00:00",
+      "last": "2026-11-08T16:30:00+00:00",
+      "invalid": 0
+    },
+    "kickoff_utc": {
+      "min": "2026-08-21 19:00:00+00:00",
+      "max": "2026-11-08 16:30:00+00:00",
+      "unique_count": 62
+    },
+    "season": {
+      "min": "2026-27",
+      "max": "2026-27",
+      "unique_count": 1,
+      "counts": {
+        "2026-27": 300
+      }
+    },
+    "home_team": {
+      "unique_count": 20,
+      "values": [
+        "Arsenal",
+        "Aston Villa",
+        "Bournemouth",
+        "Brentford",
+        "Brighton",
+        "Chelsea",
+        "Coventry",
+        "Crystal Palace",
+        "Everton",
+        "Fulham",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Liverpool",
+        "Man City",
+        "Man United",
+        "Newcastle",
+        "Nottingham",
+        "Sunderland",
+        "Tottenham"
+      ]
+    },
+    "away_team": {
+      "unique_count": 20,
+      "values": [
+        "Arsenal",
+        "Aston Villa",
+        "Bournemouth",
+        "Brentford",
+        "Brighton",
+        "Chelsea",
+        "Coventry",
+        "Crystal Palace",
+        "Everton",
+        "Fulham",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Liverpool",
+        "Man City",
+        "Man United",
+        "Newcastle",
+        "Nottingham",
+        "Sunderland",
+        "Tottenham"
+      ]
+    },
+    "fixture_id": {
+      "unique_count": 100
+    }
+  },
+  {
+    "file": "poisson_predictions.csv",
+    "rows": 40,
+    "duplicate_rows": 0,
+    "sha256": "425cc9fff0e6c881bf71f007b54ca37a6c464a6eec0dc6a786b5fac38c260bad",
+    "columns": {
+      "kickoff_utc": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "home_team": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "away_team": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "expected_home_goals": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "expected_away_goals": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "home_win_probability": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "draw_probability": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "away_win_probability": {
+        "dtype": "float64",
+        "missing": 0
+      },
+      "most_likely_score": {
+        "dtype": "object",
+        "missing": 0
+      }
+    },
+    "observation_type": "prediction_output",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "parsed_kickoff_utc": {
+      "first": "2026-11-21T12:30:00+00:00",
+      "last": "2026-12-06T16:30:00+00:00",
+      "invalid": 0
+    },
+    "kickoff_utc": {
+      "min": "2026-11-21 12:30:00+00:00",
+      "max": "2026-12-06 16:30:00+00:00",
+      "unique_count": 22,
+      "counts": {
+        "2026-11-21 15:00:00+00:00": 5,
+        "2026-12-02 19:30:00+00:00": 4,
+        "2026-12-02 20:15:00+00:00": 4,
+        "2026-12-05 15:00:00+00:00": 4,
+        "2026-11-29 14:05:00+00:00": 4,
+        "2026-11-28 15:00:00+00:00": 2,
+        "2026-12-06 14:00:00+00:00": 2,
+        "2026-11-23 20:00:00+00:00": 1,
+        "2026-11-22 14:00:00+00:00": 1,
+        "2026-11-21 17:30:00+00:00": 1,
+        "2026-11-21 12:30:00+00:00": 1,
+        "2026-11-22 16:30:00+00:00": 1,
+        "2026-11-29 12:00:00+00:00": 1,
+        "2026-11-27 20:00:00+00:00": 1,
+        "2026-12-01 20:00:00+00:00": 1,
+        "2026-11-29 16:30:00+00:00": 1,
+        "2026-11-28 17:30:00+00:00": 1,
+        "2026-12-03 20:00:00+00:00": 1,
+        "2026-12-05 12:30:00+00:00": 1,
+        "2026-12-05 17:30:00+00:00": 1,
+        "2026-12-05 20:00:00+00:00": 1,
+        "2026-12-06 16:30:00+00:00": 1
+      }
+    },
+    "home_team": {
+      "unique_count": 20,
+      "values": [
+        "Arsenal",
+        "Aston Villa",
+        "Bournemouth",
+        "Brentford",
+        "Brighton",
+        "Chelsea",
+        "Coventry",
+        "Crystal Palace",
+        "Everton",
+        "Fulham",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Liverpool",
+        "Man City",
+        "Man United",
+        "Newcastle",
+        "Nottingham",
+        "Sunderland",
+        "Tottenham"
+      ]
+    },
+    "away_team": {
+      "unique_count": 20,
+      "values": [
+        "Arsenal",
+        "Aston Villa",
+        "Bournemouth",
+        "Brentford",
+        "Brighton",
+        "Chelsea",
+        "Coventry",
+        "Crystal Palace",
+        "Everton",
+        "Fulham",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Liverpool",
+        "Man City",
+        "Man United",
+        "Newcastle",
+        "Nottingham",
+        "Sunderland",
+        "Tottenham"
+      ]
+    }
+  },
+  {
+    "file": "premier_league_match_history.csv",
+    "rows": 2660,
+    "duplicate_rows": 0,
+    "sha256": "8cb512055b4291b181dee9cc7d9d3496c790928742ebf2800e4d362e40598a41",
+    "columns": {
+      "date": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "season": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "home_team": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "away_team": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "home_goals": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "away_goals": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "result": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "status": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "competition": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "source": {
+        "dtype": "object",
+        "missing": 0
+      }
+    },
+    "observation_type": "match_records",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "parsed_date": {
+      "first": "2019-08-09T00:00:00+00:00",
+      "last": "2026-05-24T00:00:00+00:00",
+      "invalid": 0
+    },
+    "date": {
+      "min": "2019-08-09",
+      "max": "2026-05-24",
+      "unique_count": 833
+    },
+    "season": {
+      "min": "2019-20",
+      "max": "2025-26",
+      "unique_count": 7,
+      "counts": {
+        "2019-20": 380,
+        "2020-21": 380,
+        "2021-22": 380,
+        "2022-23": 380,
+        "2023-24": 380,
+        "2024-25": 380,
+        "2025-26": 380
+      }
+    },
+    "home_team": {
+      "unique_count": 28,
+      "values": [
+        "Arsenal",
+        "Aston Villa",
+        "Bournemouth",
+        "Brentford",
+        "Brighton",
+        "Burnley",
+        "Chelsea",
+        "Crystal Palace",
+        "Everton",
+        "Fulham",
+        "Ipswich",
+        "Leeds",
+        "Leicester",
+        "Liverpool",
+        "Luton",
+        "Man City",
+        "Man United",
+        "Newcastle",
+        "Norwich",
+        "Nottingham",
+        "Sheffield",
+        "Southampton",
+        "Sunderland",
+        "Tottenham",
+        "Watford",
+        "West Brom",
+        "West Ham",
+        "Wolves"
+      ]
+    },
+    "away_team": {
+      "unique_count": 28,
+      "values": [
+        "Arsenal",
+        "Aston Villa",
+        "Bournemouth",
+        "Brentford",
+        "Brighton",
+        "Burnley",
+        "Chelsea",
+        "Crystal Palace",
+        "Everton",
+        "Fulham",
+        "Ipswich",
+        "Leeds",
+        "Leicester",
+        "Liverpool",
+        "Luton",
+        "Man City",
+        "Man United",
+        "Newcastle",
+        "Norwich",
+        "Nottingham",
+        "Sheffield",
+        "Southampton",
+        "Sunderland",
+        "Tottenham",
+        "Watford",
+        "West Brom",
+        "West Ham",
+        "Wolves"
+      ]
+    }
+  },
+  {
+    "file": "upcoming_premier_league_fixtures.csv",
+    "rows": 40,
+    "duplicate_rows": 0,
+    "sha256": "288672ec56e93bbbc0897628a3beece4d8a14ad50139c599d7cec0a5f67d30d5",
+    "columns": {
+      "fixture_id": {
+        "dtype": "int64",
+        "missing": 0
+      },
+      "kickoff_utc": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "season": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "home_team": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "away_team": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "status": {
+        "dtype": "object",
+        "missing": 0
+      },
+      "source": {
+        "dtype": "object",
+        "missing": 0
+      }
+    },
+    "observation_type": "match_records",
+    "availability_policy": "match results usable next UTC day; source publication/version history unknown",
+    "parsed_kickoff_utc": {
+      "first": "2026-11-21T12:30:00+00:00",
+      "last": "2026-12-06T16:30:00+00:00",
+      "invalid": 0
+    },
+    "kickoff_utc": {
+      "min": "2026-11-21 12:30:00+00:00",
+      "max": "2026-12-06 16:30:00+00:00",
+      "unique_count": 22,
+      "counts": {
+        "2026-11-21 15:00:00+00:00": 5,
+        "2026-12-02 19:30:00+00:00": 4,
+        "2026-12-02 20:15:00+00:00": 4,
+        "2026-12-05 15:00:00+00:00": 4,
+        "2026-11-29 14:05:00+00:00": 4,
+        "2026-11-28 15:00:00+00:00": 2,
+        "2026-12-06 14:00:00+00:00": 2,
+        "2026-11-23 20:00:00+00:00": 1,
+        "2026-11-22 14:00:00+00:00": 1,
+        "2026-11-21 17:30:00+00:00": 1,
+        "2026-11-21 12:30:00+00:00": 1,
+        "2026-11-22 16:30:00+00:00": 1,
+        "2026-11-29 12:00:00+00:00": 1,
+        "2026-11-27 20:00:00+00:00": 1,
+        "2026-12-01 20:00:00+00:00": 1,
+        "2026-11-29 16:30:00+00:00": 1,
+        "2026-11-28 17:30:00+00:00": 1,
+        "2026-12-03 20:00:00+00:00": 1,
+        "2026-12-05 12:30:00+00:00": 1,
+        "2026-12-05 17:30:00+00:00": 1,
+        "2026-12-05 20:00:00+00:00": 1,
+        "2026-12-06 16:30:00+00:00": 1
+      }
+    },
+    "season": {
+      "min": "2026-27",
+      "max": "2026-27",
+      "unique_count": 1,
+      "counts": {
+        "2026-27": 40
+      }
+    },
+    "home_team": {
+      "unique_count": 20,
+      "values": [
+        "Arsenal",
+        "Aston Villa",
+        "Bournemouth",
+        "Brentford",
+        "Brighton",
+        "Chelsea",
+        "Coventry",
+        "Crystal Palace",
+        "Everton",
+        "Fulham",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Liverpool",
+        "Man City",
+        "Man United",
+        "Newcastle",
+        "Nottingham",
+        "Sunderland",
+        "Tottenham"
+      ]
+    },
+    "away_team": {
+      "unique_count": 20,
+      "values": [
+        "Arsenal",
+        "Aston Villa",
+        "Bournemouth",
+        "Brentford",
+        "Brighton",
+        "Chelsea",
+        "Coventry",
+        "Crystal Palace",
+        "Everton",
+        "Fulham",
+        "Hull",
+        "Ipswich",
+        "Leeds",
+        "Liverpool",
+        "Man City",
+        "Man United",
+        "Newcastle",
+        "Nottingham",
+        "Sunderland",
+        "Tottenham"
+      ]
+    },
+    "fixture_id": {
+      "unique_count": 40
+    }
+  }
+]
