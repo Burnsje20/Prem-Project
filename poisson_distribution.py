@@ -39,6 +39,10 @@ def parse_arguments() -> argparse.Namespace:
     )
     parser.add_argument("--fixtures", type=Path, default=FIXTURES_PATH)
     parser.add_argument("--output", type=Path, default=PREDICTIONS_PATH)
+    parser.add_argument(
+        "--omit-current-season", action="store_true",
+        help="Use historical seasons only; do not fetch or use current-season results.",
+    )
     return parser.parse_args()
 
 
@@ -124,10 +128,14 @@ def current_promoted_teams(
 def current_transition_factors(
     promoted: set[str], current_results: pd.DataFrame, championship: pd.DataFrame
 ) -> tuple[float | None, float | None, int]:
-    """Measure this season's promoted-team transition from their 2025-26 form."""
-    prior_championship = championship.loc[championship["season"] == "2025-26"]
+    """Measure promoted-team transitions using only the supplied completed results."""
+    prior_championship = championship.loc[
+        championship["season"] == max(championship["season"])
+    ]
     attack_ratios, defence_ratios, matches_seen = [], [], 0
     for team in promoted:
+        if not ((current_results["home_team"] == team) | (current_results["away_team"] == team)).any():
+            continue
         if team not in set(prior_championship["home_team"]) | set(prior_championship["away_team"]):
             continue
         current_for, current_against, games = team_rates(current_results, team)
@@ -186,9 +194,22 @@ def prior_rating(
 
 
 def poisson_probabilities(home_lambda: float, away_lambda: float) -> tuple[float, float, float, str]:
-    """Calculate H/D/A probabilities and the most likely scoreline through six goals."""
-    home_probs = [math.exp(-home_lambda) * home_lambda**goals / math.factorial(goals) for goals in range(7)]
-    away_probs = [math.exp(-away_lambda) * away_lambda**goals / math.factorial(goals) for goals in range(7)]
+    """Calculate H/D/A probabilities, retaining all but 1e-12 of each goal tail."""
+    def goal_probabilities(rate: float) -> list[float]:
+        if not math.isfinite(rate) or rate < 0:
+            raise ValueError("Expected goals must be finite and nonnegative.")
+        # Fail explicitly on implausible inputs instead of underflowing or looping.
+        if rate > 100:
+            raise ValueError("Expected goals above 100 indicate an invalid model input.")
+        probabilities = [math.exp(-rate)]
+        total = probabilities[0]
+        while total < 1 - 1e-12:
+            probabilities.append(probabilities[-1] * rate / len(probabilities))
+            total += probabilities[-1]
+        return [probability / total for probability in probabilities]
+
+    home_probs = goal_probabilities(home_lambda)
+    away_probs = goal_probabilities(away_lambda)
     home_win = draw = away_win = 0.0
     score_probability, scoreline = -1.0, "0-0"
     for home_goals, home_probability in enumerate(home_probs):
@@ -230,7 +251,10 @@ def build_predictions(
     ]
     home_baseline = historical_latest["home_goals"].mean()
     away_baseline = historical_latest["away_goals"].mean()
-    current_rate = league_goal_rate(current_results)
+    current_results = current_results.sort_values("date")
+    current_rate = league_goal_rate(current_results) if not current_results.empty else 0
+    if current_rate <= 0:
+        current_rate = league_goal_rate(historical_latest)
     rows = []
     for fixture in fixtures.itertuples(index=False):
         home_prior = prior_rating(
@@ -255,11 +279,11 @@ def build_predictions(
                 "kickoff_utc": fixture.kickoff_utc,
                 "home_team": fixture.home_team,
                 "away_team": fixture.away_team,
-                "expected_home_goals": round(home_lambda, 2),
-                "expected_away_goals": round(away_lambda, 2),
-                "home_win_probability": round(home_win, 3),
-                "draw_probability": round(draw, 3),
-                "away_win_probability": round(away_win, 3),
+                "expected_home_goals": home_lambda,
+                "expected_away_goals": away_lambda,
+                "home_win_probability": home_win,
+                "draw_probability": draw,
+                "away_win_probability": away_win,
                 "most_likely_score": scoreline,
             }
         )
@@ -283,11 +307,14 @@ def main() -> None:
     premier_league = load_matches(PREMIER_LEAGUE_PATH)
     championship = load_matches(CHAMPIONSHIP_PATH)
     fixtures = pd.read_csv(args.fixtures)
-    current_results = (
-        load_matches(CURRENT_RESULTS_PATH)
-        if args.no_refresh_current
-        else refresh_current_results()
-    )
+    if args.omit_current_season:
+        current_results = premier_league.iloc[:0].copy()
+    else:
+        current_results = (
+            load_matches(CURRENT_RESULTS_PATH)
+            if args.no_refresh_current
+            else refresh_current_results()
+        )
     predictions, adjustment = build_predictions(
         premier_league, championship, current_results, fixtures
     )

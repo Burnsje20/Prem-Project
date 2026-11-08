@@ -1,0 +1,45 @@
+{
+  "season": "2026-27",
+  "first_test_kickoff": "2026-08-21T19:00:00+00:00",
+  "last_test_kickoff": "2026-11-08T16:30:00+00:00",
+  "training_season_end": "2025-26",
+  "cutoff_policy": "Only results from earlier UTC dates; same-day results excluded.",
+  "parameter_policy": "Existing model parameters held fixed; no tuning on test outcomes.",
+  "limitations": [
+    "Retrospective replay of the supplied cache, not a prospective live trial.",
+    "Source data authenticity and historical corrections are not independently verified.",
+    "A single partial season is insufficient to establish future accuracy."
+  ],
+  "metrics": {
+    "historical_only": {
+      "matches": 100,
+      "correct_results": 47,
+      "result_accuracy": 0.47,
+      "exact_scores": 13,
+      "exact_score_accuracy": 0.13,
+      "log_loss": 1.0537728750616422,
+      "brier_score": 0.6325866965016481,
+      "goals_mae_per_team": 1.0186986135646554
+    },
+    "league_average": {
+      "matches": 100,
+      "correct_results": 42,
+      "result_accuracy": 0.42,
+      "exact_scores": 11,
+      "exact_score_accuracy": 0.11,
+      "log_loss": 1.0821983558066257,
+      "brier_score": 0.6554676327687935,
+      "goals_mae_per_team": 0.9782894736842106
+    },
+    "walk_forward": {
+      "matches": 100,
+      "correct_results": 45,
+      "result_accuracy": 0.45,
+      "exact_scores": 13,
+      "exact_score_accuracy": 0.13,
+      "log_loss": 1.039590168400678,
+      "brier_score": 0.6238050957101229,
+      "goals_mae_per_team": 0.9871401199531296
+    }
+  }
+}
