@@ -34,6 +34,10 @@ class Predictor:
 
     def predict(self, fixtures, ea=None, appearances=None, filter_future=False):
         fixtures = fixtures.copy()
+        if 'fixture_id' in fixtures:
+            ids = pd.to_numeric(fixtures.fixture_id.dropna(), errors='raise')
+            if not (np.isfinite(ids) & (ids > 0) & (ids % 1 == 0)).all():
+                raise ValueError('fixture_id must be a positive integer when supplied')
         for col in ['home_team','away_team']:
             fixtures[col] = fixtures[col].map(team_name)
         fixtures['kickoff_utc'] = pd.to_datetime(fixtures.kickoff_utc,utc=True,format='mixed')
@@ -95,6 +99,7 @@ class Predictor:
             statistics = markets(coherent)
             components = frame.iloc[i]
             results.append({'home_team':row.home_team,'away_team':row.away_team,
+                'fixture_id':int(float(row.fixture_id)) if hasattr(row,'fixture_id') and pd.notna(row.fixture_id) else None,
                 'kickoff_utc':row.kickoff_utc.isoformat(),**statistics,
                 'probability_units':'fraction (multiply by 100 for percent)',
                 'model':active,'data_cutoff':self.manifest['cutoff'],'trained_at':self.manifest['trained_at'],

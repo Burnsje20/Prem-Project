@@ -1,0 +1,4821 @@
+{
+  "schema_version": 1,
+  "kind": "prospective_forecasts",
+  "captured_at": "2026-11-09T12:04:45.845734+00:00",
+  "run_id": "771b4be1a81d4052910ed1632341cf87",
+  "source_hashes": {
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\__init__.py": "8f4ce026f1059d696bd9a93cfcfb5c300cabf0f882504039eb8a206acb589fd5",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\boosting.py": "c6244724bf6a189e7c903934f0343c9ac63bd5fe29d40438636d5b78bd499f20",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\data.py": "cf2f7d431093127abb52fed7fce66d70fa6f3e768d342cab009db91b3c320596",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\evaluation.py": "692c26ab106a2d6804960219c787c3de7209ef2d9c744338cbc085de1ec0238d",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\features.py": "59947b5dd53ceeb6b0089f05fcb074ff14f359ee75d320729a9df4b16fa5d1aa",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\goals.py": "f6a75a1da6f7d24fde8122277e4c31c6696b72e688180f04f2d26640c279c4d5",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\lineups.py": "d128e9a1c7283941c628946bb135c433b7be1ab802a6cc7b0f68500980dd056c",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\player_review.py": "35baa477f4b0d9816ff161f83ea6eb7f14163a324b07eb8375cc97001b85fcd3",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\players.py": "e54fa82b0f9b92d955c77dbc51c834bf0db9272c65e2704a65f7f9d606d39f35",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\predictor.py": "f8de8e1e7c4b92f49d5a19b106f3171339d06e447d3c9beb4b7b20702d86e4f7",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\promotion.py": "2df163c7604b1cd9824ec371c9fa4934a820263ab37a8752150498e01a35d8c4",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\prospective.py": "bc6ac7cc975014e8f0272b2ff6523baefdfd256bf17056a171f02a8d224c52a5",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\workflow.py": "1113f42453d57431c8543bc229cff9c9788fcb9be210592d476243bc3d3b89de",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\fotmob_client.py": "a23ef90b227f0b76e02d75376298d31cc208cc72300f03fb0fa5b3ab627af4e9",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\hybrid_predictor.py": "431a683745ce63c60cbffd66eff6201a1225199ddbb10ee37816ddbef1ef9c71",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\poisson_distribution.py": "3a67e765de1f0d626e8b5753fe7d422d9c7cb5e4fb039f3c310f04910f16a723",
+    "artifacts\\hybrid_v1\\championship_history.csv": "873b070eb00350534e75d039ac13037d70f3d04cf58c8c4d1aa003177649c19c",
+    "artifacts\\hybrid_v1\\dixon_coles.json": "875d91513b510b7d5096f79faadce1671d6d8d26e69f105aded77bf99899311b",
+    "artifacts\\hybrid_v1\\manifest.json": "e61a56d3fa4fa81f93536c42437a8ef6f9e6f708c325cd016a76ec27e5d978b1",
+    "artifacts\\hybrid_v1\\pl_history.csv": "a47ef6af392670c05dca5aa1d91d065cbe25b0424baabc409685d472e71dc039",
+    "artifacts\\hybrid_v1\\xgb_base.json": "3e91934d9e4e4449889fd93a08ece78317d873fa3ee40ba928fa6f4ddbe1ac24",
+    "artifacts\\hybrid_v1\\xgb_base_promotion.json": "7093fd65b8f9804ebabe7a1b2c727666770f908112fa68f38fb2c86304125407",
+    "artifacts\\hybrid_v1\\xgb_base_rest.json": "e3f516a5e826504f844c61aded2aac1c219c097c0ddb28f7adb757bb889b41a1",
+    "artifacts\\hybrid_v1\\xgb_base_xg.json": "fd25bf71486e886fc28ecf25901262ccc8830501d0f9218fb04b839585317850",
+    "artifacts\\hybrid_v1\\xgb_full.json": "1914dd75ba48f780edc30d263c789bedb3269b5723d7d8ff5ea1c8873f708cff",
+    "players.csv": "e2fe9d848fa21b04f0b76d851a94ad2d44b8a8c695bc202d4e0f1f5843db1264",
+    "upcoming_premier_league_fixtures.csv": "288672ec56e93bbbc0897628a3beece4d8a14ad50139c599d7cec0a5f67d30d5"
+  },
+  "predictions": [
+    {
+      "home_team": "Man City",
+      "away_team": "Fulham",
+      "fixture_id": 5795522,
+      "kickoff_utc": "2026-11-21T12:30:00+00:00",
+      "home_win_probability": 0.6412907468818182,
+      "draw_probability": 0.21930268801213565,
+      "away_win_probability": 0.1394065651060461,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.9623589426850248,
+      "expected_away_goals": 0.8001902406468294,
+      "most_likely_score": "2-0",
+      "top_five_scorelines": [
+        {
+          "score": "2-0",
+          "probability": 0.12155337887362953
+        },
+        {
+          "score": "1-0",
+          "probability": 0.11857240329832096
+        },
+        {
+          "score": "1-1",
+          "probability": 0.1044440913962303
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09726582749232483
+        },
+        {
+          "score": "3-0",
+          "probability": 0.07951045334907426
+        }
+      ],
+      "both_teams_to_score": 0.47867316031435747,
+      "over_2_5": 0.5215715684680835,
+      "under_2_5": 0.4784284315319165,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Man City": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 87.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 89.0,
+            "ea_DEF_talent": 85.53333333333335,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 85.66666666666667,
+            "ea_MID_talent": 83.93333333333334,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 83.33333333333333,
+            "ea_ATT_talent": 85.26666666666667,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 87.33333333333333
+          },
+          "fotmob": null
+        },
+        "Fulham": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 77.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 79.0,
+            "ea_MID_talent": 78.73333333333333,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.66666666666667,
+            "ea_ATT_talent": 70.33333333333333,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 71.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 188.82532101028414,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 200,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Bournemouth",
+      "away_team": "Nottingham",
+      "fixture_id": 5795515,
+      "kickoff_utc": "2026-11-21T15:00:00+00:00",
+      "home_win_probability": 0.4938313868524725,
+      "draw_probability": 0.2629043508163448,
+      "away_win_probability": 0.24326426233118267,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.5937072665439216,
+      "expected_away_goals": 1.0484014215877866,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.1253588425180438
+        },
+        {
+          "score": "1-0",
+          "probability": 0.10711302130068612
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09481160255088651
+        },
+        {
+          "score": "2-0",
+          "probability": 0.09043444676686502
+        },
+        {
+          "score": "0-0",
+          "probability": 0.07758733571656887
+        }
+      ],
+      "both_teams_to_score": 0.5239187315462386,
+      "over_2_5": 0.49208948058573876,
+      "under_2_5": 0.5079105194142612,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Bournemouth": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 77.4,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 79.0,
+            "ea_MID_talent": 77.8,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 79.66666666666667,
+            "ea_ATT_talent": 78.8,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 78.0
+          },
+          "fotmob": null
+        },
+        "Nottingham": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 81.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 81.0,
+            "ea_DEF_talent": 81.0,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 81.0,
+            "ea_MID_talent": 78.86666666666666,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 79.66666666666667,
+            "ea_ATT_talent": 76.46666666666665,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 78.66666666666667
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 88.40279312555708,
+        "home_prior_league_matches": 200,
+        "away_prior_league_matches": 162,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Aston Villa",
+      "away_team": "Sunderland",
+      "fixture_id": 5795516,
+      "kickoff_utc": "2026-11-21T15:00:00+00:00",
+      "home_win_probability": 0.5603137174289231,
+      "draw_probability": 0.24202012483826305,
+      "away_win_probability": 0.19766615773281393,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.8003792564084742,
+      "expected_away_goals": 0.9810580448415795,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.11528369175003908
+        },
+        {
+          "score": "1-0",
+          "probability": 0.10566850780337352
+        },
+        {
+          "score": "2-0",
+          "probability": 0.1004003284431795
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09849854992391806
+        },
+        {
+          "score": "0-0",
+          "probability": 0.06781331643341713
+        }
+      ],
+      "both_teams_to_score": 0.5276628941104974,
+      "over_2_5": 0.5261097354879267,
+      "under_2_5": 0.4738902645120735,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Aston Villa": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 83.5,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 85.0,
+            "ea_DEF_talent": 76.06666666666668,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.33333333333333,
+            "ea_MID_talent": 80.66666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 82.66666666666667,
+            "ea_ATT_talent": 74.06666666666666,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 75.0
+          },
+          "fotmob": null
+        },
+        "Sunderland": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 81.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 81.0,
+            "ea_DEF_talent": 80.06666666666666,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.66666666666667,
+            "ea_MID_talent": 81.2,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 81.66666666666667,
+            "ea_ATT_talent": 71.8,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 72.66666666666667
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 95.61600430393946,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 48,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Chelsea",
+      "away_team": "Leeds",
+      "fixture_id": 5795518,
+      "kickoff_utc": "2026-11-21T15:00:00+00:00",
+      "home_win_probability": 0.4596815124351997,
+      "draw_probability": 0.26817696789393625,
+      "away_win_probability": 0.2721415196708641,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.5238093802497232,
+      "expected_away_goals": 1.117960993749152,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.1278565675635948
+        },
+        {
+          "score": "1-0",
+          "probability": 0.10204519681902645
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09245952220594424
+        },
+        {
+          "score": "2-0",
+          "probability": 0.08270371034669718
+        },
+        {
+          "score": "0-0",
+          "probability": 0.07773847842102236
+        }
+      ],
+      "both_teams_to_score": 0.5329124034350764,
+      "over_2_5": 0.49200538830747764,
+      "under_2_5": 0.5079946116925225,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Chelsea": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 80.0,
+            "ea_DEF_talent": 82.53333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 82.0,
+            "ea_MID_talent": 84.46666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 85.66666666666667,
+            "ea_ATT_talent": 79.73333333333333,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.66666666666667
+          },
+          "fotmob": null
+        },
+        "Leeds": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 78.5,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 76.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 77.66666666666667,
+            "ea_MID_talent": 77.4,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.66666666666667,
+            "ea_ATT_talent": 78.66666666666666,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 79.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 42.01686938317698,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 162,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Coventry",
+      "away_team": "Crystal Palace",
+      "fixture_id": 5795519,
+      "kickoff_utc": "2026-11-21T15:00:00+00:00",
+      "home_win_probability": 0.38133671026258986,
+      "draw_probability": 0.26197408948867856,
+      "away_win_probability": 0.3566892002487316,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.459369037133901,
+      "expected_away_goals": 1.4044720180572434,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.12319693260481394
+        },
+        {
+          "score": "2-1",
+          "probability": 0.08532238437373345
+        },
+        {
+          "score": "1-2",
+          "probability": 0.08211281609889132
+        },
+        {
+          "score": "1-0",
+          "probability": 0.07698942967795984
+        },
+        {
+          "score": "0-1",
+          "probability": 0.07385759812354234
+        }
+      ],
+      "both_teams_to_score": 0.5854361368329438,
+      "over_2_5": 0.5456239331617656,
+      "under_2_5": 0.4543760668382343,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [
+        "Coventry"
+      ],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Coventry": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 75.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 76.0,
+            "ea_DEF_talent": 72.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 74.33333333333333,
+            "ea_MID_talent": 74.06666666666666,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 75.33333333333333,
+            "ea_ATT_talent": 73.93333333333334,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 73.66666666666667
+          },
+          "fotmob": null
+        },
+        "Crystal Palace": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 81.25,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 82.0,
+            "ea_DEF_talent": 78.2,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.66666666666667,
+            "ea_MID_talent": 79.93333333333332,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 79.66666666666667,
+            "ea_ATT_talent": 79.93333333333334,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.33333333333333
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -3.6192879546572385,
+        "home_prior_league_matches": 10,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Tottenham",
+      "away_team": "Ipswich",
+      "fixture_id": 5795524,
+      "kickoff_utc": "2026-11-21T15:00:00+00:00",
+      "home_win_probability": 0.5423649284019144,
+      "draw_probability": 0.23605017403151557,
+      "away_win_probability": 0.22158489756657,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.8781580334879773,
+      "expected_away_goals": 1.131801248561378,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.11039912653641747
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09840014321841452
+        },
+        {
+          "score": "1-0",
+          "probability": 0.08696587281353597
+        },
+        {
+          "score": "2-0",
+          "probability": 0.08694118631119198
+        },
+        {
+          "score": "3-1",
+          "probability": 0.06160367316080197
+        }
+      ],
+      "both_teams_to_score": 0.5795857975404145,
+      "over_2_5": 0.5790375066756774,
+      "under_2_5": 0.42096249332432245,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [
+        "Ipswich"
+      ],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Tottenham": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 76.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 77.0,
+            "ea_DEF_talent": 80.33333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 82.0,
+            "ea_MID_talent": 84.0,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 82.66666666666667,
+            "ea_ATT_talent": 75.99999999999999,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 77.0
+          },
+          "fotmob": null
+        },
+        "Ipswich": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 75.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 76.0,
+            "ea_DEF_talent": 74.33333333333334,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 75.0,
+            "ea_MID_talent": 73.86666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.0,
+            "ea_ATT_talent": 71.39999999999999,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 70.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 70.72188281042122,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 10,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Newcastle",
+      "away_team": "Arsenal",
+      "fixture_id": 5795523,
+      "kickoff_utc": "2026-11-21T17:30:00+00:00",
+      "home_win_probability": 0.1777630044379501,
+      "draw_probability": 0.2542377480186743,
+      "away_win_probability": 0.5679992475433756,
+      "most_likely_outcome": "A",
+      "expected_home_goals": 0.824792879714525,
+      "expected_away_goals": 1.6681954977368636,
+      "most_likely_score": "0-1",
+      "top_five_scorelines": [
+        {
+          "score": "0-1",
+          "probability": 0.13180206446737225
+        },
+        {
+          "score": "1-1",
+          "probability": 0.11983199659685922
+        },
+        {
+          "score": "0-2",
+          "probability": 0.11501985031079258
+        },
+        {
+          "score": "1-2",
+          "probability": 0.09486755356217223
+        },
+        {
+          "score": "0-0",
+          "probability": 0.08875783301524388
+        }
+      ],
+      "both_teams_to_score": 0.46184499922708205,
+      "over_2_5": 0.45438703644159373,
+      "under_2_5": 0.5456129635584064,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Newcastle": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 77.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 78.0,
+            "ea_DEF_talent": 81.06666666666666,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 81.66666666666667,
+            "ea_MID_talent": 78.8,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.33333333333333,
+            "ea_ATT_talent": 80.46666666666668,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.0
+          },
+          "fotmob": null
+        },
+        "Arsenal": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 86.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 88.0,
+            "ea_DEF_talent": 87.93333333333332,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 87.0,
+            "ea_MID_talent": 86.53333333333335,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 86.66666666666667,
+            "ea_ATT_talent": 83.2,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 85.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -235.43882821731336,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Hull",
+      "away_team": "Brighton",
+      "fixture_id": 5795520,
+      "kickoff_utc": "2026-11-22T14:00:00+00:00",
+      "home_win_probability": 0.1877566937924193,
+      "draw_probability": 0.2624700726719136,
+      "away_win_probability": 0.549773233535667,
+      "most_likely_outcome": "A",
+      "expected_home_goals": 0.8302197498556502,
+      "expected_away_goals": 1.6004699926385118,
+      "most_likely_score": "0-1",
+      "top_five_scorelines": [
+        {
+          "score": "0-1",
+          "probability": 0.13453850261319883
+        },
+        {
+          "score": "1-1",
+          "probability": 0.12316221685303716
+        },
+        {
+          "score": "0-2",
+          "probability": 0.11267561412237231
+        },
+        {
+          "score": "0-0",
+          "probability": 0.0942407855342578
+        },
+        {
+          "score": "1-2",
+          "probability": 0.09354552017150772
+        }
+      ],
+      "both_teams_to_score": 0.45648566004058416,
+      "over_2_5": 0.43828858780692487,
+      "under_2_5": 0.5617114121930752,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [
+        "Hull"
+      ],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Hull": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 78.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 73.26666666666667,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 74.33333333333333,
+            "ea_MID_talent": 73.86666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 74.66666666666667,
+            "ea_ATT_talent": 66.7,
+            "ea_ATT_players": 2,
+            "ea_ATT_overall": 66.0
+          },
+          "fotmob": null
+        },
+        "Brighton": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 80.5,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 81.0,
+            "ea_DEF_talent": 77.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.0,
+            "ea_MID_talent": 78.0,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 80.33333333333333,
+            "ea_ATT_talent": 73.93333333333332,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 74.33333333333333
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -116.60155946231203,
+        "home_prior_league_matches": 10,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Liverpool",
+      "away_team": "Man United",
+      "fixture_id": 5795521,
+      "kickoff_utc": "2026-11-22T16:30:00+00:00",
+      "home_win_probability": 0.5511201273417605,
+      "draw_probability": 0.22305977819890022,
+      "away_win_probability": 0.22582009445933932,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 2.0418709551784127,
+      "expected_away_goals": 1.2526417637865417,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.09993981189431407
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09684222971751398
+        },
+        {
+          "score": "2-0",
+          "probability": 0.07731039513226408
+        },
+        {
+          "score": "1-0",
+          "probability": 0.07064160943083268
+        },
+        {
+          "score": "3-1",
+          "probability": 0.06591311203214445
+        }
+      ],
+      "both_teams_to_score": 0.6266349793581469,
+      "over_2_5": 0.6394703384393071,
+      "under_2_5": 0.360529661560693,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Liverpool": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 86.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 87.0,
+            "ea_DEF_talent": 78.33333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 83.33333333333333,
+            "ea_MID_talent": 85.86666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 85.66666666666667,
+            "ea_ATT_talent": 85.6,
+            "ea_ATT_players": 2,
+            "ea_ATT_overall": 85.5
+          },
+          "fotmob": null
+        },
+        "Man United": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 82.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 82.0,
+            "ea_DEF_talent": 82.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 82.0,
+            "ea_MID_talent": 86.26666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 86.0,
+            "ea_ATT_talent": 81.2,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.33333333333333
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 63.86940764958854,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Brentford",
+      "away_team": "Everton",
+      "fixture_id": 5795517,
+      "kickoff_utc": "2026-11-23T20:00:00+00:00",
+      "home_win_probability": 0.48435382096839774,
+      "draw_probability": 0.27209027445137746,
+      "away_win_probability": 0.24355590458022489,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.5095901019614204,
+      "expected_away_goals": 0.9979414931102608,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.12930908195962748
+        },
+        {
+          "score": "1-0",
+          "probability": 0.1164076163236419
+        },
+        {
+          "score": "2-0",
+          "probability": 0.09282841787335562
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09263732993560131
+        },
+        {
+          "score": "0-0",
+          "probability": 0.08804640543344446
+        }
+      ],
+      "both_teams_to_score": 0.4984083548427477,
+      "over_2_5": 0.45811739572186855,
+      "under_2_5": 0.5418826042781316,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Brentford": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 80.0,
+            "ea_DEF_talent": 78.8,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 79.33333333333333,
+            "ea_MID_talent": 81.86666666666666,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 80.33333333333333,
+            "ea_ATT_talent": 73.73333333333333,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 74.33333333333333
+          },
+          "fotmob": null
+        },
+        "Everton": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 83.25,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 85.0,
+            "ea_DEF_talent": 79.60000000000001,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 78.66666666666667,
+            "ea_MID_talent": 80.4,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 81.66666666666667,
+            "ea_ATT_talent": 77.46666666666667,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 77.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 14.839935194394684,
+        "home_prior_league_matches": 200,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Nottingham",
+      "away_team": "Chelsea",
+      "fixture_id": 5795533,
+      "kickoff_utc": "2026-11-27T20:00:00+00:00",
+      "home_win_probability": 0.3840208394826016,
+      "draw_probability": 0.26535156450977043,
+      "away_win_probability": 0.35062759600762816,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.4370540005467713,
+      "expected_away_goals": 1.3634048799336702,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.1254718024668096
+        },
+        {
+          "score": "2-1",
+          "probability": 0.08556914368913718
+        },
+        {
+          "score": "1-2",
+          "probability": 0.08118371893672131
+        },
+        {
+          "score": "1-0",
+          "probability": 0.08096512062830913
+        },
+        {
+          "score": "0-1",
+          "probability": 0.07648856766554615
+        }
+      ],
+      "both_teams_to_score": 0.5737491556948815,
+      "over_2_5": 0.530655695202506,
+      "under_2_5": 0.469344304797494,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Nottingham": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 81.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 81.0,
+            "ea_DEF_talent": 81.0,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 81.0,
+            "ea_MID_talent": 78.86666666666666,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 79.66666666666667,
+            "ea_ATT_talent": 76.46666666666665,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 78.66666666666667
+          },
+          "fotmob": null
+        },
+        "Chelsea": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 80.0,
+            "ea_DEF_talent": 82.53333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 82.0,
+            "ea_MID_talent": 84.46666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 85.66666666666667,
+            "ea_ATT_talent": 79.73333333333333,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.66666666666667
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -54.73865098536703,
+        "home_prior_league_matches": 162,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Leeds",
+      "away_team": "Coventry",
+      "fixture_id": 5795531,
+      "kickoff_utc": "2026-11-28T15:00:00+00:00",
+      "home_win_probability": 0.6141959080753341,
+      "draw_probability": 0.23573551808269944,
+      "away_win_probability": 0.15006857384196653,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.8121133221936228,
+      "expected_away_goals": 0.7774255207313838,
+      "most_likely_score": "1-0",
+      "top_five_scorelines": [
+        {
+          "score": "1-0",
+          "probability": 0.1303410398616585
+        },
+        {
+          "score": "2-0",
+          "probability": 0.12323051985447965
+        },
+        {
+          "score": "1-1",
+          "probability": 0.11140219798061166
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09580255106786797
+        },
+        {
+          "score": "0-0",
+          "probability": 0.08072112466456227
+        }
+      ],
+      "both_teams_to_score": 0.457824788061459,
+      "over_2_5": 0.4789410477636162,
+      "under_2_5": 0.5210589522363837,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [
+        "Coventry"
+      ],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Leeds": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 78.5,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 76.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 77.66666666666667,
+            "ea_MID_talent": 77.4,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.66666666666667,
+            "ea_ATT_talent": 78.66666666666666,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 79.0
+          },
+          "fotmob": null
+        },
+        "Coventry": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 75.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 76.0,
+            "ea_DEF_talent": 72.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 74.33333333333333,
+            "ea_MID_talent": 74.06666666666666,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 75.33333333333333,
+            "ea_ATT_talent": 73.93333333333334,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 73.66666666666667
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 47.68093714433144,
+        "home_prior_league_matches": 162,
+        "away_prior_league_matches": 10,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Man United",
+      "away_team": "Brentford",
+      "fixture_id": 5795532,
+      "kickoff_utc": "2026-11-28T15:00:00+00:00",
+      "home_win_probability": 0.40813437076238046,
+      "draw_probability": 0.24688661056051792,
+      "away_win_probability": 0.3449790186771017,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.6504260357733298,
+      "expected_away_goals": 1.5034523263002364,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.11159527367891738
+        },
+        {
+          "score": "2-1",
+          "probability": 0.08740571477614381
+        },
+        {
+          "score": "1-2",
+          "probability": 0.0796220626453482
+        },
+        {
+          "score": "2-2",
+          "probability": 0.06570516260610627
+        },
+        {
+          "score": "1-0",
+          "probability": 0.06477420139069894
+        }
+      ],
+      "both_teams_to_score": 0.6340332779497464,
+      "over_2_5": 0.6103875154264068,
+      "under_2_5": 0.3896124845735932,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Man United": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 82.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 82.0,
+            "ea_DEF_talent": 82.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 82.0,
+            "ea_MID_talent": 86.26666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 86.0,
+            "ea_ATT_talent": 81.2,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.33333333333333
+          },
+          "fotmob": null
+        },
+        "Brentford": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 80.0,
+            "ea_DEF_talent": 78.8,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 79.33333333333333,
+            "ea_MID_talent": 81.86666666666666,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 80.33333333333333,
+            "ea_ATT_talent": 73.73333333333333,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 74.33333333333333
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 19.91446443321047,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 200,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Ipswich",
+      "away_team": "Aston Villa",
+      "fixture_id": 5795530,
+      "kickoff_utc": "2026-11-28T17:30:00+00:00",
+      "home_win_probability": 0.274577312635261,
+      "draw_probability": 0.22657758123528884,
+      "away_win_probability": 0.4988451061294503,
+      "most_likely_outcome": "A",
+      "expected_home_goals": 1.4477967441343373,
+      "expected_away_goals": 1.9963521509571411,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.09723932400819899
+        },
+        {
+          "score": "1-2",
+          "probability": 0.09212490310162467
+        },
+        {
+          "score": "2-1",
+          "probability": 0.06681092546701346
+        },
+        {
+          "score": "2-2",
+          "probability": 0.06668906738211365
+        },
+        {
+          "score": "0-2",
+          "probability": 0.06363110255280004
+        }
+      ],
+      "both_teams_to_score": 0.6659604692346608,
+      "over_2_5": 0.6686989132368223,
+      "under_2_5": 0.3313010867631778,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [
+        "Ipswich"
+      ],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Ipswich": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 75.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 76.0,
+            "ea_DEF_talent": 74.33333333333334,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 75.0,
+            "ea_MID_talent": 73.86666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.0,
+            "ea_ATT_talent": 71.39999999999999,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 70.0
+          },
+          "fotmob": null
+        },
+        "Aston Villa": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 83.5,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 85.0,
+            "ea_DEF_talent": 76.06666666666668,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.33333333333333,
+            "ea_MID_talent": 80.66666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 82.66666666666667,
+            "ea_ATT_talent": 74.06666666666666,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 75.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -196.97967037542026,
+        "home_prior_league_matches": 10,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Everton",
+      "away_team": "Liverpool",
+      "fixture_id": 5795528,
+      "kickoff_utc": "2026-11-29T12:00:00+00:00",
+      "home_win_probability": 0.3207145605030897,
+      "draw_probability": 0.2828702228818775,
+      "away_win_probability": 0.39641521661503304,
+      "most_likely_outcome": "A",
+      "expected_home_goals": 1.1692078510066364,
+      "expected_away_goals": 1.3281338582384894,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.13465543612624672
+        },
+        {
+          "score": "0-1",
+          "probability": 0.10246079980330594
+        },
+        {
+          "score": "1-0",
+          "probability": 0.08938063400911965
+        },
+        {
+          "score": "0-0",
+          "probability": 0.08915275286180893
+        },
+        {
+          "score": "1-2",
+          "probability": 0.08487185612414372
+        }
+      ],
+      "both_teams_to_score": 0.5135685831655689,
+      "over_2_5": 0.4555048099721708,
+      "under_2_5": 0.5444951900278293,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Everton": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 83.25,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 85.0,
+            "ea_DEF_talent": 79.60000000000001,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 78.66666666666667,
+            "ea_MID_talent": 80.4,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 81.66666666666667,
+            "ea_ATT_talent": 77.46666666666667,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 77.0
+          },
+          "fotmob": null
+        },
+        "Liverpool": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 86.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 87.0,
+            "ea_DEF_talent": 78.33333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 83.33333333333333,
+            "ea_MID_talent": 85.86666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 85.66666666666667,
+            "ea_ATT_talent": 85.6,
+            "ea_ATT_players": 2,
+            "ea_ATT_overall": 85.5
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -98.62380727719369,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Brighton",
+      "away_team": "Newcastle",
+      "fixture_id": 5795526,
+      "kickoff_utc": "2026-11-29T14:05:00+00:00",
+      "home_win_probability": 0.6481408022196061,
+      "draw_probability": 0.2008153189779072,
+      "away_win_probability": 0.15104387880248665,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 2.221316046444776,
+      "expected_away_goals": 0.9889314029205774,
+      "most_likely_score": "2-0",
+      "top_five_scorelines": [
+        {
+          "score": "2-0",
+          "probability": 0.0995400740112949
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09843830503880799
+        },
+        {
+          "score": "1-1",
+          "probability": 0.09338041771476746
+        },
+        {
+          "score": "1-0",
+          "probability": 0.08487281137101535
+        },
+        {
+          "score": "3-0",
+          "probability": 0.07370332122211642
+        }
+      ],
+      "both_teams_to_score": 0.5646561925342712,
+      "over_2_5": 0.6222308158147033,
+      "under_2_5": 0.37776918418529665,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Brighton": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 80.5,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 81.0,
+            "ea_DEF_talent": 77.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.0,
+            "ea_MID_talent": 78.0,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 80.33333333333333,
+            "ea_ATT_talent": 73.93333333333332,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 74.33333333333333
+          },
+          "fotmob": null
+        },
+        "Newcastle": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 77.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 78.0,
+            "ea_DEF_talent": 81.06666666666666,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 81.66666666666667,
+            "ea_MID_talent": 78.8,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.33333333333333,
+            "ea_ATT_talent": 80.46666666666668,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 82.02609913896072,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Crystal Palace",
+      "away_team": "Hull",
+      "fixture_id": 5795527,
+      "kickoff_utc": "2026-11-29T14:05:00+00:00",
+      "home_win_probability": 0.399888876491154,
+      "draw_probability": 0.29258760503842535,
+      "away_win_probability": 0.30752351847042053,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.269051798390556,
+      "expected_away_goals": 1.080085056748201,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.13784536774979023
+        },
+        {
+          "score": "1-0",
+          "probability": 0.11412140270952065
+        },
+        {
+          "score": "0-0",
+          "probability": 0.10246302940850918
+        },
+        {
+          "score": "0-1",
+          "probability": 0.0960842409053819
+        },
+        {
+          "score": "2-1",
+          "probability": 0.08301746853430163
+        }
+      ],
+      "both_teams_to_score": 0.4817983543691495,
+      "over_2_5": 0.41694789388509845,
+      "under_2_5": 0.5830521061149014,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [
+        "Hull"
+      ],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Crystal Palace": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 81.25,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 82.0,
+            "ea_DEF_talent": 78.2,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.66666666666667,
+            "ea_MID_talent": 79.93333333333332,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 79.66666666666667,
+            "ea_ATT_talent": 79.93333333333334,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.33333333333333
+          },
+          "fotmob": null
+        },
+        "Hull": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 78.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 73.26666666666667,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 74.33333333333333,
+            "ea_MID_talent": 73.86666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 74.66666666666667,
+            "ea_ATT_talent": 66.7,
+            "ea_ATT_players": 2,
+            "ea_ATT_overall": 66.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -18.658263939694734,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 10,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Fulham",
+      "away_team": "Bournemouth",
+      "fixture_id": 5795529,
+      "kickoff_utc": "2026-11-29T14:05:00+00:00",
+      "home_win_probability": 0.3342724395300598,
+      "draw_probability": 0.28645438830620246,
+      "away_win_probability": 0.37927317216373785,
+      "most_likely_outcome": "A",
+      "expected_home_goals": 1.1804202453020824,
+      "expected_away_goals": 1.274124095271911,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.13612107146095373
+        },
+        {
+          "score": "0-1",
+          "probability": 0.10252641907073078
+        },
+        {
+          "score": "1-0",
+          "probability": 0.09447704014680593
+        },
+        {
+          "score": "0-0",
+          "probability": 0.09282613653381588
+        },
+        {
+          "score": "1-2",
+          "probability": 0.08230667333470862
+        }
+      ],
+      "both_teams_to_score": 0.5060006729028671,
+      "over_2_5": 0.44447494023353723,
+      "under_2_5": 0.555525059766463,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Fulham": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 77.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 79.0,
+            "ea_MID_talent": 78.73333333333333,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.66666666666667,
+            "ea_ATT_talent": 70.33333333333333,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 71.0
+          },
+          "fotmob": null
+        },
+        "Bournemouth": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 77.4,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 79.0,
+            "ea_MID_talent": 77.8,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 79.66666666666667,
+            "ea_ATT_talent": 78.8,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 78.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -77.95038407913103,
+        "home_prior_league_matches": 200,
+        "away_prior_league_matches": 200,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Sunderland",
+      "away_team": "Tottenham",
+      "fixture_id": 5795534,
+      "kickoff_utc": "2026-11-29T14:05:00+00:00",
+      "home_win_probability": 0.37198857845073,
+      "draw_probability": 0.2989651809166673,
+      "away_win_probability": 0.3290462406326027,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.1838947586103044,
+      "expected_away_goals": 1.0972438599453092,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.13983065305497858
+        },
+        {
+          "score": "1-0",
+          "probability": 0.11384343917914208
+        },
+        {
+          "score": "0-0",
+          "probability": 0.1092803062286619
+        },
+        {
+          "score": "0-1",
+          "probability": 0.10499050660198606
+        },
+        {
+          "score": "2-1",
+          "probability": 0.07856216529589642
+        }
+      ],
+      "both_teams_to_score": 0.4694062281038562,
+      "over_2_5": 0.39895338052956786,
+      "under_2_5": 0.6010466194704323,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Sunderland": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 81.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 81.0,
+            "ea_DEF_talent": 80.06666666666666,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.66666666666667,
+            "ea_MID_talent": 81.2,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 81.66666666666667,
+            "ea_ATT_talent": 71.8,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 72.66666666666667
+          },
+          "fotmob": null
+        },
+        "Tottenham": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 76.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 77.0,
+            "ea_DEF_talent": 80.33333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 82.0,
+            "ea_MID_talent": 84.0,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 82.66666666666667,
+            "ea_ATT_talent": 75.99999999999999,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 77.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 30.641783261059572,
+        "home_prior_league_matches": 48,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Arsenal",
+      "away_team": "Man City",
+      "fixture_id": 5795525,
+      "kickoff_utc": "2026-11-29T16:30:00+00:00",
+      "home_win_probability": 0.5047825636558385,
+      "draw_probability": 0.27523718087416044,
+      "away_win_probability": 0.21998025547000108,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.492924154822759,
+      "expected_away_goals": 0.8974986003480628,
+      "most_likely_score": "1-0",
+      "top_five_scorelines": [
+        {
+          "score": "1-0",
+          "probability": 0.13016153163792818
+        },
+        {
+          "score": "1-1",
+          "probability": 0.12929929476160323
+        },
+        {
+          "score": "2-0",
+          "probability": 0.10206999227657253
+        },
+        {
+          "score": "0-0",
+          "probability": 0.09816777279718067
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09160767520576174
+        }
+      ],
+      "both_teams_to_score": 0.46586525323061356,
+      "over_2_5": 0.42778704378993365,
+      "under_2_5": 0.5722129562100665,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Arsenal": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 86.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 88.0,
+            "ea_DEF_talent": 87.93333333333332,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 87.0,
+            "ea_MID_talent": 86.53333333333335,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 86.66666666666667,
+            "ea_ATT_talent": 83.2,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 85.0
+          },
+          "fotmob": null
+        },
+        "Man City": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 87.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 89.0,
+            "ea_DEF_talent": 85.53333333333335,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 85.66666666666667,
+            "ea_MID_talent": 83.93333333333334,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 83.33333333333333,
+            "ea_ATT_talent": 85.26666666666667,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 87.33333333333333
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 58.05495483616505,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Coventry",
+      "away_team": "Ipswich",
+      "fixture_id": 5795539,
+      "kickoff_utc": "2026-12-01T20:00:00+00:00",
+      "home_win_probability": 0.4016715894026307,
+      "draw_probability": 0.2469204017117626,
+      "away_win_probability": 0.3514080088856067,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.6378025716427862,
+      "expected_away_goals": 1.5207865500733244,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.11149208284670074
+        },
+        {
+          "score": "2-1",
+          "probability": 0.08665697775354306
+        },
+        {
+          "score": "1-2",
+          "probability": 0.08046559977323052
+        },
+        {
+          "score": "2-2",
+          "probability": 0.06589338311884617
+        },
+        {
+          "score": "1-0",
+          "probability": 0.06391203931712588
+        }
+      ],
+      "both_teams_to_score": 0.6352099985098657,
+      "over_2_5": 0.6113867428447669,
+      "under_2_5": 0.3886132571552331,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [
+        "Coventry",
+        "Ipswich"
+      ],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Coventry": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 75.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 76.0,
+            "ea_DEF_talent": 72.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 74.33333333333333,
+            "ea_MID_talent": 74.06666666666666,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 75.33333333333333,
+            "ea_ATT_talent": 73.93333333333334,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 73.66666666666667
+          },
+          "fotmob": null
+        },
+        "Ipswich": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 75.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 76.0,
+            "ea_DEF_talent": 74.33333333333334,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 75.0,
+            "ea_MID_talent": 73.86666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.0,
+            "ea_ATT_talent": 71.39999999999999,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 70.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 64.83224504674126,
+        "home_prior_league_matches": 10,
+        "away_prior_league_matches": 10,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Chelsea",
+      "away_team": "Crystal Palace",
+      "fixture_id": 5795538,
+      "kickoff_utc": "2026-12-02T19:30:00+00:00",
+      "home_win_probability": 0.6437021939259562,
+      "draw_probability": 0.1968657228617992,
+      "away_win_probability": 0.15943208321224475,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 2.302284907603799,
+      "expected_away_goals": 1.076545275870068,
+      "most_likely_score": "2-1",
+      "top_five_scorelines": [
+        {
+          "score": "2-1",
+          "probability": 0.09725526754985153
+        },
+        {
+          "score": "2-0",
+          "probability": 0.09034015543029483
+        },
+        {
+          "score": "1-1",
+          "probability": 0.08901354665726599
+        },
+        {
+          "score": "3-1",
+          "probability": 0.07463644488879757
+        },
+        {
+          "score": "1-0",
+          "probability": 0.07395101290649486
+        }
+      ],
+      "both_teams_to_score": 0.5978142011431941,
+      "over_2_5": 0.6561587102124862,
+      "under_2_5": 0.34384128978751394,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Chelsea": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 80.0,
+            "ea_DEF_talent": 82.53333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 82.0,
+            "ea_MID_talent": 84.46666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 85.66666666666667,
+            "ea_ATT_talent": 79.73333333333333,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.66666666666667
+          },
+          "fotmob": null
+        },
+        "Crystal Palace": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 81.25,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 82.0,
+            "ea_DEF_talent": 78.2,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.66666666666667,
+            "ea_MID_talent": 79.93333333333332,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 79.66666666666667,
+            "ea_ATT_talent": 79.93333333333334,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.33333333333333
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 86.07851857285118,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Hull",
+      "away_team": "Nottingham",
+      "fixture_id": 5795540,
+      "kickoff_utc": "2026-12-02T19:30:00+00:00",
+      "home_win_probability": 0.3143425552317425,
+      "draw_probability": 0.3146973471154594,
+      "away_win_probability": 0.37096009765279814,
+      "most_likely_outcome": "A",
+      "expected_home_goals": 0.9873691562694967,
+      "expected_away_goals": 1.0973983833051049,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.1419426396588027
+        },
+        {
+          "score": "0-0",
+          "probability": 0.13155594228777148
+        },
+        {
+          "score": "0-1",
+          "probability": 0.12922622506910894
+        },
+        {
+          "score": "1-0",
+          "probability": 0.11554562889455167
+        },
+        {
+          "score": "0-2",
+          "probability": 0.07486789075310801
+        }
+      ],
+      "both_teams_to_score": 0.4252621898775837,
+      "over_2_5": 0.34625421399693124,
+      "under_2_5": 0.6537457860030687,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [
+        "Hull"
+      ],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Hull": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 78.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 73.26666666666667,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 74.33333333333333,
+            "ea_MID_talent": 73.86666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 74.66666666666667,
+            "ea_ATT_talent": 66.7,
+            "ea_ATT_players": 2,
+            "ea_ATT_overall": 66.0
+          },
+          "fotmob": null
+        },
+        "Nottingham": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 81.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 81.0,
+            "ea_DEF_talent": 81.0,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 81.0,
+            "ea_MID_talent": 78.86666666666666,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 79.66666666666667,
+            "ea_ATT_talent": 76.46666666666665,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 78.66666666666667
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -12.681603647789416,
+        "home_prior_league_matches": 10,
+        "away_prior_league_matches": 162,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Liverpool",
+      "away_team": "Sunderland",
+      "fixture_id": 5795541,
+      "kickoff_utc": "2026-12-02T19:30:00+00:00",
+      "home_win_probability": 0.6234295801962138,
+      "draw_probability": 0.2263172517290183,
+      "away_win_probability": 0.15025316807476782,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.9090723186588556,
+      "expected_away_goals": 0.8256992009940445,
+      "most_likely_score": "1-0",
+      "top_five_scorelines": [
+        {
+          "score": "1-0",
+          "probability": 0.11843239013336296
+        },
+        {
+          "score": "2-0",
+          "probability": 0.11828197976947852
+        },
+        {
+          "score": "1-1",
+          "probability": 0.10780033436422842
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09766533618765215
+        },
+        {
+          "score": "3-0",
+          "probability": 0.0752696177915571
+        }
+      ],
+      "both_teams_to_score": 0.48424560037246955,
+      "over_2_5": 0.5148545399537088,
+      "under_2_5": 0.4851454600462911,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Liverpool": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 86.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 87.0,
+            "ea_DEF_talent": 78.33333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 83.33333333333333,
+            "ea_MID_talent": 85.86666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 85.66666666666667,
+            "ea_ATT_talent": 85.6,
+            "ea_ATT_players": 2,
+            "ea_ATT_overall": 85.5
+          },
+          "fotmob": null
+        },
+        "Sunderland": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 81.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 81.0,
+            "ea_DEF_talent": 80.06666666666666,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.66666666666667,
+            "ea_MID_talent": 81.2,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 81.66666666666667,
+            "ea_ATT_talent": 71.8,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 72.66666666666667
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 131.6256687049788,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 48,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Man City",
+      "away_team": "Leeds",
+      "fixture_id": 5795542,
+      "kickoff_utc": "2026-12-02T19:30:00+00:00",
+      "home_win_probability": 0.5866512758576408,
+      "draw_probability": 0.24211496865973112,
+      "away_win_probability": 0.17123375548262815,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.7771547635082448,
+      "expected_away_goals": 0.8534804674058158,
+      "most_likely_score": "1-0",
+      "top_five_scorelines": [
+        {
+          "score": "1-0",
+          "probability": 0.12215805993570211
+        },
+        {
+          "score": "1-1",
+          "probability": 0.11511197758876422
+        },
+        {
+          "score": "2-0",
+          "probability": 0.11374966848668432
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09708312022727192
+        },
+        {
+          "score": "0-0",
+          "probability": 0.07788786908732143
+        }
+      ],
+      "both_teams_to_score": 0.4828393091818669,
+      "over_2_5": 0.4892337625050247,
+      "under_2_5": 0.5107662374949753,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Man City": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 87.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 89.0,
+            "ea_DEF_talent": 85.53333333333335,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 85.66666666666667,
+            "ea_MID_talent": 83.93333333333334,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 83.33333333333333,
+            "ea_ATT_talent": 85.26666666666667,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 87.33333333333333
+          },
+          "fotmob": null
+        },
+        "Leeds": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 78.5,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 76.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 77.66666666666667,
+            "ea_MID_talent": 77.4,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.66666666666667,
+            "ea_ATT_talent": 78.66666666666666,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 79.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 186.55594845452015,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 162,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Bournemouth",
+      "away_team": "Brighton",
+      "fixture_id": 5795535,
+      "kickoff_utc": "2026-12-02T20:15:00+00:00",
+      "home_win_probability": 0.32741583722491385,
+      "draw_probability": 0.26050994382514175,
+      "away_win_probability": 0.41207421894994456,
+      "most_likely_outcome": "A",
+      "expected_home_goals": 1.3400532513819698,
+      "expected_away_goals": 1.5290117435956623,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.12251402994018923
+        },
+        {
+          "score": "1-2",
+          "probability": 0.08889853573308153
+        },
+        {
+          "score": "0-1",
+          "probability": 0.08054273650291917
+        },
+        {
+          "score": "2-1",
+          "probability": 0.07791226741733576
+        },
+        {
+          "score": "1-0",
+          "probability": 0.06981897073694962
+        }
+      ],
+      "both_teams_to_score": 0.584402158683962,
+      "over_2_5": 0.5468450944227747,
+      "under_2_5": 0.4531549055772254,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Bournemouth": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 77.4,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 79.0,
+            "ea_MID_talent": 77.8,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 79.66666666666667,
+            "ea_ATT_talent": 78.8,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 78.0
+          },
+          "fotmob": null
+        },
+        "Brighton": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 80.5,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 81.0,
+            "ea_DEF_talent": 77.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.0,
+            "ea_MID_talent": 78.0,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 80.33333333333333,
+            "ea_ATT_talent": 73.93333333333332,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 74.33333333333333
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -15.517162688965527,
+        "home_prior_league_matches": 200,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Aston Villa",
+      "away_team": "Everton",
+      "fixture_id": 5795536,
+      "kickoff_utc": "2026-12-02T20:15:00+00:00",
+      "home_win_probability": 0.46793578261132385,
+      "draw_probability": 0.26525588900225366,
+      "away_win_probability": 0.26680832838642254,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.5561855523885473,
+      "expected_away_goals": 1.118115457054601,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.12641130137284756
+        },
+        {
+          "score": "1-0",
+          "probability": 0.10087687136312715
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09335664638024183
+        },
+        {
+          "score": "2-0",
+          "probability": 0.08349463894020952
+        },
+        {
+          "score": "0-0",
+          "probability": 0.07538493012518319
+        }
+      ],
+      "both_teams_to_score": 0.5375505125391863,
+      "over_2_5": 0.5000593523551341,
+      "under_2_5": 0.4999406476448659,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Aston Villa": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 83.5,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 85.0,
+            "ea_DEF_talent": 76.06666666666668,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.33333333333333,
+            "ea_MID_talent": 80.66666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 82.66666666666667,
+            "ea_ATT_talent": 74.06666666666666,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 75.0
+          },
+          "fotmob": null
+        },
+        "Everton": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 83.25,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 85.0,
+            "ea_DEF_talent": 79.60000000000001,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 78.66666666666667,
+            "ea_MID_talent": 80.4,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 81.66666666666667,
+            "ea_ATT_talent": 77.46666666666667,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 77.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 62.61414287615435,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Brentford",
+      "away_team": "Arsenal",
+      "fixture_id": 5795537,
+      "kickoff_utc": "2026-12-02T20:15:00+00:00",
+      "home_win_probability": 0.23163300424882022,
+      "draw_probability": 0.285650711234557,
+      "away_win_probability": 0.48271628451662274,
+      "most_likely_outcome": "A",
+      "expected_home_goals": 0.8903777919662319,
+      "expected_away_goals": 1.4042794527608378,
+      "most_likely_score": "0-1",
+      "top_five_scorelines": [
+        {
+          "score": "0-1",
+          "probability": 0.1347916378714559
+        },
+        {
+          "score": "1-1",
+          "probability": 0.13278313700036545
+        },
+        {
+          "score": "0-0",
+          "probability": 0.10754995922119727
+        },
+        {
+          "score": "0-2",
+          "probability": 0.0993848319704884
+        },
+        {
+          "score": "1-2",
+          "probability": 0.08849004724481872
+        }
+      ],
+      "both_teams_to_score": 0.45150540089271,
+      "over_2_5": 0.40254386618793836,
+      "under_2_5": 0.5974561338120616,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Brentford": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 80.0,
+            "ea_DEF_talent": 78.8,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 79.33333333333333,
+            "ea_MID_talent": 81.86666666666666,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 80.33333333333333,
+            "ea_ATT_talent": 73.73333333333333,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 74.33333333333333
+          },
+          "fotmob": null
+        },
+        "Arsenal": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 86.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 88.0,
+            "ea_DEF_talent": 87.93333333333332,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 87.0,
+            "ea_MID_talent": 86.53333333333335,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 86.66666666666667,
+            "ea_ATT_talent": 83.2,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 85.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -207.9186227880973,
+        "home_prior_league_matches": 200,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Newcastle",
+      "away_team": "Man United",
+      "fixture_id": 5795543,
+      "kickoff_utc": "2026-12-02T20:15:00+00:00",
+      "home_win_probability": 0.41205352124780836,
+      "draw_probability": 0.23995568200714534,
+      "away_win_probability": 0.34799079674504635,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.7303667289602602,
+      "expected_away_goals": 1.5780165685326204,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.10522262889218148
+        },
+        {
+          "score": "2-1",
+          "probability": 0.08640627143321604
+        },
+        {
+          "score": "1-2",
+          "probability": 0.07879863017713992
+        },
+        {
+          "score": "2-2",
+          "probability": 0.06817526397346314
+        },
+        {
+          "score": "1-0",
+          "probability": 0.05793645195314238
+        }
+      ],
+      "both_teams_to_score": 0.6583239659782338,
+      "over_2_5": 0.6422543610249969,
+      "under_2_5": 0.3577456389750031,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Newcastle": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 77.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 78.0,
+            "ea_DEF_talent": 81.06666666666666,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 81.66666666666667,
+            "ea_MID_talent": 78.8,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.33333333333333,
+            "ea_ATT_talent": 80.46666666666668,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.0
+          },
+          "fotmob": null
+        },
+        "Man United": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 82.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 82.0,
+            "ea_DEF_talent": 82.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 82.0,
+            "ea_MID_talent": 86.26666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 86.0,
+            "ea_ATT_talent": 81.2,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.33333333333333
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -47.43466986242652,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Tottenham",
+      "away_team": "Fulham",
+      "fixture_id": 5795544,
+      "kickoff_utc": "2026-12-03T20:00:00+00:00",
+      "home_win_probability": 0.4010337136799502,
+      "draw_probability": 0.30034371879707755,
+      "away_win_probability": 0.2986225675229722,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.223095832072173,
+      "expected_away_goals": 1.017674780484379,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.1395041828388353
+        },
+        {
+          "score": "1-0",
+          "probability": 0.12301276099177226
+        },
+        {
+          "score": "0-0",
+          "probability": 0.11347238772097015
+        },
+        {
+          "score": "0-1",
+          "probability": 0.1011607889653071
+        },
+        {
+          "score": "2-1",
+          "probability": 0.08097401555136918
+        }
+      ],
+      "both_teams_to_score": 0.45772041238218014,
+      "over_2_5": 0.3881971591085519,
+      "under_2_5": 0.6118028408914481,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Tottenham": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 76.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 77.0,
+            "ea_DEF_talent": 80.33333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 82.0,
+            "ea_MID_talent": 84.0,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 82.66666666666667,
+            "ea_ATT_talent": 75.99999999999999,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 77.0
+          },
+          "fotmob": null
+        },
+        "Fulham": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 77.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 79.0,
+            "ea_MID_talent": 78.73333333333333,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.66666666666667,
+            "ea_ATT_talent": 70.33333333333333,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 71.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -39.52192682488749,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 200,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Chelsea",
+      "away_team": "Liverpool",
+      "fixture_id": 5795548,
+      "kickoff_utc": "2026-12-05T12:30:00+00:00",
+      "home_win_probability": 0.3857166549336119,
+      "draw_probability": 0.2466282152696474,
+      "away_win_probability": 0.3676551297967407,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.6076140128745375,
+      "expected_away_goals": 1.5654977698826602,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.11103025621844752
+        },
+        {
+          "score": "2-1",
+          "probability": 0.08470734818310605
+        },
+        {
+          "score": "1-2",
+          "probability": 0.08248818659905241
+        },
+        {
+          "score": "2-2",
+          "probability": 0.06630458233674265
+        },
+        {
+          "score": "1-0",
+          "probability": 0.061668212525710246
+        }
+      ],
+      "both_teams_to_score": 0.6381715825894556,
+      "over_2_5": 0.6144563681839698,
+      "under_2_5": 0.3855436318160302,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Chelsea": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 80.0,
+            "ea_DEF_talent": 82.53333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 82.0,
+            "ea_MID_talent": 84.46666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 85.66666666666667,
+            "ea_ATT_talent": 79.73333333333333,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.66666666666667
+          },
+          "fotmob": null
+        },
+        "Liverpool": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 86.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 87.0,
+            "ea_DEF_talent": 78.33333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 83.33333333333333,
+            "ea_MID_talent": 85.86666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 85.66666666666667,
+            "ea_ATT_talent": 85.6,
+            "ea_ATT_players": 2,
+            "ea_ATT_overall": 85.5
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -78.45928320220992,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Bournemouth",
+      "away_team": "Hull",
+      "fixture_id": 5795545,
+      "kickoff_utc": "2026-12-05T15:00:00+00:00",
+      "home_win_probability": 0.5802405611109958,
+      "draw_probability": 0.2495035614230827,
+      "away_win_probability": 0.17025587746592147,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.705639894176996,
+      "expected_away_goals": 0.8125380799093148,
+      "most_likely_score": "1-0",
+      "top_five_scorelines": [
+        {
+          "score": "1-0",
+          "probability": 0.13149862748926325
+        },
+        {
+          "score": "1-1",
+          "probability": 0.11769887552428747
+        },
+        {
+          "score": "2-0",
+          "probability": 0.11725028218231137
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09527031915324063
+        },
+        {
+          "score": "0-0",
+          "probability": 0.08659310139436059
+        }
+      ],
+      "both_teams_to_score": 0.46120658055952374,
+      "over_2_5": 0.4608412707619286,
+      "under_2_5": 0.5391587292380714,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [
+        "Hull"
+      ],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Bournemouth": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 77.4,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 79.0,
+            "ea_MID_talent": 77.8,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 79.66666666666667,
+            "ea_ATT_talent": 78.8,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 78.0
+          },
+          "fotmob": null
+        },
+        "Hull": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 78.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 73.26666666666667,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 74.33333333333333,
+            "ea_MID_talent": 73.86666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 74.66666666666667,
+            "ea_ATT_talent": 66.7,
+            "ea_ATT_players": 2,
+            "ea_ATT_overall": 66.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 101.0843967733465,
+        "home_prior_league_matches": 200,
+        "away_prior_league_matches": 10,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Aston Villa",
+      "away_team": "Crystal Palace",
+      "fixture_id": 5795546,
+      "kickoff_utc": "2026-12-05T15:00:00+00:00",
+      "home_win_probability": 0.625893735228967,
+      "draw_probability": 0.20500667895372288,
+      "away_win_probability": 0.16909958581731027,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 2.210134183781301,
+      "expected_away_goals": 1.0761542198149097,
+      "most_likely_score": "2-1",
+      "top_five_scorelines": [
+        {
+          "score": "2-1",
+          "probability": 0.09827993968231272
+        },
+        {
+          "score": "1-1",
+          "probability": 0.09370187438908792
+        },
+        {
+          "score": "2-0",
+          "probability": 0.09132514454965024
+        },
+        {
+          "score": "1-0",
+          "probability": 0.07787601949875825
+        },
+        {
+          "score": "3-1",
+          "probability": 0.07240395142417631
+        }
+      ],
+      "both_teams_to_score": 0.591568550575605,
+      "over_2_5": 0.6378124150576966,
+      "under_2_5": 0.36218758494230346,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Aston Villa": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 83.5,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 85.0,
+            "ea_DEF_talent": 76.06666666666668,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.33333333333333,
+            "ea_MID_talent": 80.66666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 82.66666666666667,
+            "ea_ATT_talent": 74.06666666666666,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 75.0
+          },
+          "fotmob": null
+        },
+        "Crystal Palace": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 81.25,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 82.0,
+            "ea_DEF_talent": 78.2,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.66666666666667,
+            "ea_MID_talent": 79.93333333333332,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 79.66666666666667,
+            "ea_ATT_talent": 79.93333333333334,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.33333333333333
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 128.52813737402175,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Leeds",
+      "away_team": "Ipswich",
+      "fixture_id": 5795550,
+      "kickoff_utc": "2026-12-05T15:00:00+00:00",
+      "home_win_probability": 0.5907168520099174,
+      "draw_probability": 0.23292401891398135,
+      "away_win_probability": 0.17635912907610116,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.8782251021224365,
+      "expected_away_goals": 0.9296205283483006,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.11099247250143558
+        },
+        {
+          "score": "1-0",
+          "probability": 0.10767676366036927
+        },
+        {
+          "score": "2-0",
+          "probability": 0.10642249146608809
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09893253274484733
+        },
+        {
+          "score": "3-0",
+          "probability": 0.06662846496747378
+        }
+      ],
+      "both_teams_to_score": 0.5184158370384605,
+      "over_2_5": 0.5324144227440256,
+      "under_2_5": 0.46758557725597427,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [
+        "Ipswich"
+      ],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Leeds": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 78.5,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 76.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 77.66666666666667,
+            "ea_MID_talent": 77.4,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.66666666666667,
+            "ea_ATT_talent": 78.66666666666666,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 79.0
+          },
+          "fotmob": null
+        },
+        "Ipswich": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 75.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 76.0,
+            "ea_DEF_talent": 74.33333333333334,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 75.0,
+            "ea_MID_talent": 73.86666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.0,
+            "ea_ATT_talent": 71.39999999999999,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 70.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 112.5131821910727,
+        "home_prior_league_matches": 162,
+        "away_prior_league_matches": 10,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Man United",
+      "away_team": "Coventry",
+      "fixture_id": 5795551,
+      "kickoff_utc": "2026-12-05T15:00:00+00:00",
+      "home_win_probability": 0.6761009753459009,
+      "draw_probability": 0.18495701721010607,
+      "away_win_probability": 0.13894200744399304,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 2.4133272402022383,
+      "expected_away_goals": 1.0233836795976068,
+      "most_likely_score": "2-1",
+      "top_five_scorelines": [
+        {
+          "score": "2-1",
+          "probability": 0.09587300341007096
+        },
+        {
+          "score": "2-0",
+          "probability": 0.09368236500289717
+        },
+        {
+          "score": "1-1",
+          "probability": 0.08371092805865372
+        },
+        {
+          "score": "3-1",
+          "probability": 0.07712431024330285
+        },
+        {
+          "score": "3-0",
+          "probability": 0.07536206779614471
+        }
+      ],
+      "both_teams_to_score": 0.5875344659833195,
+      "over_2_5": 0.6672880320359873,
+      "under_2_5": 0.33271196796401287,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [
+        "Coventry"
+      ],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Man United": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 82.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 82.0,
+            "ea_DEF_talent": 82.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 82.0,
+            "ea_MID_talent": 86.26666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 86.0,
+            "ea_ATT_talent": 81.2,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.33333333333333
+          },
+          "fotmob": null
+        },
+        "Coventry": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 75.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 76.0,
+            "ea_DEF_talent": 72.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 74.33333333333333,
+            "ea_MID_talent": 74.06666666666666,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 75.33333333333333,
+            "ea_ATT_talent": 73.93333333333334,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 73.66666666666667
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 104.2876820801298,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 10,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Nottingham",
+      "away_team": "Brighton",
+      "fixture_id": 5795553,
+      "kickoff_utc": "2026-12-05T17:30:00+00:00",
+      "home_win_probability": 0.2648356225669326,
+      "draw_probability": 0.2719649226324409,
+      "away_win_probability": 0.4631994548006266,
+      "most_likely_outcome": "A",
+      "expected_home_goals": 1.0712157220693248,
+      "expected_away_goals": 1.4954391403726313,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.12960855869181287
+        },
+        {
+          "score": "0-1",
+          "probability": 0.10824520816300577
+        },
+        {
+          "score": "1-2",
+          "probability": 0.09198147835130766
+        },
+        {
+          "score": "0-2",
+          "probability": 0.08586643796976544
+        },
+        {
+          "score": "0-0",
+          "probability": 0.08338454443048486
+        }
+      ],
+      "both_teams_to_score": 0.5166426269272331,
+      "over_2_5": 0.4731674779940227,
+      "under_2_5": 0.5268325220059775,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Nottingham": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 81.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 81.0,
+            "ea_DEF_talent": 81.0,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 81.0,
+            "ea_MID_talent": 78.86666666666666,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 79.66666666666667,
+            "ea_ATT_talent": 76.46666666666665,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 78.66666666666667
+          },
+          "fotmob": null
+        },
+        "Brighton": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 80.5,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 81.0,
+            "ea_DEF_talent": 77.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.0,
+            "ea_MID_talent": 78.0,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 80.33333333333333,
+            "ea_ATT_talent": 73.93333333333332,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 74.33333333333333
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -103.91995581452261,
+        "home_prior_league_matches": 162,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Brentford",
+      "away_team": "Man City",
+      "fixture_id": 5795547,
+      "kickoff_utc": "2026-12-05T20:00:00+00:00",
+      "home_win_probability": 0.31907423488075504,
+      "draw_probability": 0.25507286129309115,
+      "away_win_probability": 0.42585290382615365,
+      "most_likely_outcome": "A",
+      "expected_home_goals": 1.358427859773169,
+      "expected_away_goals": 1.600257045332795,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.11883868654320817
+        },
+        {
+          "score": "1-2",
+          "probability": 0.0902496553427013
+        },
+        {
+          "score": "0-1",
+          "probability": 0.07698797332310366
+        },
+        {
+          "score": "2-1",
+          "probability": 0.07661122099716569
+        },
+        {
+          "score": "0-2",
+          "probability": 0.06643684071508907
+        }
+      ],
+      "both_teams_to_score": 0.5990226177418773,
+      "over_2_5": 0.5674901745187372,
+      "under_2_5": 0.4325098254812627,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Brentford": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 80.0,
+            "ea_DEF_talent": 78.8,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 79.33333333333333,
+            "ea_MID_talent": 81.86666666666666,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 80.33333333333333,
+            "ea_ATT_talent": 73.73333333333333,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 74.33333333333333
+          },
+          "fotmob": null
+        },
+        "Man City": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 87.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 89.0,
+            "ea_DEF_talent": 85.53333333333335,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 85.66666666666667,
+            "ea_MID_talent": 83.93333333333334,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 83.33333333333333,
+            "ea_ATT_talent": 85.26666666666667,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 87.33333333333333
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -149.86366795193226,
+        "home_prior_league_matches": 200,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Everton",
+      "away_team": "Fulham",
+      "fixture_id": 5795549,
+      "kickoff_utc": "2026-12-06T14:00:00+00:00",
+      "home_win_probability": 0.43171390961341594,
+      "draw_probability": 0.3069322023767255,
+      "away_win_probability": 0.2613538880098584,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.2237530332945665,
+      "expected_away_goals": 0.889233284112225,
+      "most_likely_score": "1-0",
+      "top_five_scorelines": [
+        {
+          "score": "1-0",
+          "probability": 0.14087367462607653
+        },
+        {
+          "score": "1-1",
+          "probability": 0.13858723710063636
+        },
+        {
+          "score": "0-0",
+          "probability": 0.1279257009429239
+        },
+        {
+          "score": "0-1",
+          "probability": 0.10043811440391417
+        },
+        {
+          "score": "2-0",
+          "probability": 0.09051056354194965
+        }
+      ],
+      "both_teams_to_score": 0.42283073629260426,
+      "over_2_5": 0.3538740385857192,
+      "under_2_5": 0.6461259614142806,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Everton": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 83.25,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 85.0,
+            "ea_DEF_talent": 79.60000000000001,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 78.66666666666667,
+            "ea_MID_talent": 80.4,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 81.66666666666667,
+            "ea_ATT_talent": 77.46666666666667,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 77.0
+          },
+          "fotmob": null
+        },
+        "Fulham": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 79.0,
+            "ea_DEF_talent": 77.73333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 79.0,
+            "ea_MID_talent": 78.73333333333333,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.66666666666667,
+            "ea_ATT_talent": 70.33333333333333,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 71.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 24.1217178639572,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 200,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Newcastle",
+      "away_team": "Sunderland",
+      "fixture_id": 5795552,
+      "kickoff_utc": "2026-12-06T14:00:00+00:00",
+      "home_win_probability": 0.5018620893457199,
+      "draw_probability": 0.26061893081059123,
+      "away_win_probability": 0.23751897984368894,
+      "most_likely_outcome": "H",
+      "expected_home_goals": 1.6178276178538833,
+      "expected_away_goals": 1.0401752978887109,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.12426671705106752
+        },
+        {
+          "score": "1-0",
+          "probability": 0.10706955391012195
+        },
+        {
+          "score": "2-1",
+          "probability": 0.09540805250357508
+        },
+        {
+          "score": "2-0",
+          "probability": 0.09172305158296758
+        },
+        {
+          "score": "0-0",
+          "probability": 0.07640888905823537
+        }
+      ],
+      "both_teams_to_score": 0.524687083540445,
+      "over_2_5": 0.49603236305651954,
+      "under_2_5": 0.5039676369434806,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Newcastle": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 77.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 78.0,
+            "ea_DEF_talent": 81.06666666666666,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 81.66666666666667,
+            "ea_MID_talent": 78.8,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 78.33333333333333,
+            "ea_ATT_talent": 80.46666666666668,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.0
+          },
+          "fotmob": null
+        },
+        "Sunderland": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 81.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 81.0,
+            "ea_DEF_talent": 80.06666666666666,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 80.66666666666667,
+            "ea_MID_talent": 81.2,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 81.66666666666667,
+            "ea_ATT_talent": 71.8,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 72.66666666666667
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": 20.32159119296375,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 48,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    },
+    {
+      "home_team": "Tottenham",
+      "away_team": "Arsenal",
+      "fixture_id": 5795554,
+      "kickoff_utc": "2026-12-06T16:30:00+00:00",
+      "home_win_probability": 0.1628397219804046,
+      "draw_probability": 0.2699580996056869,
+      "away_win_probability": 0.5672021784139083,
+      "most_likely_outcome": "A",
+      "expected_home_goals": 0.6950142803861414,
+      "expected_away_goals": 1.528183815790338,
+      "most_likely_score": "0-1",
+      "top_five_scorelines": [
+        {
+          "score": "0-1",
+          "probability": 0.1592824909440565
+        },
+        {
+          "score": "0-2",
+          "probability": 0.12641497728263126
+        },
+        {
+          "score": "1-1",
+          "probability": 0.12114868432783502
+        },
+        {
+          "score": "0-0",
+          "probability": 0.11442455756080612
+        },
+        {
+          "score": "1-2",
+          "probability": 0.08786021446611841
+        }
+      ],
+      "both_teams_to_score": 0.39842794318717917,
+      "over_2_5": 0.3834998884924114,
+      "under_2_5": 0.6165001115075884,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": false,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Tottenham": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 76.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 77.0,
+            "ea_DEF_talent": 80.33333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 82.0,
+            "ea_MID_talent": 84.0,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 82.66666666666667,
+            "ea_ATT_talent": 75.99999999999999,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 77.0
+          },
+          "fotmob": null
+        },
+        "Arsenal": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 86.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 88.0,
+            "ea_DEF_talent": 87.93333333333332,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 87.0,
+            "ea_MID_talent": 86.53333333333335,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 86.66666666666667,
+            "ea_ATT_talent": 83.2,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 85.0
+          },
+          "fotmob": null
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -286.4022026713367,
+        "home_prior_league_matches": 276,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      }
+    }
+  ],
+  "content_sha256": "0bf79617672ed2e9a890c78c54b05ffe8ad6ea48fecf497fe71384f3a486af70"
+}

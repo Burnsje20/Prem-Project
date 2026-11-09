@@ -38,6 +38,50 @@ explicitly not an observed lineup. FotMob player form requires dated performance
 stable IDs and a known result-availability time. Cross-provider player IDs must be
 mapped explicitly; names alone never identify a player.
 
+Live lineup context is an opt-in CLI enrichment step (`epl_predictor/lineups.py`),
+not a change to model fitting or the offline `Predictor`. FotMob match-details
+responses are reduced to fixture/team/player identities, provider lineup status
+and a UTC retrieval timestamp. Started/finished/cancelled/postponed fixtures and
+captures at or after kickoff are excluded. Club, fixture ID and kickoff must agree
+with the forecast. Per-fixture failures leave probabilities unchanged; provider
+401/403/429 responses stop further requests in that batch.
+
+Starting XI talent uses an explicitly reviewed one-to-one ID bridge. Club-scoped
+normalized exact names provide review candidates only, never automatic identities.
+EA records must be men's records from eligible snapshots; resolve transfers before
+club filtering. Missing players reduce coverage. Full-XI overall and same-unit
+squad-depth rotation delta require eleven matched players (and known units for
+the delta). A depth proxy is not a known full-strength lineup. Live EA availability
+is evaluated at snapshot capture, while fitted team parameters retain their saved
+cutoff. Neither lineup presence nor EA ratings imply empirical predictive benefit.
+No unvalidated multiplier is applied to Dixon–Coles rates. Historical training and
+reported test metrics are unchanged; future player-enhanced training needs dated
+pre-kickoff captures, verified identities and separate chronological validation.
+
+Prospective captures (`prospective.py`) use actual capture time, never a supplied
+backdated timestamp. Unique, exclusive-create JSON files store predictions, lineup
+context and input/model/code SHA-256 hashes. Rehashing detects source changes during
+inference; content checksums detect later accidental edits. These local timestamps
+are not independently authenticated. Evaluation uses the latest valid capture per
+fixture, irrespective of outcome, and requires exact fixture/club/kickoff agreement
+with next-day-available FT results. Pending and mismatched matches are reported,
+not assigned fabricated targets. No model selection or fitting occurs here.
+
+`player_review.py` creates unapproved identity-review JSON from unresolved lineup
+players. Candidate names are suggestions only; a boolean approval, selected EA ID
+and verification note are required to export a one-to-one crosswalk. Review and
+export outputs use exclusive creation to preserve earlier review decisions.
+
+`collection.py` combines these pieces in a one-shot near-kickoff workflow. It
+filters cached fixtures by actual UTC time, scheduled status and FotMob source,
+then observes a per-fixture cooldown from prior archived lineup attempts. Offline
+forecasts do not block collection. No eligible matches means no provider calls or
+saved-model loading. Successful runs emit an archive, an unapproved review queue
+and an exclusive-create collection report. Matches that cross kickoff during the
+batch are excluded rather than backdated. The 90-minute window and 10-minute
+refresh interval are configurable operational defaults. No scheduler or concurrent
+collector coordination is installed; invoke serially and keep fixtures/models fresh.
+
 ## Chronological experiment
 
 1. Tune goal-model decay/regularization and conservative XGBoost configurations on

@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-09T12:11:22.041136+00:00",
+  "status": "idle",
+  "within_minutes": 90,
+  "refresh_minutes": 10,
+  "eligible_fixture_ids": [],
+  "skipped": [
+    {
+      "fixture_id": "5795522",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795515",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795516",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795518",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795519",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795524",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795523",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795520",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795521",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795517",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795533",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795531",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795532",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795530",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795528",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795526",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795527",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795529",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795534",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795525",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795539",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795538",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795540",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795541",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795542",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795535",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795536",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795537",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795543",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795544",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795548",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795545",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795546",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795550",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795551",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795553",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795547",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795549",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795552",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795554",
+      "reason": "outside_window"
+    }
+  ],
+  "next_collection_at_utc": "2026-11-21T11:00:00+00:00",
+  "archive": null,
+  "review": null,
+  "archived_count": 0,
+  "lineups_available": 0,
+  "unresolved_players": 0,
+  "lineup_statuses": [],
+  "source_hashes": {
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\__init__.py": "8f4ce026f1059d696bd9a93cfcfb5c300cabf0f882504039eb8a206acb589fd5",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\boosting.py": "c6244724bf6a189e7c903934f0343c9ac63bd5fe29d40438636d5b78bd499f20",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\collection.py": "0ccec4b14ea6137572bc5b0cb8edddf5ec25068e2c3063f53163bc394b0683bb",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\data.py": "cf2f7d431093127abb52fed7fce66d70fa6f3e768d342cab009db91b3c320596",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\evaluation.py": "692c26ab106a2d6804960219c787c3de7209ef2d9c744338cbc085de1ec0238d",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\features.py": "59947b5dd53ceeb6b0089f05fcb074ff14f359ee75d320729a9df4b16fa5d1aa",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\goals.py": "f6a75a1da6f7d24fde8122277e4c31c6696b72e688180f04f2d26640c279c4d5",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\lineups.py": "d128e9a1c7283941c628946bb135c433b7be1ab802a6cc7b0f68500980dd056c",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\player_review.py": "35baa477f4b0d9816ff161f83ea6eb7f14163a324b07eb8375cc97001b85fcd3",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\players.py": "e54fa82b0f9b92d955c77dbc51c834bf0db9272c65e2704a65f7f9d606d39f35",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\predictor.py": "f8de8e1e7c4b92f49d5a19b106f3171339d06e447d3c9beb4b7b20702d86e4f7",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\promotion.py": "2df163c7604b1cd9824ec371c9fa4934a820263ab37a8752150498e01a35d8c4",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\prospective.py": "7dc2b8d8cc10128bfd9d244ccd483f1eeedf19e6ca8b03bd22fa18d948bdbc71",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\epl_predictor\\workflow.py": "1113f42453d57431c8543bc229cff9c9788fcb9be210592d476243bc3d3b89de",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\fotmob_client.py": "a23ef90b227f0b76e02d75376298d31cc208cc72300f03fb0fa5b3ab627af4e9",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\hybrid_predictor.py": "a3f6f37a3953651c1203a7a14636fe9f5c37bdc8d10bc89d2bcc1fd487a53977",
+    "C:\\Users\\Kaku\\Documents\\GitHub\\AI_Premier_League_Project\\Prem Project\\poisson_distribution.py": "3a67e765de1f0d626e8b5753fe7d422d9c7cb5e4fb039f3c310f04910f16a723",
+    "artifacts\\hybrid_v1\\championship_history.csv": "873b070eb00350534e75d039ac13037d70f3d04cf58c8c4d1aa003177649c19c",
+    "artifacts\\hybrid_v1\\dixon_coles.json": "875d91513b510b7d5096f79faadce1671d6d8d26e69f105aded77bf99899311b",
+    "artifacts\\hybrid_v1\\manifest.json": "e61a56d3fa4fa81f93536c42437a8ef6f9e6f708c325cd016a76ec27e5d978b1",
+    "artifacts\\hybrid_v1\\pl_history.csv": "a47ef6af392670c05dca5aa1d91d065cbe25b0424baabc409685d472e71dc039",
+    "artifacts\\hybrid_v1\\xgb_base.json": "3e91934d9e4e4449889fd93a08ece78317d873fa3ee40ba928fa6f4ddbe1ac24",
+    "artifacts\\hybrid_v1\\xgb_base_promotion.json": "7093fd65b8f9804ebabe7a1b2c727666770f908112fa68f38fb2c86304125407",
+    "artifacts\\hybrid_v1\\xgb_base_rest.json": "e3f516a5e826504f844c61aded2aac1c219c097c0ddb28f7adb757bb889b41a1",
+    "artifacts\\hybrid_v1\\xgb_base_xg.json": "fd25bf71486e886fc28ecf25901262ccc8830501d0f9218fb04b839585317850",
+    "artifacts\\hybrid_v1\\xgb_full.json": "1914dd75ba48f780edc30d263c789bedb3269b5723d7d8ff5ea1c8873f708cff",
+    "players.csv": "e2fe9d848fa21b04f0b76d851a94ad2d44b8a8c695bc202d4e0f1f5843db1264",
+    "upcoming_premier_league_fixtures.csv": "288672ec56e93bbbc0897628a3beece4d8a14ad50139c599d7cec0a5f67d30d5"
+  },
+  "forecast_policy": "Lineup context only; probabilities unchanged",
+  "finished_at": "2026-11-09T12:11:22.081552+00:00"
+}

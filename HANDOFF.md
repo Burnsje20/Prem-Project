@@ -1,5 +1,9 @@
 # Agent handoff — hybrid Premier League predictor
 
+Latest agent transition: read `GEMINI_HANDOFF.md` first for the consolidated
+2026-11-09 checkpoint, uncommitted file inventory, 68-test verification, current
+collection status and recommended next steps. This file retains the longer history.
+
 ## User instruction and stopping point
 
 The user requested implementation of the attached complete Dixon–Coles + XGBoost
@@ -13,9 +17,15 @@ Full specification:
 Workspace: `C:\Users\Kaku\Documents\GitHub\AI_Premier_League_Project\Prem Project`
 
 Branch: **`feature/hybrid-ml-predictor`**, tracking its same-named origin branch.
-All work in this implementation is currently **uncommitted/untracked**. No commits,
-pushes, merges or deployments were made. Do not lose the new directories when
-switching branches. Existing original Poisson/data/fetch scripts were preserved.
+At this continuation's start the worktree was clean. Core implementation is committed
+as `2797d4a`; the prior follow-ups are committed as `1ab3fee`. The live-lineup changes
+described below are new working-tree changes; no commit or push was made in this
+continuation. Existing original Poisson/data/fetch scripts were preserved.
+
+Both this file and the original deliverable were read. The latter was located at:
+`C:\Users\Kaku\.gemini\antigravity\brain\91e787bb-c76e-46e7-b401-48ec9a22b9e2\DELIVERABLE_HANDOFF.md`.
+That external artifact remains a historical checkpoint; this repository handoff
+records the latest implementation and corrections to its proposed design.
 
 ## Working implementation
 
@@ -46,7 +56,8 @@ switching branches. Existing original Poisson/data/fetch scripts were preserved.
 - `README.md`, `docs/ARCHITECTURE.md`: usage, methods, availability assumptions,
   feature contracts and limitations.
 - `requirements.txt`: tested main numerical/library versions.
-- `tests/test_hybrid.py`: 19 new synthetic unit/integration tests.
+- `tests/test_hybrid.py`: 22 synthetic unit/integration tests; the live continuation
+  adds 14 in `tests/test_lineups.py`, alongside 8 preserved baseline tests.
 
 ## Actual data findings
 
@@ -95,7 +106,7 @@ Selected XGBoost settings are in `reports/tuning.json` and the manifest.
 
 Do not silently change the selected model to the test-period winner: that would
 reuse the final test for selection. The differences between DC and hybrids are
-small and currently have no uncertainty interval. Selected DC current replay:
+small; bootstrap intervals are now in `reports/model_uncertainty.csv`. Selected DC current replay:
 log loss **1.023477**, Brier **0.610971**, accuracy **48%**, exact score **13%**.
 
 Promotion conversion has **18 historical team-season samples** and **15 later-cohort
@@ -165,33 +176,115 @@ chosen to include cached final results from 8 November under next-day availabili
 4. **Reproducibility metadata**: Manifests now capture `source_hashes`, environment `dependencies`
    (Python, NumPy, SciPy, pandas, scikit-learn, XGBoost), and complete input dataset hashes.
 
-## Recommended remaining items / user decisions
+## Live lineup continuation
 
-1. **Commit and branch status**: All changes are currently on `feature/hybrid-ml-predictor`.
-   The working directory is fully tested (30 tests passing, clean `git diff --check`).
-   Ready to stage and commit:
-   ```powershell
-   git add HANDOFF.md README.md artifacts/hybrid_v1/manifest.json epl_predictor/ reports/ tests/test_hybrid.py hybrid_predictor.py
-   git commit -m "Complete Dixon-Coles and XGBoost hybrid pipeline with bootstrap uncertainty and promotion diagnostics"
-   ```
+Implemented `FotMobClient.fetch_lineup`, `match_starting_xi_talent`, an explicit
+live enrichment module, and CLI `--use-lineups`, `--fixture-id`, `--player-id-map`.
+Predictions preserve fixture IDs. Default inference remains offline.
 
-2. **Next Feature: Live FotMob Starting Lineup + EA FC 27 Talent Integration**:
-   - **Architectural Design**:
-     - For *historical training*, multi-season ratings snapshots (FIFA 20, 21, etc.) were required to avoid lookahead leakage on past matches (2019–2024).
-     - For *live current-season (2026–27) predictions*, the current EA FC 27 release (`players.csv`, September 2026) is the exact, most up-to-date baseline of true player talent.
-     - FotMob provides starting lineups via its live fixture endpoint (`https://www.fotmob.com/api/data/matchDetails?matchId=<fixture_id>`), published 60–75 minutes before kickoff (or projected earlier).
-     - Matching FotMob starters to `players.csv` (scoped to club and `gender == "Men's Football"`) allows computing:
-       - Starting XI Overall Rating (e.g. Home 85.8 vs Away 74.2)
-       - Positional unit talent (GK, DEF, MID, ATT)
-       - Squad rotation / absence delta (Starting XI talent vs club full-strength baseline)
-     - Dixon–Coles expected goals ($\lambda, \mu$) scale with the on-pitch talent differential before scoreline reconciliation.
-   - **Planned Implementation Steps (Next PR / Commit)**:
-     1. Implement `fetch_lineup(fixture_id)` in `fotmob_client.py` using FotMob's `/api/data/matchDetails` endpoint.
-     2. Add `match_starting_xi_talent(club, starters, ea_df)` in `epl_predictor/players.py`.
-     3. Add `--use-lineups` option to `hybrid_predictor.py predict` to dynamically fetch lineups and adjust forecasts.
-     4. Add unit and smoke tests covering lineup parsing and talent calculation.
+The next-feature design above has been superseded by these safeguards:
 
-3. **Future untouched evaluation**: Evaluate live 2026–27 fixtures prospectively as the season progresses.
+- EA FC27 is a dated talent proxy, not an exact or empirically optimal measure.
+- The unofficial endpoint was checked against an upcoming and a finished match.
+  Upcoming fixture 5795522 supplied injury lists but no starters. Publication timing
+  is not guaranteed; eleven names alone do not establish confirmed status.
+- Capture timestamps and fixture/club/kickoff checks prevent post-kickoff live use.
+  Same-match ratings, events, and performance aggregates are never imported.
+- Only a reviewed one-to-one `ea_id,fotmob_id` crosswalk contributes talent.
+  Club-scoped normalized exact names are review candidates, not verified IDs.
+- XI overall and same-unit depth rotation delta require all eleven mapped players.
+  Missing coverage stays explicit; the depth baseline is not an injury-free XI.
+- **No goal-rate multiplier is enabled.** The supplied snapshot/lineup evidence
+  cannot estimate or validate such a coefficient. Unvalidated scaling would
+  contradict the original statistically defensible modeling requirement.
+- Live context failures leave predictions intact; access/rate-limit responses stop
+  further batch lookups. No saved model, historical report, or raw data is changed.
+
+Usage and full input contracts are in README's "Optional live lineup context".
+New regression tests are in `tests/test_lineups.py` (14 tests); the suite now has
+44 tests. Tests cover parsing, partial/missing lineups, identity ambiguity,
+snapshot availability, transfer/gender filtering, unchanged forecasts, network
+failures, and offline-by-default CLI behavior.
+
+Continuation verification: all 44 tests passed; `git diff --check` passed. All
+40 saved forecasts were regenerated in memory and compared to the existing output:
+H/D/A probabilities, expected goals and most likely scores were exactly unchanged.
+A live lookup for fixture 5795522 succeeded with no starters supplied, producing
+the expected explicit unavailable context and unchanged probabilities. No generated
+forecast/report/model file was overwritten during these checks.
+
+## Remaining work
+
+### Prospective archive and identity-review continuation
+
+The next continuation added:
+
+- `epl_predictor/prospective.py`: non-overwriting pre-match capture, content
+  checksums, input/model/code hashes, source-change detection, and offline scoring.
+- `predict --archive-dir archives/prospective`: archives actual current UTC capture
+  time; rejects duplicate IDs, empty batches, post-kickoff captures, and inconsistent
+  model/lineup availability. The ordinary output path retains its overwrite behavior.
+- `evaluate-live`: consistently chooses the latest pre-kickoff capture per fixture,
+  then scores only next-day-available FT results with matching IDs/clubs/kickoff.
+  Missing results remain pending; schedule changes are flagged. No retraining.
+- `epl_predictor/player_review.py`, `review-players`, `export-player-map`: review
+  suggestions start unapproved and export only with explicit boolean approval,
+  a chosen EA ID and a verification note. One-to-one IDs and new output paths are
+  enforced. No automatic name-based approval was introduced.
+- `tests/test_prospective.py`: 14 regression tests, bringing the full suite to
+  **58 passing tests**. `git diff --check` also passes.
+
+The first real 40-fixture offline forecast batch was archived at
+`archives/prospective/forecast_20261109T120445845734Z_771b4be1a81d4052910ed1632341cf87.json`.
+`reports/prospective_initial_predictions.json` is the readable ordinary output;
+`reports/prospective_initial_evaluation.json` reports **0 scored, 40 pending, 0
+mismatched**, as expected before these matches take place. It does not claim any
+new predictive performance. This initial archive has no live lineup observations.
+No existing trained model or prior historical report was overwritten.
+
+Archive checksums and local timestamps are not independently authenticated evidence.
+The files are non-overwriting through this workflow, not operating-system-immutable.
+Collection is opt-in and CLI-triggered; no background scheduler was installed.
+
+### Near-kickoff collector continuation
+
+Implemented `epl_predictor/collection.py` and `python hybrid_predictor.py collect-lineups`.
+The one-shot command selects scheduled FotMob fixtures within 90 minutes of kickoff,
+enforces a ten-minute cooldown using prior lineup archives, fetches context,
+archives predictions and emits an unapproved identity review plus collection report.
+Both intervals are configurable. It performs no provider calls or saved-model load
+when idle, and rejects expired-during-collection forecasts instead of backdating.
+Fixture schedules and saved models must be refreshed separately. No scheduler was
+installed and collectors should not be invoked concurrently.
+
+`tests/test_collection.py` adds ten tests covering window boundaries, cooldowns,
+source/status/identity validation, no-network idle runs, archive/review integration,
+timeouts, crossing kickoff and the CLI. Full suite: **68 tests**.
+
+Actual invocation on 2026-11-09 returned idle: no cached match is near kickoff.
+Report: `reports/lineup_collection/collection_20261109T121122041136Z_8e36f1a704064d65a07d7fd6f2c17118.json`.
+The next collection window according to the cache opens **2026-11-21 11:00 UTC**
+(06:00 America/New_York), ahead of Man City–Fulham at 12:30 UTC. This is a cached
+schedule, not a refreshed provider guarantee. No live starters or mapping approvals
+were fabricated, and no existing archive/model was overwritten.
+
+### Next steps
+
+1. Review provider ID mappings and collect timestamped pre-kickoff snapshots and
+   dated player-match performance. There is still no supplied appearance dataset.
+2. Establish chronological training/validation periods for player features; learn
+   and validate any talent-to-goals relationship before enabling adjustments.
+   Do not reuse the already-examined test season for feature/model selection.
+3. Continue archiving upcoming forecasts (optionally with `--use-lineups` near
+   kickoff), update completed-result caches, and run `evaluate-live` after matches.
+   Review unresolved identities using the new commands. No actual identity
+   approvals or appearance data were fabricated to bypass the missing data.
+4. Review and commit the new changes if desired. No commit/push was made here.
+
+The external deliverable's bootstrap intervals are reported results, not exact
+p-values or a universal superiority claim. The implementation computes percentile
+intervals, not a formal p-value; date blocks do not address every dependence across
+match dates or multiplicity across model comparisons.
 
 The old Poisson workflow and its reports remain available for comparison. Avoid
 deleting them or mixing generated prediction CSVs into training data.

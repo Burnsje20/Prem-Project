@@ -1,4 +1,5 @@
 """Optional, explicitly dated player features. Missing ratings are never fabricated."""
+import unicodedata
 import numpy as np
 import pandas as pd
 
@@ -76,6 +77,101 @@ def map_player_ids(ea, appearances, bridge):
     ea_ids, fm_ids = set(ea.player_id.astype(str)), set(appearances.player_id.astype(str))
     accepted = b[b.ea_id.isin(ea_ids) & b.fotmob_id.isin(fm_ids)]
     return dict(zip(accepted.fotmob_id,accepted.ea_id)), b.loc[~b.index.isin(accepted.index)].to_dict('records')
+
+
+def validate_player_bridge(bridge):
+    """Validate a user-reviewed ID crosswalk, independent of available players."""
+    if bridge is None:
+        return {}
+    required = ['ea_id', 'fotmob_id']
+    if not set(required) <= set(bridge) or bridge[required].isna().any().any():
+        raise ValueError('Player bridge requires non-null ea_id and fotmob_id')
+    b = bridge[required].astype(str).apply(lambda c: c.str.strip())
+    if (b.eq('').any().any() or b.ea_id.duplicated().any() or b.fotmob_id.duplicated().any()):
+        raise ValueError('Player bridge must be nonempty, one-to-one identities')
+    return dict(zip(b.fotmob_id, b.ea_id))
+
+
+def _name_key(value):
+    if pd.isna(value):
+        return ''
+    return ''.join(c for c in unicodedata.normalize('NFKD', str(value)).casefold()
+                   if c.isalnum())
+
+
+def match_starting_xi_talent(club, starters, ea_df, cutoff, bridge=None):
+    """Aggregate only reviewed EA/FotMob ID links from eligible men's snapshots.
+
+    Club-scoped exact names are suggestions for reviewing the ID bridge, not
+    verified identity. Partial coverage never masquerades as a full XI rating.
+    """
+    links = validate_player_bridge(bridge)
+    ids = [str(p['player_id']) for p in starters]
+    if len(ids) != len(set(ids)) or len(ids) > 11:
+        raise ValueError('Starting XI identities must be unique, at most eleven')
+    result = {'starter_count': len(starters), 'matched_count': 0, 'coverage': 0.,
+              'xi_overall': None, 'matched_overall': None, 'units': {},
+              'same_unit_depth_baseline': None, 'rotation_delta': None,
+              'matches': [], 'unmatched': [], 'identity_policy': 'reviewed_id_bridge_only',
+              'baseline_policy': 'best available same-unit counts, not a known full-strength XI'}
+    if not starters:
+        return result
+    if ea_df is None:
+        result['unmatched'] = [dict(p, reason='EA data unavailable') for p in starters]
+        return result
+    d = validate_ea(ea_df)
+    # Selecting latest eligible snapshots before filtering clubs handles transfers.
+    d = d[d.snapshot_date + pd.Timedelta(days=1) <= utc(cutoff).normalize()]
+    d = d.sort_values('snapshot_date').drop_duplicates('player_id', keep='last')
+    d = d[d.club.eq(team_name(club))].copy()
+    # Live matching requires explicit men's provenance, not an assumed gender.
+    if 'gender' not in d:
+        d = d.iloc[:0]
+    d['overall_rating'] = pd.to_numeric(d.overall_rating, errors='coerce')
+    d = d[d.overall_rating.between(0, 100)]
+    candidates = {}
+    for p in d.to_dict('records'):
+        names = [p.get('common_name'), ' '.join(str(p.get(c) or '') for c in ['first_name', 'last_name'])]
+        for name in names:
+            key = _name_key(name)
+            if key:
+                candidates.setdefault(key, set()).add(p['player_id'])
+    indexed = d.set_index('player_id', drop=False)
+    matched = []
+    for starter in starters:
+        pid = str(starter['player_id'])
+        ea_id = links.get(pid)
+        if ea_id not in indexed.index:
+            result['unmatched'].append({**starter,
+                'reason': 'No reviewed ID link' if ea_id is None else 'Linked player absent from eligible club snapshot',
+                'candidate_ea_ids': sorted(candidates.get(_name_key(starter.get('name')), set()))})
+            continue
+        player = indexed.loc[ea_id]
+        matched.append(ea_id)
+        result['matches'].append({'fotmob_id': pid, 'ea_id': ea_id, 'name': starter.get('name'),
+                                  'snapshot_date': player.snapshot_date.isoformat()})
+    selected = indexed.loc[matched]
+    result['matched_count'] = len(selected)
+    result['coverage'] = len(selected) / len(starters) if starters else 0.
+    if not len(selected):
+        return result
+    result['matched_overall'] = float(selected.overall_rating.mean())
+    full = len(starters) == len(selected) == 11
+    result['xi_overall'] = result['matched_overall'] if full else None
+    baseline = []
+    for group in ['GK', 'DEF', 'MID', 'ATT']:
+        p = selected[selected.unit.eq(group)]
+        cols = [c for c in ATTRIBUTES[group] if c in p]
+        ratings = (p[cols].apply(pd.to_numeric, errors='coerce').where(lambda x: x.ge(0) & x.le(100)).mean(axis=1)
+                   if cols else p.overall_rating)
+        result['units'][group] = {'matched_players': len(p),
+            'talent': float(ratings.mean()) if ratings.notna().any() else None,
+            'overall': float(p.overall_rating.mean()) if len(p) else None}
+        baseline.extend(d[d.unit.eq(group)].nlargest(len(p), 'overall_rating').overall_rating.tolist())
+    if full and len(baseline) == 11:
+        result['same_unit_depth_baseline'] = float(np.mean(baseline))
+        result['rotation_delta'] = result['xi_overall'] - result['same_unit_depth_baseline']
+    return result
 
 
 def validate_appearances(frame):

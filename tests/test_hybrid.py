@@ -288,8 +288,10 @@ class ModelIntegrationTests(unittest.TestCase):
                         'player_model_status':'unavailable','selection_metrics':{},'test_metrics':{}}
             (folder/'manifest.json').write_text(json.dumps(manifest))
             predictor = Predictor(folder)
-            fixtures = pd.DataFrame([{'home_team':'A','away_team':'B','kickoff_utc':'2025-09-10'}])
+            fixtures = pd.DataFrame([{'fixture_id':123,'home_team':'A','away_team':'B','kickoff_utc':'2025-09-10'}])
             result = predictor.predict(fixtures)[0]
+            self.assertEqual(result['fixture_id'],123)
+            with self.assertRaises(ValueError):predictor.predict(fixtures.assign(fixture_id=1.5))
             self.assertEqual(result['model'],'dixon_coles_fallback')
             self.assertEqual(len(result['top_five_scorelines']),5)
             self.assertIsNone(result['player_context']['A']['ea'])

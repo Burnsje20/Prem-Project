@@ -31,6 +31,144 @@ The date must be on or after the model's data cutoff and in its current season.
 Club aliases are normalized. An unknown club gets a clearly labelled goal-model
 fallback; there is no invented player rating or unsupported prediction-confidence score.
 
+## Optional live lineup context
+
+```powershell
+python hybrid_predictor.py predict --use-lineups --output lineup_predictions.json
+python hybrid_predictor.py predict --home "Man City" --away Fulham --date "2026-11-21T12:30:00Z" --fixture-id 5795522 --use-lineups --output city_fulham_lineup.json
+```
+
+`--use-lineups` explicitly enables FotMob network requests (one per distinct fixture
+ID). Normal prediction stays offline. JSON includes `fixture_id` and, in live mode,
+`live_lineup_context` with retrieval time, provider status, identity-only starters,
+coverage, and missing-data reasons. Refresh sparingly: access/rate-limit failures
+stop further live requests in the batch. Forecasts still complete if the feed fails.
+The feed is unofficial and may change; injury lists do not imply starters exist.
+Eleven listed players are not automatically labelled confirmed. No guarantee is
+made about how many minutes before kickoff lineups appear.
+
+For talent calculations, supply a **reviewed**, one-to-one CSV linking provider IDs:
+
+```text
+ea_id,fotmob_id
+```
+
+```powershell
+python hybrid_predictor.py predict --use-lineups --player-id-map player_id_map.csv --output lineup_predictions.json
+```
+
+Without a crosswalk, club-scoped exact-name matches appear as `candidate_ea_ids`
+for review only. They are never silently treated as verified identity. Gender,
+club, eligible snapshot date and transfers are checked. Output includes positional
+unit talent and matched-player coverage; a full XI overall and rotation delta
+require all eleven players to be mapped. The baseline is the best available
+same-unit squad-depth proxy, **not** a known injury-free starting XI. Missing
+attributes, players and units are not invented.
+
+Live snapshots are rejected at/after kickoff and checked against the fixture's
+clubs, ID and kickoff. Same-match ratings, events, and season performance fields
+are excluded. Snapshot eligibility uses its capture time, separately from the saved
+team model's cutoff. Save each pre-match output to a distinct filename if collecting
+prospective evidence; later retrieval cannot reconstruct historical availability.
+Use the archive workflow below to preserve runs automatically.
+
+**Lineups do not yet adjust expected goals or probabilities.** EA ratings are a
+talent proxy, not an exact measurement of ability, and no validated coefficient
+converts their difference into goal rates. A dated lineup/identity dataset and
+chronological validation are required before enabling that adjustment. The chosen
+Dixon–Coles model, its calibration and its test results remain unchanged.
+
+## Archive forecasts and evaluate future results
+
+```powershell
+python hybrid_predictor.py predict --archive-dir archives/prospective --output latest_predictions.json
+```
+
+Each run creates a uniquely named `forecast_*.json` archive containing predictions,
+optional live lineup context, current UTC capture time, input/model/code hashes,
+and a content checksum. Add `--use-lineups` when you want live collection, ideally
+near kickoff rather than repeatedly fetching distant fixtures. Archiving verifies
+that source files did not change during prediction, requires fixture IDs and
+timezone-aware dates, and rejects empty batches, duplicate fixtures, future model
+cutoffs and at/after-kickoff captures. `--filter-future` still filters against the
+**model cutoff**, not the wall clock: supply a genuinely upcoming fixture batch.
+Normal prediction output can still be overwritten; archive files are created
+exclusively with unique names. These are local records, not independently notarized
+evidence; their checksums detect accidental edits, not intentional forgery.
+
+After updating the completed-results cache, evaluate without retraining:
+
+```powershell
+python hybrid_predictor.py evaluate-live --archive-dir archives/prospective --results current_premier_league_results.csv --output reports/live_evaluation_01.json
+```
+
+The fixed policy scores the **latest captured pre-kickoff forecast per fixture**,
+once only. It does not select whichever forecast best predicted the result.
+Only completed results available by the next UTC day are eligible. Fixture IDs,
+clubs and exact kickoff must agree; schedule/identity mismatches are reported
+separately. Missing results stay pending, with null metrics if none can be scored.
+Evaluation never changes models. Choose a new report filename on every run;
+evaluation and identity-review outputs refuse to overwrite existing files.
+
+## Collect near-kickoff lineups in one command
+
+```powershell
+python hybrid_predictor.py collect-lineups
+```
+
+This runs **once**, using the cached fixtures. It selects scheduled FotMob matches
+starting within the next 90 minutes (strictly before kickoff), predicts them with
+the saved model, fetches lineup context, archives the forecasts, and creates both
+a collection report and an unapproved player review JSON in
+`reports/lineup_collection/`. It makes no provider requests and loads no saved model
+when no matches are eligible. The report prints the next window/retry time in UTC.
+Refresh the fixture cache separately with `python fetch_upcoming_fixtures.py` when
+needed; collection does not silently refresh schedules or retrain the saved model.
+
+```powershell
+python hybrid_predictor.py collect-lineups --within-minutes 90 --refresh-minutes 10 --player-id-map player_id_map_01.csv
+```
+
+Repeated runs use archived lineup attempts to enforce a ten-minute per-fixture
+cooldown, including unsuccessful requests. Offline forecasts do not trigger that
+cooldown. Both timings are configurable operational settings, not a promise of
+when FotMob publishes confirmed lineups. Unsupported sources, cancelled/finished/
+postponed fixtures, unknown statuses, past kickoffs and distant matches are skipped
+with reasons. If kickoff passes during a request batch, those forecasts are not
+backdated into the archive. Provider access/rate-limit failures stop further
+requests within the batch as in normal live prediction.
+
+Review the emitted `player_review_*.json`, then use `export-player-map` below.
+When there are no starters, the review contains no players. This command neither
+approves identities nor installs a background task; rerun it near kickoff and after
+the cooldown if you want another capture. Do not run collectors concurrently.
+
+## Review player identities
+
+Create a review JSON from one or more lineup prediction files or forecast archives:
+
+```powershell
+python hybrid_predictor.py review-players --predictions lineup_predictions.json --output player_review_01.json
+```
+
+Repeated unresolved FotMob IDs are consolidated with observed names, clubs,
+fixtures and candidate EA IDs. All decisions start with `approved: false` and
+`ea_id: null`, including unique name matches. Verify each identity, supply the
+chosen `ea_id`, set `approved: true`, and add a `review_note` describing verification.
+Do not approve a match just because its name is similar. Then export:
+
+```powershell
+python hybrid_predictor.py export-player-map --review player_review_01.json --output player_id_map_01.csv
+python hybrid_predictor.py predict --use-lineups --player-id-map player_id_map_01.csv --archive-dir archives/prospective --output latest_predictions.json
+```
+
+Only explicitly approved rows export; duplicate/conflicting IDs, missing review
+notes and string-valued approvals are rejected. No automatic approval or fuzzy
+identity assignment occurs. If the provider has not supplied starters, the review
+will be empty; no players are invented. Collection is manual/CLI-triggered, not a
+background scheduler. Historical player-performance collection and validation of
+player-enhanced models remain separate next steps.
+
 ## Reproduce the experiment
 
 ```powershell
