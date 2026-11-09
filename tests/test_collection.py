@@ -156,6 +156,45 @@ class CollectionWorkflowTests(unittest.TestCase):
         self.assertEqual(len(list(self.output.glob('collection_*.json'))), 1)
         self.client.assert_not_called()
 
+    def test_concurrent_collection_locking(self):
+        lock_file = self.output / '.collector.lock'
+        self.output.mkdir(parents=True, exist_ok=True)
+        with lock_file.open('x', encoding='utf-8') as handle:
+            json.dump({'pid': 99999, 'locked_at': NOW.isoformat()}, handle)
+        import os
+        os.utime(lock_file, (NOW.timestamp(), NOW.timestamp()))
+
+        report, path = collect_lineups(**self.options)
+        self.assertEqual(report['status'], 'locked')
+        self.assertIn('Concurrent collection in progress', report['reason'])
+        self.assertEqual(report['lock_info']['pid'], 99999)
+        self.assertTrue(path.exists())
+        self.client.assert_not_called()
+
+    def test_stale_lock_is_cleared(self):
+        lock_file = self.output / '.collector.lock'
+        self.output.mkdir(parents=True, exist_ok=True)
+        with lock_file.open('x', encoding='utf-8') as handle:
+            json.dump({'pid': 99999, 'locked_at': (NOW - timedelta(minutes=30)).isoformat()}, handle)
+        # Set mtime to 30 minutes in the past
+        stale_time = (NOW - timedelta(minutes=30)).timestamp()
+        import os
+        os.utime(lock_file, (stale_time, stale_time))
+
+        report, path = collect_lineups(**self.options)
+        self.assertEqual(report['status'], 'collected')
+        self.assertTrue(path.exists())
+
+    def test_fotmob_client_retry_adapter(self):
+        client = FotMobClient(max_retries=3, backoff_factor=0.5)
+        self.assertIn('https://', client.session.adapters)
+        adapter = client.session.adapters['https://']
+        self.assertIsNotNone(adapter.max_retries)
+        self.assertEqual(adapter.max_retries.total, 3)
+        self.assertEqual(adapter.max_retries.backoff_factor, 0.5)
+        self.assertEqual(adapter.max_retries.status_forcelist, [429, 500, 502, 503, 504])
+        client.session.close()
+
 
 if __name__ == '__main__':
     unittest.main()

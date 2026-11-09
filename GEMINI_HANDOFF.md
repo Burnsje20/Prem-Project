@@ -27,9 +27,9 @@ git diff --check
 python hybrid_predictor.py --help
 ```
 
-The last full suite passed **68 tests**. The collector's ten tests were rerun
-after its final small edit and also passed. Whitespace checks passed; Windows
-LF-to-CRLF notices are Git configuration warnings, not failed tests.
+The last full suite passed **76 tests** (including 5 appearance collection tests and 3 collector hardening / retry tests).
+Whitespace checks passed; Windows LF-to-CRLF notices are Git configuration warnings,
+not failed tests.
 
 ## Objective and current stopping point
 
@@ -41,35 +41,42 @@ The user's recent requests were to continue the handoff roadmap, implement live
 lineup collection and player-ID review, then create this Gemini handoff.
 
 The collection/review/archive/evaluation workflow is implemented and tested.
-**The remaining limitation is real evidence, not a missing lineup CLI.** There
-are currently no collected upcoming starting XIs, no approved cross-provider
-player mapping, and no dated player-match performance dataset. Do not claim those
-exist or fabricate them to complete the player-enhanced model.
+The completed-match appearance collector (`collect-appearances`) has now been
+implemented and populated `fotmob_player_appearances.csv` across all 100 finished
+2026–27 matches (3,084 total appearances), distinguishing crawl timestamp from
+match availability. The remaining limitation is real evidence for upcoming lineups:
+there are currently no collected upcoming starting XIs and no approved cross-provider
+player mapping. Do not claim those exist or fabricate them to complete the
+player-enhanced model.
 
 ## Changes to preserve
 
 Modified tracked files:
 
-- `fotmob_client.py`: `fetch_lineup` and strict match-details parsing.
-- `epl_predictor/players.py`: reviewed-ID XI talent aggregation and candidate names.
+- `fotmob_client.py`: `fetch_lineup`, `fetch_match_appearances`, match-details parsing, and `HTTPAdapter`/`Retry` backoff on 429/5xx.
+- `epl_predictor/players.py`: reviewed-ID XI talent aggregation, candidate names, outfield unit mapping, mixed-format dates.
 - `epl_predictor/predictor.py`: validates/preserves fixture IDs in predictions.
-- `hybrid_predictor.py`: new live, archive, review, evaluation and collector CLI.
+- `hybrid_predictor.py`: new live, archive, review, evaluation, collect-appearances, and collector CLI with `--lock-path`.
 - `tests/test_hybrid.py`: fixture-ID regression checks.
 - `README.md`, `docs/ARCHITECTURE.md`, `HANDOFF.md`: current usage/contracts/history.
 
 New, untracked code/tests:
 
+- `epl_predictor/appearances.py`: completed match appearance collection with incremental caching.
 - `epl_predictor/lineups.py`: optional live context with safe failure handling.
 - `epl_predictor/prospective.py`: source fingerprints, non-overwriting archives,
   checksum validation and fixed-policy prospective evaluation.
 - `epl_predictor/player_review.py`: unapproved review JSON and reviewed CSV export.
-- `epl_predictor/collection.py`: one-shot near-kickoff collection orchestration.
+- `epl_predictor/collection.py`: one-shot near-kickoff collection orchestration with exclusive process lock.
+- `tests/test_appearances.py`: 5 tests.
 - `tests/test_lineups.py`: 14 tests.
 - `tests/test_prospective.py`: 14 tests.
-- `tests/test_collection.py`: 10 tests.
+- `tests/test_collection.py`: 13 tests (including locking and retry adapter).
 - This `GEMINI_HANDOFF.md`.
 
 New evidence/output files:
+
+- `fotmob_player_appearances.csv` — 3,084 appearances from all 100 finished 2026–27 matches.
 
 - `archives/prospective/forecast_20261109T120445845734Z_771b4be1a81d4052910ed1632341cf87.json`
   — first real 40-fixture baseline archive; **no live lineup observations**.
@@ -227,23 +234,20 @@ than repeating every narrative claim in that older deliverable.
 
 ## Recommended next work, in order
 
-1. Inspect the working diff and rerun tests. Review the implementation rather than
-   rebuilding the already completed collector/archive/review commands.
-2. Obtain real pre-kickoff lineups when fixtures are eligible, then verify player
-   identities with evidence. No actual mapping approvals have been made yet.
-3. Address the missing dated player-performance source. If adding a collector for
-   completed matches, distinguish retrieval time from historical availability;
-   do not pretend data retrieved today was provably available months ago.
-4. Accumulate sufficient dated player/lineup observations and establish separate
+1. Inspect the working diff and rerun tests. (Completed: all 76 tests pass).
+2. Completed match player appearances collector (Completed: `collect-appearances`
+   populated 3,084 appearances from 100 finished matches into `fotmob_player_appearances.csv`).
+3. Collector hardening & resilience (Completed: exclusive process locking with
+   stale-lock detection and HTTPAdapter exponential backoff retry on 429/5xx).
+4. Obtain real pre-kickoff lineups when fixtures are eligible, then verify player
+   identities with evidence (next collection window opens 2026-11-21 11:00 UTC).
+5. Review and approve player cross-provider ID mappings using `review-players` and
+   `export-player-map` as lineup observations accumulate.
+6. Accumulate sufficient dated player/lineup observations and establish separate
    chronological training/validation periods before testing player-enhanced models.
    Only enable effects on goal rates/probabilities if validation supports them.
-5. Continue prospective scoring as results arrive. Do not invent performance
+7. Continue prospective scoring as results arrive. Do not invent performance
    metrics while archived fixtures are still pending.
-6. Optional hardening: concurrent collector locking, schedule-change handling,
-   provider-specific backoff and more informative identity-review evidence.
-   Ask before installing an unattended scheduled task; none is currently running.
-7. Commit only if requested. Include the new modules/tests and intentionally
-   selected evidence files; do not blindly discard or overwrite archives.
 
 ## Further context
 

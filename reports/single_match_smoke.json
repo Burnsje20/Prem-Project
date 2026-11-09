@@ -2,6 +2,7 @@
   {
     "home_team": "Arsenal",
     "away_team": "Coventry",
+    "fixture_id": null,
     "kickoff_utc": "2026-11-21T15:00:00+00:00",
     "home_win_probability": 0.8169172436850751,
     "draw_probability": 0.13516746368625357,
@@ -66,7 +67,15 @@
           "ea_ATT_players": 3,
           "ea_ATT_overall": 85.0
         },
-        "fotmob": null
+        "fotmob": {
+          "lineups_estimated": true,
+          "rated_players": 15,
+          "fm_GK_form": 7.050051695659623,
+          "fm_DEF_form": 6.9774532503024975,
+          "fm_MID_form": 7.007824892931277,
+          "fm_ATT_form": 7.075313683674614,
+          "fm_team_form": 7.015657358044991
+        }
       },
       "Coventry": {
         "ea": {
@@ -87,7 +96,15 @@
           "ea_ATT_players": 3,
           "ea_ATT_overall": 73.66666666666667
         },
-        "fotmob": null
+        "fotmob": {
+          "lineups_estimated": true,
+          "rated_players": 14,
+          "fm_GK_form": 6.8164771159147195,
+          "fm_DEF_form": 6.6286686331700695,
+          "fm_MID_form": 6.805350915100866,
+          "fm_ATT_form": 6.838398521879333,
+          "fm_team_form": 6.749743234264358
+        }
       }
     },
     "explanation_inputs": {

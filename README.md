@@ -141,7 +141,10 @@ requests within the batch as in normal live prediction.
 Review the emitted `player_review_*.json`, then use `export-player-map` below.
 When there are no starters, the review contains no players. This command neither
 approves identities nor installs a background task; rerun it near kickoff and after
-the cooldown if you want another capture. Do not run collectors concurrently.
+the cooldown if you want another capture. The collector acquires an exclusive process
+lockfile (`.collector.lock` in `--output-dir` or via `--lock-path`) with stale-lock clearing
+(15-minute timeout) to safely prevent race conditions or corrupted archives if triggered
+concurrently. Network calls feature exponential backoff retry adapters (3 attempts on 429/5xx).
 
 ## Review player identities
 
@@ -244,19 +247,28 @@ depth proxy (best goalkeeper and top three available players per outfield unit),
 not an actual or confirmed starting XI. With explicit EA-ID expected-minutes
 weights, aggregation uses those weights instead. No global 60/40 talent/form blend.
 
-There is **no supplied player-by-match FotMob file**. The optional importer expects:
+Completed match player performances can be collected incrementally from FotMob:
+
+```powershell
+python hybrid_predictor.py collect-appearances
+```
+
+This collects all completed 2026–27 matches into `fotmob_player_appearances.csv`,
+calculating accurate minutes from starter/sub-event intervals and red cards,
+capturing ratings, and enforcing the schema:
 
 ```text
 player_id,match_id,date,available_at,team,position,rating,minutes
 ```
 
-Dates must identify kickoff and when the performance became available. `is_home`
-is optional. Null ratings remain missing. IDs are provider IDs; joining to EA
+Dates record kickoff and when the performance became available (next UTC day).
+`retrieved_at` records the crawl timestamp to distinguish retrieval time from
+match availability. Null ratings remain missing. IDs are provider IDs; joining to EA
 requires an explicit one-to-one `ea_id,fotmob_id` bridge. Names alone are never
 used as identity. Transfers use the latest available club observation.
 
 ```powershell
-python hybrid_predictor.py predict --appearances fotmob_player_matches.csv
+python hybrid_predictor.py predict --appearances fotmob_player_appearances.csv
 ```
 
 The module computes five/ten-appearance ratings, minutes/recency weighting, long-term

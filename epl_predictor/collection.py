@@ -1,7 +1,11 @@
 """One-shot near-kickoff lineup collection; no background process or automatic approvals."""
+from contextlib import contextmanager
+import datetime as _dt
 from datetime import datetime, timezone
 import json
+import os
 from pathlib import Path
+import time
 from uuid import uuid4
 
 import pandas as pd
@@ -78,75 +82,151 @@ def recent_lineup_captures(archive_dir, now):
     return recent
 
 
+@contextmanager
+def collection_lock(lock_path: Path | str, timeout_seconds: float = 900.0, now=None):
+    """Exclusive process lock to prevent concurrent collector runs.
+
+    Detects and clears stale lockfiles older than timeout_seconds.
+    """
+    lock_path = Path(lock_path)
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    if now is None:
+        now_ts = time.time()
+        iso_now = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime(now_ts))
+    else:
+        now_ts = now.timestamp() if hasattr(now, 'timestamp') else time.time()
+        iso_now = now.isoformat() if hasattr(now, 'isoformat') else str(now)
+
+    if lock_path.exists():
+        try:
+            mtime = lock_path.stat().st_mtime
+            try:
+                data = json.loads(lock_path.read_text(encoding='utf-8'))
+                if 'locked_at' in data:
+                    locked_ts = _dt.datetime.fromisoformat(data['locked_at']).timestamp()
+                    mtime = max(mtime, locked_ts)
+            except Exception:
+                pass
+            if (now_ts - mtime) > timeout_seconds:
+                lock_path.unlink(missing_ok=True)
+        except OSError:
+            pass
+
+    acquired = False
+    try:
+        with lock_path.open('x', encoding='utf-8') as handle:
+            json.dump({'pid': os.getpid(), 'locked_at': iso_now}, handle)
+        acquired = True
+    except (FileExistsError, OSError):
+        acquired = False
+
+    if not acquired:
+        info = {}
+        try:
+            info = json.loads(lock_path.read_text(encoding='utf-8'))
+        except Exception:
+            pass
+        yield False, info
+        return
+
+    try:
+        yield True, {'pid': os.getpid(), 'locked_at': iso_now}
+    finally:
+        try:
+            lock_path.unlink(missing_ok=True)
+        except OSError:
+            pass
+
+
 def collect_lineups(fixtures_path='upcoming_premier_league_fixtures.csv',
                     artifact_dir='artifacts/hybrid_v1', players_path='players.csv',
                     player_map_path=None, archive_dir='archives/prospective',
-                    output_dir='reports/lineup_collection', within_minutes=90, refresh_minutes=10):
+                    output_dir='reports/lineup_collection', within_minutes=90, refresh_minutes=10,
+                    lock_path=None):
     """Run once: select, predict, fetch, archive and emit an unapproved review queue.
 
     No eligible fixtures means no model loading and no provider calls. This does
     not schedule itself. Repeated invocations observe a persisted archive cooldown.
+    Uses an exclusive lockfile to prevent concurrent runs.
     """
     started = datetime.now(timezone.utc)
-    inputs_paths = [Path(fixtures_path)]
-    if players_path and Path(players_path).exists():
-        inputs_paths.append(Path(players_path))
-    if player_map_path:
-        inputs_paths.append(Path(player_map_path))
-    inputs = prediction_source_hashes(artifact_dir, inputs_paths)
-    fixtures = pd.read_csv(fixtures_path, dtype={'fixture_id': str})
-    recent = recent_lineup_captures(archive_dir, started)
-    due, skipped, next_at = select_collection_fixtures(
-        fixtures, started, within_minutes, refresh_minutes, recent)
-    report = {'schema_version': 1, 'started_at': started.isoformat(), 'status': 'idle',
-              'within_minutes': within_minutes, 'refresh_minutes': refresh_minutes,
-              'eligible_fixture_ids': due.fixture_id.tolist(), 'skipped': skipped,
-              'next_collection_at_utc': next_at, 'archive': None, 'review': None,
-              'archived_count': 0, 'lineups_available': 0, 'unresolved_players': 0,
-              'lineup_statuses': [], 'source_hashes': inputs,
-              'forecast_policy': 'Lineup context only; probabilities unchanged'}
-    if not due.empty:
-        bridge = pd.read_csv(player_map_path, dtype=str) if player_map_path else None
-        validate_player_bridge(bridge)
-        ea = pd.read_csv(players_path) if players_path and Path(players_path).exists() else None
-        predictions = Predictor(artifact_dir).predict(due, ea)
-        client = FotMobClient()
-        try:
-            add_live_lineup_context(predictions, client, ea, bridge)
-        finally:
-            client.session.close()
-        finished = timestamp(datetime.now(timezone.utc))
-        # A long request batch may cross kickoff. Never backdate the archive to
-        # the start of the run to make those predictions appear prospective.
-        safe = []
-        for row in predictions:
-            if timestamp(row['kickoff_utc']) <= finished:
-                report['skipped'].append({'fixture_id': str(row['fixture_id']), 'reason': 'kickoff_passed_during_collection'})
+    lock_file = Path(lock_path) if lock_path else Path(output_dir) / '.collector.lock'
+    with collection_lock(lock_file, now=started) as (acquired, lock_info):
+        if not acquired:
+            report = {'schema_version': 1, 'started_at': started.isoformat(),
+                      'finished_at': started.isoformat(),
+                      'status': 'locked',
+                      'reason': f"Concurrent collection in progress (pid {lock_info.get('pid', 'unknown')} since {lock_info.get('locked_at', 'unknown')})",
+                      'lock_info': lock_info,
+                      'within_minutes': within_minutes, 'refresh_minutes': refresh_minutes,
+                      'eligible_fixture_ids': [], 'skipped': [],
+                      'next_collection_at_utc': None, 'archive': None, 'review': None,
+                      'archived_count': 0, 'lineups_available': 0, 'unresolved_players': 0,
+                      'lineup_statuses': [], 'source_hashes': {},
+                      'forecast_policy': 'Lineup context only; probabilities unchanged'}
+            filename = f"collection_{started.strftime('%Y%m%dT%H%M%S%fZ')}_{uuid4().hex}.json"
+            report_path = write_json_new(Path(output_dir) / filename, report)
+            return report, report_path
+
+        inputs_paths = [Path(fixtures_path)]
+        if players_path and Path(players_path).exists():
+            inputs_paths.append(Path(players_path))
+        if player_map_path:
+            inputs_paths.append(Path(player_map_path))
+        inputs = prediction_source_hashes(artifact_dir, inputs_paths)
+        fixtures = pd.read_csv(fixtures_path, dtype={'fixture_id': str})
+        recent = recent_lineup_captures(archive_dir, started)
+        due, skipped, next_at = select_collection_fixtures(
+            fixtures, started, within_minutes, refresh_minutes, recent)
+        report = {'schema_version': 1, 'started_at': started.isoformat(), 'status': 'idle',
+                  'within_minutes': within_minutes, 'refresh_minutes': refresh_minutes,
+                  'eligible_fixture_ids': due.fixture_id.tolist(), 'skipped': skipped,
+                  'next_collection_at_utc': next_at, 'archive': None, 'review': None,
+                  'archived_count': 0, 'lineups_available': 0, 'unresolved_players': 0,
+                  'lineup_statuses': [], 'source_hashes': inputs,
+                  'forecast_policy': 'Lineup context only; probabilities unchanged'}
+        if not due.empty:
+            bridge = pd.read_csv(player_map_path, dtype=str) if player_map_path else None
+            validate_player_bridge(bridge)
+            ea = pd.read_csv(players_path) if players_path and Path(players_path).exists() else None
+            predictions = Predictor(artifact_dir).predict(due, ea)
+            client = FotMobClient()
+            try:
+                add_live_lineup_context(predictions, client, ea, bridge)
+            finally:
+                client.session.close()
+            finished = timestamp(datetime.now(timezone.utc))
+            # A long request batch may cross kickoff. Never backdate the archive to
+            # the start of the run to make those predictions appear prospective.
+            safe = []
+            for row in predictions:
+                if timestamp(row['kickoff_utc']) <= finished:
+                    report['skipped'].append({'fixture_id': str(row['fixture_id']), 'reason': 'kickoff_passed_during_collection'})
+                else:
+                    safe.append(row)
+            if safe:
+                path = archive_predictions(safe, archive_dir, inputs)
+                report['archive'] = str(path)
+                review_path = Path(output_dir) / f'player_review_{path.stem}.json'
+                create_review([path], review_path)
+                report['review'] = str(review_path)
+                report['unresolved_players'] = len(json.loads(review_path.read_text(encoding='utf-8'))['decisions'])
+                report['archived_count'] = len(safe)
+                report['status'] = 'collected'
+                for row in safe:
+                    context = row['live_lineup_context']
+                    report['lineup_statuses'].append({'fixture_id': str(row['fixture_id']),
+                        'status': context['status'], 'reason': context['reason']})
+                    report['lineups_available'] += int(context['status'] == 'available')
+                captured = timestamp(load_archive(path)['captured_at'])
+                retries = [captured + pd.Timedelta(minutes=refresh_minutes)
+                           for row in safe if captured + pd.Timedelta(minutes=refresh_minutes) < timestamp(row['kickoff_utc'])]
+                if next_at:
+                    retries.append(timestamp(next_at))
+                report['next_collection_at_utc'] = min(retries).isoformat() if retries else None
             else:
-                safe.append(row)
-        if safe:
-            path = archive_predictions(safe, archive_dir, inputs)
-            report['archive'] = str(path)
-            review_path = Path(output_dir) / f'player_review_{path.stem}.json'
-            create_review([path], review_path)
-            report['review'] = str(review_path)
-            report['unresolved_players'] = len(json.loads(review_path.read_text(encoding='utf-8'))['decisions'])
-            report['archived_count'] = len(safe)
-            report['status'] = 'collected'
-            for row in safe:
-                context = row['live_lineup_context']
-                report['lineup_statuses'].append({'fixture_id': str(row['fixture_id']),
-                    'status': context['status'], 'reason': context['reason']})
-                report['lineups_available'] += int(context['status'] == 'available')
-            captured = timestamp(load_archive(path)['captured_at'])
-            retries = [captured + pd.Timedelta(minutes=refresh_minutes)
-                       for row in safe if captured + pd.Timedelta(minutes=refresh_minutes) < timestamp(row['kickoff_utc'])]
-            if next_at:
-                retries.append(timestamp(next_at))
-            report['next_collection_at_utc'] = min(retries).isoformat() if retries else None
-        else:
-            report['status'] = 'expired_during_collection'
-    report['finished_at'] = datetime.now(timezone.utc).isoformat()
-    filename = f"collection_{started.strftime('%Y%m%dT%H%M%S%fZ')}_{uuid4().hex}.json"
-    report_path = write_json_new(Path(output_dir) / filename, report)
-    return report, report_path
+                report['status'] = 'expired_during_collection'
+        report['finished_at'] = datetime.now(timezone.utc).isoformat()
+        filename = f"collection_{started.strftime('%Y%m%dT%H%M%S%fZ')}_{uuid4().hex}.json"
+        report_path = write_json_new(Path(output_dir) / filename, report)
+        return report, report_path

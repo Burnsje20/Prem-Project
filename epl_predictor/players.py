@@ -5,9 +5,9 @@ import pandas as pd
 
 from .data import team_name, utc
 
-UNITS = {'GK':'GK','CB':'DEF','LB':'DEF','RB':'DEF','LWB':'DEF','RWB':'DEF',
-         'CDM':'MID','CM':'MID','CAM':'MID','LM':'MID','RM':'MID',
-         'ST':'ATT','CF':'ATT','LW':'ATT','RW':'ATT'}
+UNITS = {'GK':'GK','CB':'DEF','LB':'DEF','RB':'DEF','LWB':'DEF','RWB':'DEF','DEF':'DEF',
+         'CDM':'MID','CM':'MID','CAM':'MID','LM':'MID','RM':'MID','MID':'MID',
+         'ST':'ATT','CF':'ATT','LW':'ATT','RW':'ATT','ATT':'ATT'}
 ATTRIBUTES = {
     'GK':['goalkeeping_diving','goalkeeping_handling','goalkeeping_reflexes','goalkeeping_positioning'],
     'DEF':['defending_awareness','mentality_interceptions','defending_standing_tackle','defending_sliding_tackle','power_strength'],
@@ -185,7 +185,7 @@ def validate_appearances(frame):
     if d.duplicated(['player_id','match_id']).any():
         raise ValueError('Duplicate player-match record')
     for col in ['date','available_at']:
-        d[col] = pd.to_datetime(d[col],utc=True, errors='raise')
+        d[col] = pd.to_datetime(d[col], utc=True, format='mixed', errors='raise')
     if (d.available_at < d.date).any():
         raise ValueError('Performance cannot be available before the match')
     for col in ['minutes','rating']:

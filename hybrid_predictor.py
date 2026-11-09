@@ -50,6 +50,12 @@ def main():
     collect.add_argument('--output-dir',type=Path,default=Path('reports/lineup_collection'))
     collect.add_argument('--within-minutes',type=int,default=90)
     collect.add_argument('--refresh-minutes',type=int,default=10)
+    collect.add_argument('--lock-path',type=Path,help='Explicit path to lockfile')
+    appearances_cmd = commands.add_parser('collect-appearances',help='Collect and validate player appearances from completed FotMob matches')
+    appearances_cmd.add_argument('--results',type=Path,default=Path('current_premier_league_results.csv'))
+    appearances_cmd.add_argument('--output',type=Path,default=Path('fotmob_player_appearances.csv'))
+    appearances_cmd.add_argument('--limit',type=int,help='Maximum number of matches to collect')
+    appearances_cmd.add_argument('--delay',type=float,default=0.2,help='Delay in seconds between requests')
     uncertainty = commands.add_parser('uncertainty',help='Show paired date-block bootstrap uncertainty')
     uncertainty.add_argument('--reports',type=Path,default=Path('reports'))
     args = parser.parse_args()
@@ -86,12 +92,26 @@ def main():
     elif args.command == 'collect-lineups':
         from epl_predictor.collection import collect_lineups
         report, path = collect_lineups(args.fixtures,args.artifacts,args.players,args.player_id_map,
-            args.archive_dir,args.output_dir,args.within_minutes,args.refresh_minutes)
+            args.archive_dir,args.output_dir,args.within_minutes,args.refresh_minutes,
+            lock_path=args.lock_path)
         print(f"Collection {report['status']}: {report['archived_count']} archived, "
               f"{report['lineups_available']} with starters, {report['unresolved_players']} players to review.")
         if report['next_collection_at_utc']:
             print(f"Next collection window/retry (UTC): {report['next_collection_at_utc']}")
         print(f'Collection report: {path}')
+    elif args.command == 'collect-appearances':
+        from epl_predictor.appearances import collect_match_appearances
+        report = collect_match_appearances(
+            results_path=args.results,
+            output_path=args.output,
+            limit=args.limit,
+            delay=args.delay,
+        )
+        print(f"Collected appearances for {report['newly_collected_matches']} matches "
+              f"({report['total_appearances']} total appearances across {report['total_matches']} matches). "
+              f"Saved to {report['output_path']}")
+        if report['skipped_matches']:
+            print(f"Skipped {len(report['skipped_matches'])} matches due to errors.")
     else:
         from epl_predictor.predictor import Predictor
         inputs = {}
