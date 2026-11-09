@@ -12,9 +12,9 @@ for another agent to work on.”** This handoff marks a working checkpoint, not 
 claim that every item of the large specification has been independently reviewed.
 
 Full specification:
-`C:\Users\Kaku\.codex\attachments\aefdd8fb-38d5-4261-8671-1a50af6fb873\Pasted text.txt`
+`<codex-attachment>/Pasted text.txt`
 
-Workspace: `C:\Users\Kaku\Documents\GitHub\AI_Premier_League_Project\Prem Project`
+Workspace: `.` (repository root)
 
 Branch: **`feature/hybrid-ml-predictor`**, tracking its same-named origin branch.
 At this continuation's start the worktree was clean. Core implementation is committed
@@ -23,7 +23,7 @@ described below are new working-tree changes; no commit or push was made in this
 continuation. Existing original Poisson/data/fetch scripts were preserved.
 
 Both this file and the original deliverable were read. The latter was located at:
-`C:\Users\Kaku\.gemini\antigravity\brain\91e787bb-c76e-46e7-b401-48ec9a22b9e2\DELIVERABLE_HANDOFF.md`.
+`<artifacts>/DELIVERABLE_HANDOFF.md`.
 That external artifact remains a historical checkpoint; this repository handoff
 records the latest implementation and corrections to its proposed design.
 

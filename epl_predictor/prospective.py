@@ -37,10 +37,22 @@ def digest(value):
     return hashlib.sha256(encoded).hexdigest()
 
 
-def source_hashes(paths):
+def source_hashes(paths, root=None):
     """Fingerprint explicit local input/code paths; never traverse secrets or caches."""
-    return {str(Path(p)): hashlib.sha256(Path(p).read_bytes()).hexdigest()
-            for p in sorted(set(map(str, paths)))}
+    if root is None:
+        root = Path(__file__).resolve().parents[1]
+    else:
+        root = Path(root).resolve()
+
+    hashes = {}
+    for p in sorted(set(map(str, paths))):
+        p_obj = Path(p).resolve()
+        try:
+            rel_key = p_obj.relative_to(root).as_posix()
+        except ValueError:
+            rel_key = str(Path(p))
+        hashes[rel_key] = hashlib.sha256(p_obj.read_bytes()).hexdigest()
+    return hashes
 
 
 def prediction_source_hashes(artifact_dir, data_paths):
@@ -50,7 +62,7 @@ def prediction_source_hashes(artifact_dir, data_paths):
     paths = list(folder.glob('*.json')) + list(folder.glob('*.csv'))
     paths += list((root / 'epl_predictor').glob('*.py'))
     paths += [root / name for name in ['hybrid_predictor.py', 'fotmob_client.py', 'poisson_distribution.py']]
-    return source_hashes(paths + list(data_paths))
+    return source_hashes(paths + list(data_paths), root=root)
 
 
 def write_json_new(path, payload):

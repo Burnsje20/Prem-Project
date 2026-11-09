@@ -6,7 +6,7 @@ not a commit, push, deployment, or background scheduler installation.
 
 ## Start here
 
-Workspace: `C:\Users\Kaku\Documents\GitHub\AI_Premier_League_Project\Prem Project`
+Workspace: `.` (repository root)
 
 Branch: `feature/hybrid-ml-predictor`, tracking the same branch on origin.
 HEAD: `1ab3fee` (bootstrap uncertainty, promotion diagnostics and lineup roadmap).
@@ -252,9 +252,9 @@ than repeating every narrative claim in that older deliverable.
 - `docs/ARCHITECTURE.md`: availability and chronological validation policies.
 - `HANDOFF.md`: full implementation history (earlier test counts are historical).
 - Original specification:
-  `C:\Users\Kaku\.codex\attachments\aefdd8fb-38d5-4261-8671-1a50af6fb873\Pasted text.txt`.
+  `<codex-attachment>/Pasted text.txt`.
 - Original external deliverable, left unchanged:
-  `C:\Users\Kaku\.gemini\antigravity\brain\91e787bb-c76e-46e7-b401-48ec9a22b9e2\DELIVERABLE_HANDOFF.md`.
+  `<artifacts>/DELIVERABLE_HANDOFF.md`.
 
 Tested environment from the existing run: Python 3.14, NumPy 2.4.4, pandas 2.3.3,
 SciPy 1.17.1, scikit-learn 1.8.0, XGBoost 3.2.0. No new dependency installation was

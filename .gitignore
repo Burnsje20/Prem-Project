@@ -3,7 +3,17 @@ premier_league_data.json
 
 # Ignore environment variables / secrets
 .env
+*.env
+*.pem
+*.key
 
 # Ignore Python cache files
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# OS metadata
+.DS_Store
+Thumbs.db
