@@ -1,260 +1,237 @@
-# Premier League Match Predictor & Live Dashboard
+# Premier League Match Predictor & Dashboard
 
-An end-to-end, mathematically rigorous English Premier League match prediction system and live web dashboard. The project combines time-decayed Dixon–Coles Poisson modeling, empirical lineup and player form adjustments, leak-free prospective forecast archiving, and automated cloud execution on GitHub Pages.
+A Python forecasting pipeline with a browser-based matchday dashboard, scheduled
+data collection, and auditable pre-match predictions. Developed iteratively from
+a Poisson baseline into a modular Dixon–Coles/XGBoost evaluation system, with
+explicit data-availability rules and a separate experimental player-form layer.
 
-**Live Dashboard**: [https://burnsje20.github.io/Prem-Project/](https://burnsje20.github.io/Prem-Project/)
+[Dashboard](https://burnsje20.github.io/Prem-Project/) ·
+[Engineering decisions](docs/DECISIONS.md) ·
+[Architecture](docs/ARCHITECTURE.md) ·
+[Tests](tests/) ·
+[Evaluation results](reports/model_comparison.csv)
 
----
+## Engineering highlights
 
-## Table of Contents
+- **End-to-end delivery:** API/CSV ingestion, validated features, training,
+  saved-model inference, forecast archives, evaluation, and a static web interface.
+  GitHub Actions workflows configure scheduled updates and Pages deployment.
+- **Measured baseline improvement:** the selected Dixon–Coles model reduced
+  held-out log loss from **1.0844 to 1.0370**, approximately **4.4%**, across 380
+  matches. Selection used an earlier season—not the final test results.
+- **Testable boundaries:** separate data, modeling, provider-client, collection,
+  presentation, and evaluation modules; **80 unit/integration tests passed** in
+  local verification on November 9, 2026.
+- **Failure-aware integration:** HTTP timeouts, explicit missing-data states,
+  access/rate-limit handling for lineup batches, collector locking, and persisted
+  refresh cooldowns. Offline inference requires no provider request.
+- **Traceable predictions:** timestamped, non-overwriting archives with SHA-256
+  source/model fingerprints, fixture identity checks, and fixed-policy evaluation.
+- **Data engineering under constraints:** combined **6,524 historical PL and
+  Championship matches** across seven seasons; added incremental player appearance
+  ingestion and a human-reviewed cross-provider identity workflow.
 
-- [Key Architectural & Empirical Decisions](#key-architectural--empirical-decisions)
-- [System Architecture](#system-architecture)
-- [Quick Start](#quick-start)
-- [Lineup & Starter Form Adjustment](#lineup--starter-form-adjustment)
-- [Automated Pipeline & Cloud Scheduling](#automated-pipeline--cloud-scheduling)
-- [Prospective Forecast Archiving & Evaluation](#prospective-forecast-archiving--evaluation)
-- [Model Training & Reproducibility](#model-training--reproducibility)
-- [Test Suite & Security Integrity](#test-suite--security-integrity)
-- [Codex Contributions & Extensions](#codex-contributions--extensions)
+**Stack:** Python · pandas · NumPy · SciPy · scikit-learn · XGBoost · Requests ·
+unittest · HTML/CSS · JavaScript · GitHub Actions · GitHub Pages.
 
----
+## What the application produces
 
-## Key Architectural & Empirical Decisions
+For each fixture: home/draw/away probabilities, expected goals, most likely
+outcome and exact score, five likely scorelines, both-teams-to-score probability,
+and over/under 2.5 goals. Forecasts include model/cutoff metadata and fallback
+explanations. JSON probabilities are fractions; terminal output uses percentages.
 
-Throughout development, every model choice, feature addition, and engineering step was governed by empirical validation, strict chronological integrity, and parsimony:
+The dashboard presents forecasts, recent team results, and an interactive
+goal-rate simulation. It is generated static HTML with vanilla JavaScript and a
+Tailwind CSS CDN dependency—no always-on application server. The slider is a
+**what-if simulation**, not a newly validated forecast. The current builder reads
+saved-model predictions; it does not automatically display the latest adjusted
+forecast from the archive.
 
-1. **Model Selection by Held-Out Log Loss (Dixon–Coles vs. XGBoost/Hybrid)**:
-   - Rather than forcing an arbitrary machine learning hybrid, models were evaluated on chronological out-of-sample test data (2025–26 season).
-   - Time-decayed Dixon–Coles achieved a test log loss of **0.9781**, outperforming both XGBoost (**1.0029**) and the probability-weighted ensemble (**0.9858**).
-   - *Decision*: Dixon–Coles was chosen as the deployed production model for superior probability calibration and low-score dependence modeling ($\tau(\lambda, \mu, \rho)$).
+## Results: choose the model on evidence
 
-2. **Empirical Validation Before Engineering (Option B Before Option A)**:
-   - Before investing extensive engineering effort into a manual cross-provider ID bridge (Option A), we ran a full 5-fold cross-validation experiment (Option B) across all 100 completed 2026–27 matches (2,200 starting lineup slots) to evaluate EA FC 25 ratings vs. FotMob starter form.
-   - *Findings*:
-     - **EA FC Baseline Squad Talent** was redundant with Dixon–Coles attack/defence parameters ($\Delta \text{LL} = -0.000024$).
-     - **Starting XI Rotation Delta** was noisy and actively degraded performance ($+0.0255$ log loss penalty; accuracy dropped from 49% to 43%).
-     - **FotMob Starter Form is genuine predictive signal**: Reduced out-of-sample log loss from 0.961938 to **0.958515** ($\Delta = -0.003423$) and improved Brier score from 0.571716 to **0.569609**, with an optimal cross-validated scaling parameter $\beta = 0.1675$.
-   - *Decision*: Formally integrated FotMob starter form adjustments into the prospective lineup pipeline while keeping unvalidated player talent adjustments strictly observational.
+The persisted experiment selected **uncalibrated Dixon–Coles** on 2024–25, then
+evaluated the frozen choice on 2025–26. Lower log loss is better.
 
-3. **Immutable Baseline Preservation**:
-   - Whenever starter form adjustments are applied, expected goal rates scale as $\lambda_{adj} = \lambda \cdot e^{\beta \Delta}$ and $\mu_{adj} = \mu \cdot e^{-\beta \Delta}$.
-   - *Decision*: The original baseline Dixon–Coles forecast is always preserved in `baseline_forecast` alongside the form-adjusted probabilities, guaranteeing complete auditability and preventing destructive updates.
+| Model | Selection log loss, 2024–25 | Test log loss, 2025–26 | Test outcome accuracy |
+| --- | ---: | ---: | ---: |
+| Original Poisson | 0.9990 | 1.0844 | 44.74% |
+| **Dixon–Coles — selected** | **0.9747** | **1.0370** | **46.84%** |
+| XGBoost, full features | 1.0040 | 1.0388 | 48.16% |
+| Hybrid, full features | 0.9758 | 1.0356 | 47.37% |
 
-4. **Zero-Dependency Interactive Dashboard on GitHub Pages**:
-   - *Decision*: Built a standalone, client-side interactive web dashboard in `docs/index.html` using modern CSS and vanilla JavaScript with zero external frameworks or CDNs. Includes an interactive Poisson simulation slider allowing users to explore hypothetical starter form swings in real time.
+Sources: [model comparison](reports/model_comparison.csv),
+[saved manifest](artifacts/hybrid_v1/manifest.json), and
+[paired date-block bootstrap intervals](reports/model_uncertainty.csv).
+The hybrid's slightly lower test loss is not a reason to reselect on the test set;
+its difference from Dixon–Coles has a bootstrap interval spanning zero. Outcome
+accuracy is reported separately from the probability-quality objective.
 
-5. **Automated Cloud Pipeline via GitHub Actions**:
-   - *Decision*: Deployed a 4-step pipeline running on a dual-cron schedule: every 30 minutes during match windows (Friday–Monday 11:00–22:00 UTC) to capture live 60–90 minute pre-kickoff lineups, and every 6 hours midweek to ingest completed fixtures and update ratings.
+These are historical results, **not proof of live performance**. The initial
+[prospective evaluation](reports/prospective_initial_evaluation.json) contains
+40 pending forecasts and no scored matches. Current-season replay was already
+examined during development and is not an untouched evaluation.
 
-6. **Repository Security & Provenance Sanitization**:
-   - *Decision*: Performed full historical security audits (204,783 lines of git diffs verified secret-free). Sanitized all local machine paths in provenance digests to relative repository paths (e.g. `epl_predictor/players.py`), making the repository fully safe for public hosting.
+## How the project evolved
 
----
+| Iteration | Engineering decision | Result / tradeoff |
+| --- | --- | --- |
+| 1. Establish a baseline | Start with independent Poisson scoring and preserve the original backtest. | A reproducible comparison before adding complexity. |
+| 2. Work around API limits | Limit API-Football fetching to three seasons; use supplied CSVs for 2019–20 through 2025–26. | Seven historical seasons without unavailable API requests. |
+| 3. Handle promoted teams | Add Championship data and a regularized promotion-strength conversion. | Team-specific priors rather than a universal hand-picked discount. |
+| 4. Compare model families | Evaluate Dixon–Coles, XGBoost, blending, and calibration chronologically. | Retain the simpler selected model when added complexity is not justified. |
+| 5. Integrate live inputs | Separate lineup fetching from inference; require reviewed EA/FotMob ID mappings. | Provider failures and uncertain identities remain visible. |
+| 6. Measure future forecasts | Add timestamped archives, latest-pre-kickoff evaluation, and a windowed collector. | Preserve what was forecast before observing a result. |
+| 7. Explore player form | Collect appearances and add optional starter-form adjustment, retaining baseline fields. | A testable experimental layer, not a replacement for baseline validation. |
+| 8. Deliver the interface | Generate a static dashboard and configure update/deployment workflows. | Low hosting complexity; freshness depends on jobs and model/cache updates. |
 
-## System Architecture
+The [decision log](docs/DECISIONS.md) records rationale, alternatives, evidence,
+and unresolved limitations—including decisions not to enable unsupported features.
 
-```text
-Prem-Project/
-├── epl_predictor/              # Core prediction package
-│   ├── goals.py                # Penalized time-decayed Dixon–Coles MLE & market reconciliation
-│   ├── boosting.py             # Multiclass XGBoost models (native JSON persistence)
-│   ├── features.py             # Lagged rolling features, league-only rest, Elo, xG
-│   ├── promotion.py            # Ridge regression Championship-to-PL prior conversion
-│   ├── players.py              # FotMob appearances, starter form calculation (beta=0.1675)
-│   ├── lineups.py              # Starter form goal rate scaling & market re-normalization
-│   ├── collection.py           # Imminent lineup collector with process locking & cooldowns
-│   ├── prospective.py          # Tamper-evident forecast archiving & evaluation
-│   ├── dashboard.py            # Matchday HTML dashboard generator
-│   └── data.py                 # Schema validation, aliases, and chronological availability
-├── docs/
-│   ├── index.html              # Live dashboard hosted on GitHub Pages
-│   └── ARCHITECTURE.md         # Detailed chronological validation and availability rules
-├── update_pipeline.py          # Unified 4-step execution script for local and CI/CD runs
-├── hybrid_predictor.py         # Unified CLI (audit, train, predict, collect-lineups, etc.)
-├── fotmob_client.py            # Resilient HTTP client for FotMob match and lineup data
-├── fetch_upcoming_fixtures.py  # 30-day upcoming fixture ingestion
-├── .github/workflows/
-│   ├── update_predictions.yml  # Scheduled pipeline runner (every 30m matchdays, 6h midweek)
-│   └── deploy_pages.yml        # GitHub Pages automated deployment
-└── tests/                      # Comprehensive test suite (80 unit and integration tests)
-```
+## Architecture
 
----
+~~~text
+Historical PL + Championship CSVs
+    -> validation -> time-safe features -> chronological experiments
+    -> saved models -> offline prediction -> dashboard HTML
 
-## Quick Start
+FotMob fixtures / appearances / lineups + saved-model forecasts
+    -> provider client -> near-kickoff collector
+    -> player context / optional experimental form adjustment
+    -> timestamped archive -> later evaluation against completed results
+                |
+                +-> unresolved player IDs -> review -> approved crosswalk
 
-### 1. Installation
+GitHub Actions -> fixture refresh / appearance collection / lineups / dashboard
+GitHub Pages   -> serves generated docs/ assets
+~~~
 
-Requires Python 3.11+:
+| Boundary | Main implementation |
+| --- | --- |
+| Data contracts and lagged features | [data.py](epl_predictor/data.py), [features.py](epl_predictor/features.py) |
+| Goal model, promotion priors, boosting | [goals.py](epl_predictor/goals.py), [promotion.py](epl_predictor/promotion.py), [boosting.py](epl_predictor/boosting.py) |
+| Training, evaluation, inference | [workflow.py](epl_predictor/workflow.py), [evaluation.py](epl_predictor/evaluation.py), [predictor.py](epl_predictor/predictor.py) |
+| Provider integration and collection | [fotmob_client.py](fotmob_client.py), [appearances.py](epl_predictor/appearances.py), [collection.py](epl_predictor/collection.py) |
+| Player identity and form | [players.py](epl_predictor/players.py), [player_review.py](epl_predictor/player_review.py), [lineups.py](epl_predictor/lineups.py) |
+| Provenance and delivery | [prospective.py](epl_predictor/prospective.py), [dashboard.py](epl_predictor/dashboard.py), [update_pipeline.py](update_pipeline.py) |
 
-```powershell
+## Run locally
+
+Run from the repository root in a virtual environment. Python **3.14** is the
+locally verified runtime; the update workflow currently targets Python 3.11.
+Dependency/runtime compatibility in that CI environment should be verified independently.
+
+~~~powershell
 python -m pip install -r requirements.txt
-```
-
-### 2. Run Predictions (Offline Mode)
-
-Generate predictions for upcoming fixtures using the saved production model:
-
-```powershell
-python hybrid_predictor.py predict
-```
-
-This reads cached upcoming fixtures, computes H/D/A probabilities, expected goals, top five scorelines, Both Teams To Score (BTTS), and Over/Under 2.5 markets, saving the results to `hybrid_predictions.json`.
-
-Predict a specific fixture:
-
-```powershell
-python hybrid_predictor.py predict --home "Arsenal" --away "Chelsea" --date "2026-11-21T17:30:00Z"
-```
-
----
-
-## Lineup & Starter Form Adjustment
-
-### Incremental Player Appearance Collection
-
-Collect match appearances, starter/sub minutes, and FotMob match ratings for all completed matches:
-
-```powershell
-python hybrid_predictor.py collect-appearances
-```
-
-This updates `fotmob_player_appearances.csv` while enforcing chronological availability (performances only become available the day after the match).
-
-### Near-Kickoff Lineup Collection with Starter Form Adjustment
-
-Collect official starting lineups for matches kicking off within the next 90 minutes and apply the empirically validated starter form adjustment:
-
-```powershell
-python hybrid_predictor.py collect-lineups --adjust-with-lineup-form
-```
-
-What this does:
-1. Queries FotMob for confirmed starting XIs within the 90-minute window.
-2. Calculates the 5-match weighted average form differential ($\Delta$) between home and away starting XIs.
-3. Scales Dixon–Coles expected goals by $e^{\pm 0.1675 \Delta}$.
-4. Re-normalizes the bivariate Poisson matrix and updates all market probabilities.
-5. Preserves the untouched Dixon–Coles baseline in `baseline_forecast`.
-6. Archives the forecast with SHA-256 provenance hashes to `archives/prospective/`.
-
----
-
-## Automated Pipeline & Cloud Scheduling
-
-The entire update lifecycle is unified into `update_pipeline.py`, which executes four automated steps:
-
-```powershell
-python update_pipeline.py
-```
-
-1. **Step 1: Upcoming Fixtures** — Refreshes the 30-day Premier League schedule from FotMob.
-2. **Step 2: Completed Appearances** — Incrementally captures minutes and ratings for newly finished fixtures into `fotmob_player_appearances.csv`.
-3. **Step 3: Lineup Collection** — Checks for near-kickoff matches (<90m), fetches confirmed starters, applies form adjustments, and archives forecasts.
-4. **Step 4: Dashboard Build** — Compiles the interactive Matchday 12 dashboard into `docs/index.html` and `reports/matchday_12_dashboard.html`.
-
-### GitHub Actions Workflow
-
-Two automated workflows in `.github/workflows/` keep the predictor running without local intervention:
-- **`update_predictions.yml`**:
-  - **Matchday Schedule**: Every 30 minutes from 11:00 to 22:00 UTC on Friday, Saturday, Sunday, and Monday (`*/30 11-22 * * 5,6,0,1`).
-  - **Midweek Schedule**: Every 6 hours on Tuesday, Wednesday, and Thursday (`0 */6 * * 2,3,4`).
-  - Verifies test suite integrity (`python -m unittest discover -v`) before committing updates.
-- **`deploy_pages.yml`**: Automatically deploys `docs/` to GitHub Pages whenever `docs/index.html` is updated.
-
----
-
-## Prospective Forecast Archiving & Evaluation
-
-To prevent hindsight bias, forecasts can be archived with cryptographic checksums before kickoff and evaluated later against actual results.
-
-### Archiving Pre-Match Predictions
-
-```powershell
-python hybrid_predictor.py predict --archive-dir archives/prospective --output latest_predictions.json
-```
-
-Each run generates a unique `forecast_*.json` file containing:
-- Full prediction payload (baseline + form-adjusted probabilities).
-- UTC capture timestamp (replaces backdated claims).
-- Cryptographic SHA-256 digests of all source files and model artifacts.
-
-### Fixed-Policy Out-of-Sample Evaluation
-
-Once matches conclude and `current_premier_league_results.csv` is updated, evaluate forecast accuracy:
-
-```powershell
-python hybrid_predictor.py evaluate-live --archive-dir archives/prospective --results current_premier_league_results.csv --output reports/live_evaluation_01.json
-```
-
-- Strictly scores the **latest captured pre-kickoff forecast per fixture**.
-- Matches must match exact IDs, clubs, and scheduled kickoff.
-- Evaluates out-of-sample log loss, Brier score, and accuracy.
-
----
-
-## Model Training & Reproducibility
-
-To audit the data, retrain models from scratch, or evaluate bootstrap uncertainty:
-
-```powershell
-# Audit data integrity, missingness, and aliases
-python hybrid_predictor.py audit
-
-# Retrain models across chronological splits
-python hybrid_predictor.py train --artifacts artifacts/hybrid_v2 --reports reports/hybrid_v2
-
-# Evaluate paired block-bootstrap uncertainty
-python hybrid_predictor.py uncertainty
-```
-
-### Chronological Splitting Strategy
-
-| Phase | Time Period | Objective |
-| :--- | :--- | :--- |
-| **Warm-up** | 2019–20 | Initial feature lag generation |
-| **Model Fitting** | 2020–21 to 2021–22 | Base Dixon–Coles parameter estimation |
-| **Tuning** | 2022–23 | Optimal decay rate and prior regularization search |
-| **Ensemble & Weighting** | Autumn 2023 | Out-of-sample probability blend weights |
-| **Calibration** | Spring 2024 | Temperature scaling validation |
-| **Model Selection** | 2024–25 | Final model family selection via log loss |
-| **Held-Out Test** | 2025–26 | Final out-of-sample test evaluation |
-| **Current Season** | 2026–27 | Prospective live forecasting and lineup tracking |
-
----
-
-## Test Suite & Security Integrity
-
-The test suite covers unit logic, leak-free temporal data isolation, Dixon–Coles mathematical constraints, lineup collection, process locking, and prospective archiving:
-
-```powershell
 python -m unittest discover -v
-```
+python hybrid_predictor.py predict --output local_predictions.json
+python hybrid_predictor.py build-dashboard --output reports/local_dashboard.html
+~~~
 
-**Status**: **80/80 tests passing** (100% pass rate).
+Open the generated HTML in a browser. These prediction/dashboard commands use
+local caches. The original API-Football fetcher separately needs FOOTBALL_API_KEY
+in an ignored .env file. Never commit credentials.
 
-### Security & Privacy Audits
-- **0 secrets in git history**: Verified by automated regex scanning over 204,783 lines of git diff history.
-- **`.env` protected**: Environment secrets are strictly ignored by `.gitignore` and have never been committed.
-- **Sanitized provenance**: All archive hash dictionaries and markdown documents record clean repository-relative paths with no local machine paths or personal identifiers.
+The saved hybrid_v1 model has a **2026-11-09 00:00 UTC** data cutoff. Fixtures must
+be on/after that cutoff and in the model's season. Refreshing fixtures is not the
+same as retraining model parameters.
 
----
+### Collect, review, and archive
 
-## Codex Contributions & Extensions
+~~~powershell
+python hybrid_predictor.py collect-appearances
+python hybrid_predictor.py collect-lineups --within-minutes 90 --refresh-minutes 10
+python hybrid_predictor.py predict --archive-dir archives/prospective --output latest_predictions.json
+~~~
 
-<!-- 
-NOTE FOR CODEX:
-Please add your specific model enhancements, data scripts, or feature notes in this section.
--->
+The collector runs once, respects its lock/cooldown, and emits an archive and
+unapproved player review when fixtures are eligible. Missing starters stay missing.
+Review the emitted JSON before exporting an identity map:
 
-- *Original Poisson Distribution Baseline*: Implemented initial bivariate Poisson baseline in `poisson_distribution.py` and historical backtesting harness in `backtest_poisson.py`.
-- *Historical Data Ingestion*: API-Football fixture ingestion pipeline implemented in `fetch_data.py`.
-- *Additional notes*: [Add additional Codex contributions or feature details here]
+~~~powershell
+python hybrid_predictor.py export-player-map --review PATH_TO_REVIEW.json --output player_id_map_01.csv
+python hybrid_predictor.py collect-lineups --player-id-map player_id_map_01.csv
+~~~
 
----
+Export requires an EA ID, explicit boolean approval, and a verification note;
+name similarity alone is not approval. EA talent uses eligible men's snapshots
+and separate positional units. There is no fixed EA/FotMob 60/40 blend.
 
-## Mathematical References
+### Experimental starter-form adjustment
 
-- **Dixon, M. J., & Coles, S. G. (1997)**. *Modelling Association Football Scores and Inefficiencies in the Football Betting Market*. Applied Statistics, 46(2), 265–280.
-- **Brier, G. W. (1950)**. *Verification of forecasts expressed in terms of probability*. Monthly Weather Review, 78(1), 1–3.
-- **Chen, T., & Guestrin, C. (2016)**. *XGBoost: A Scalable Tree Boosting System*. KDD '16.
+~~~powershell
+python hybrid_predictor.py collect-lineups --adjust-with-lineup-form
+~~~
+
+This optional path uses minutes-weighted recent player ratings and exponential
+goal-rate scaling, with current default beta **0.1675**. Missing player history
+uses a helper default of **6.80**; coverage/default flags must be inspected.
+Selected baseline fields remain in the baseline_forecast object for comparison.
+
+The earlier project narrative reported a 100-match form experiment, but its
+reproducible fold definitions, fitting script, and prediction-level validation
+artifact were not found in the repository review. Treat this coefficient and
+reported benefit as **experimental**, not established out-of-sample improvement.
+The unified update pipeline currently enables the adjustment; plain prediction
+and lineup-collection commands do not enable it by default.
+
+### Evaluate and reproduce
+
+~~~powershell
+python hybrid_predictor.py evaluate-live --archive-dir archives/prospective --results current_premier_league_results.csv --output reports/live_evaluation_02.json
+python hybrid_predictor.py audit
+python hybrid_predictor.py uncertainty
+python hybrid_predictor.py train --artifacts artifacts/hybrid_v2 --reports reports/hybrid_v2
+~~~
+
+Use new report/artifact names. Archives and review/evaluation outputs refuse
+overwrite; ordinary prediction output can be overwritten. Evaluation selects the
+latest pre-kickoff forecast per fixture, checks ID/club/kickoff agreement, and
+leaves missing results pending. The --filter-future flag means after the **model
+cutoff**, not after the current wall clock.
+
+## Automation and deployment
+
+[update_pipeline.py](update_pipeline.py) refreshes a 30-day fixture window,
+collects appearances for matches in the existing completed-results cache, collects
+near-kickoff lineups, and rebuilds the dashboard. Run with:
+
+~~~powershell
+python update_pipeline.py
+~~~
+
+The configured [update workflow](.github/workflows/update_predictions.yml) runs
+every 30 minutes during hours 11–22 UTC Friday–Monday, and every six hours
+Tuesday–Thursday. Tests run after the pipeline and before generated changes are
+committed. A separate [Pages workflow](.github/workflows/deploy_pages.yml) defines
+deployment of docs/ on qualifying pushes or manual dispatch.
+
+These are configured schedules, not uptime guarantees. The pipeline currently
+does **not** refresh current_premier_league_results.csv or retrain the model.
+Verify workflow executions, dependency compatibility, and Pages delivery end to
+end before treating the dashboard as continuously current.
+
+## Reliability, limitations, and next steps
+
+- Tests cover probability normalization, positive rates, serialization, temporal
+  isolation, promotion conversion, identity ambiguity, provider failures, locking,
+  checksums, and evaluation. Passing tests are not complete test coverage or a
+  production-readiness certification.
+- Results/xG and EA snapshots use next-UTC-day availability assumptions.
+  Appearances record retrieval time separately; assumed historical availability
+  is not proof of original publication or revision timing.
+- The EA dataset is **FC27**, one September 12, 2026 snapshot—not historical
+  ratings for every training season. Current appearance data has **3,084 records
+  across 100 matches**. These are repository snapshots, not live counters.
+- Hashes detect accidental modification; they are not signatures or notarized
+  timestamps. Repository-local provenance paths are normalized; external input
+  paths and exports still require privacy review.
+- Ignore rules exclude environment/key files. No claim of a complete security
+  audit, permanently secret-free history, or guaranteed provider availability is made.
+- Next priorities: reproduce the form experiment; enforce adequate two-sided
+  starter coverage and strict as-of availability; refresh result/model state in
+  automation; connect the dashboard to the intended archived forecast; evaluate
+  future matches before claiming a live accuracy improvement.
+
+See [engineering decisions](docs/DECISIONS.md) for the detailed iteration history
+and [architecture notes](docs/ARCHITECTURE.md) for underlying modeling contracts.
