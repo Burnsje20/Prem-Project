@@ -142,7 +142,8 @@ def collect_lineups(fixtures_path='upcoming_premier_league_fixtures.csv',
                     artifact_dir='artifacts/hybrid_v1', players_path='players.csv',
                     player_map_path=None, archive_dir='archives/prospective',
                     output_dir='reports/lineup_collection', within_minutes=90, refresh_minutes=10,
-                    lock_path=None):
+                    lock_path=None, appearances_path='fotmob_player_appearances.csv',
+                    adjust_probabilities=False, beta=0.1675):
     """Run once: select, predict, fetch, archive and emit an unapproved review queue.
 
     No eligible fixtures means no model loading and no provider calls. This does
@@ -163,7 +164,8 @@ def collect_lineups(fixtures_path='upcoming_premier_league_fixtures.csv',
                       'next_collection_at_utc': None, 'archive': None, 'review': None,
                       'archived_count': 0, 'lineups_available': 0, 'unresolved_players': 0,
                       'lineup_statuses': [], 'source_hashes': {},
-                      'forecast_policy': 'Lineup context only; probabilities unchanged'}
+                      'forecast_policy': 'Lineup context only; probabilities unchanged',
+                      'adjust_with_lineup_form': adjust_probabilities}
             filename = f"collection_{started.strftime('%Y%m%dT%H%M%S%fZ')}_{uuid4().hex}.json"
             report_path = write_json_new(Path(output_dir) / filename, report)
             return report, report_path
@@ -173,26 +175,39 @@ def collect_lineups(fixtures_path='upcoming_premier_league_fixtures.csv',
             inputs_paths.append(Path(players_path))
         if player_map_path:
             inputs_paths.append(Path(player_map_path))
+        if appearances_path and Path(appearances_path).exists():
+            inputs_paths.append(Path(appearances_path))
         inputs = prediction_source_hashes(artifact_dir, inputs_paths)
         fixtures = pd.read_csv(fixtures_path, dtype={'fixture_id': str})
         recent = recent_lineup_captures(archive_dir, started)
         due, skipped, next_at = select_collection_fixtures(
             fixtures, started, within_minutes, refresh_minutes, recent)
+        policy_label = (f'FotMob starter form adjustment applied (beta={beta})'
+                        if adjust_probabilities else 'Lineup context only; probabilities unchanged')
         report = {'schema_version': 1, 'started_at': started.isoformat(), 'status': 'idle',
                   'within_minutes': within_minutes, 'refresh_minutes': refresh_minutes,
                   'eligible_fixture_ids': due.fixture_id.tolist(), 'skipped': skipped,
                   'next_collection_at_utc': next_at, 'archive': None, 'review': None,
                   'archived_count': 0, 'lineups_available': 0, 'unresolved_players': 0,
                   'lineup_statuses': [], 'source_hashes': inputs,
-                  'forecast_policy': 'Lineup context only; probabilities unchanged'}
+                  'forecast_policy': policy_label,
+                  'adjust_with_lineup_form': adjust_probabilities}
         if not due.empty:
             bridge = pd.read_csv(player_map_path, dtype=str) if player_map_path else None
             validate_player_bridge(bridge)
             ea = pd.read_csv(players_path) if players_path and Path(players_path).exists() else None
-            predictions = Predictor(artifact_dir).predict(due, ea)
+            appearances = pd.read_csv(appearances_path) if appearances_path and Path(appearances_path).exists() else None
+            pred_engine = Predictor(artifact_dir)
+            predictions = pred_engine.predict(due, ea, appearances)
             client = FotMobClient()
             try:
-                add_live_lineup_context(predictions, client, ea, bridge)
+                add_live_lineup_context(
+                    predictions, client, ea, bridge,
+                    appearances=appearances,
+                    adjust_probabilities=adjust_probabilities,
+                    beta=beta,
+                    rho=getattr(pred_engine.dc, 'rho', 0.0)
+                )
             finally:
                 client.session.close()
             finished = timestamp(datetime.now(timezone.utc))

@@ -195,6 +195,21 @@ class CollectionWorkflowTests(unittest.TestCase):
         self.assertEqual(adapter.max_retries.status_forcelist, [429, 500, 502, 503, 504])
         client.session.close()
 
+    def test_collect_with_starter_form_adjustment(self):
+        from tests.test_lineups import appearances_data
+        apps_path = self.root / 'appearances.csv'
+        appearances_data().to_csv(apps_path, index=False)
+        self.model.return_value.dc.rho = -0.05
+        report, path = collect_lineups(**self.options, appearances_path=apps_path, adjust_probabilities=True)
+        self.assertEqual(report['status'], 'collected')
+        self.assertTrue(report['adjust_with_lineup_form'])
+        self.assertIn('FotMob starter form adjustment applied', report['forecast_policy'])
+        archive = load_archive(report['archive'])
+        saved = archive['predictions'][0]
+        self.assertIn('starter_form_adjustment', saved)
+        self.assertTrue(saved['starter_form_adjustment']['applied'])
+        self.assertIn('baseline_forecast', saved)
+
 
 if __name__ == '__main__':
     unittest.main()

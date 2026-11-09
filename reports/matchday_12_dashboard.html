@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premier League Matchday Predictor</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 9999px; }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen p-4 md:p-6 transition-colors">
+  <div class="max-w-6xl mx-auto space-y-6">
+
+    <!-- Header Section -->
+    <header class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[var(--border)] pb-5">
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+            Live EPL Forecasts
+          </span>
+          <span class="text-xs text-[var(--muted-foreground)]">Model: Dixon-Coles + Form Scaler</span>
+        </div>
+        <h1 class="text-2xl md:text-3xl font-bold tracking-tight">Premier League Match Predictor</h1>
+        <p class="text-sm text-[var(--muted-foreground)] mt-0.5">
+          Prospectively validated Poisson goal rates with live FotMob starter form simulation.
+        </p>
+      </div>
+      <div class="flex items-center gap-2 flex-wrap text-xs">
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-lg px-3 py-2 shadow-sm text-center">
+          <span class="text-[var(--muted-foreground)] block">Last Updated</span>
+          <span class="font-semibold text-emerald-500">2026-11-09 13:53 UTC</span>
+        </div>
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-lg px-3 py-2 shadow-sm text-center">
+          <span class="text-[var(--muted-foreground)] block">Model Cutoff Fit</span>
+          <span class="font-semibold text-cyan-500">Log Loss 0.9619</span>
+        </div>
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-lg px-3 py-2 shadow-sm text-center">
+          <span class="text-[var(--muted-foreground)] block">Form Scaling &beta;</span>
+          <span class="font-semibold text-indigo-500">0.1675</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Layout: Fixture List & Deep Dive -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- Fixtures Column (5 cols) -->
+      <div class="lg:col-span-5 space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-base font-semibold flex items-center gap-2">
+            <span>Upcoming Fixtures</span>
+            <span id="fixture-count" class="text-xs bg-[var(--content)] px-2 py-0.5 rounded-full border border-[var(--border)] text-[var(--muted-foreground)]">10</span>
+          </h2>
+          <span class="text-xs text-[var(--muted-foreground)]">Click to inspect</span>
+        </div>
+
+        <div id="fixtures-list" class="space-y-2 max-h-[750px] overflow-y-auto pr-1"></div>
+      </div>
+
+      <!-- Match Inspector Column (7 cols) -->
+      <div class="lg:col-span-7">
+        <div id="inspector-card" class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 md:p-6 shadow-sm sticky top-6 space-y-6"></div>
+      </div>
+
+    </div>
+
+    <!-- Methodology & Mathematical Guarantees Footer -->
+    <footer class="mt-8 pt-5 border-t border-[var(--border)] text-xs text-[var(--muted-foreground)] flex flex-col md:flex-row justify-between items-center gap-3">
+      <div>
+        <span>Dixon & Coles (1997) maximum likelihood with time decay (&tau; = 180d) and low-score correlation (&rho; = -0.0536).</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span>No Lookahead Leakage</span>
+        <span>•</span>
+        <span>Strict Next-UTC-Day Availability</span>
+        <span>•</span>
+        <span>Reconciled Coherent Markets</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    const MATCHES = [{"fixture_id": 5795522, "home_team": "Man City", "away_team": "Fulham", "kickoff_utc": "2026-11-21T12:30:00+00:00", "home_win_prob": 0.6413, "draw_prob": 0.2193, "away_win_prob": 0.1394, "exp_home_goals": 1.962, "exp_away_goals": 0.8, "most_likely_score": "2-0", "top_scores": [{"score": "2-0", "probability": 0.12155337887362953}, {"score": "1-0", "probability": 0.11857240329832096}, {"score": "1-1", "probability": 0.1044440913962303}, {"score": "2-1", "probability": 0.09726582749232483}, {"score": "3-0", "probability": 0.07951045334907426}], "btts": 0.479, "over_2_5": 0.522, "under_2_5": 0.478, "home_recent": ["W", "W", "L", "L", "L"], "away_recent": ["L", "W", "W", "D", "D"]}, {"fixture_id": 5795515, "home_team": "Bournemouth", "away_team": "Nottingham", "kickoff_utc": "2026-11-21T15:00:00+00:00", "home_win_prob": 0.4938, "draw_prob": 0.2629, "away_win_prob": 0.2433, "exp_home_goals": 1.594, "exp_away_goals": 1.048, "most_likely_score": "1-1", "top_scores": [{"score": "1-1", "probability": 0.1253588425180438}, {"score": "1-0", "probability": 0.10711302130068612}, {"score": "2-1", "probability": 0.09481160255088651}, {"score": "2-0", "probability": 0.09043444676686502}, {"score": "0-0", "probability": 0.07758733571656887}], "btts": 0.524, "over_2_5": 0.492, "under_2_5": 0.508, "home_recent": ["L", "W", "W", "W", "W"], "away_recent": ["L", "L", "D", "L", "W"]}, {"fixture_id": 5795516, "home_team": "Aston Villa", "away_team": "Sunderland", "kickoff_utc": "2026-11-21T15:00:00+00:00", "home_win_prob": 0.5603, "draw_prob": 0.242, "away_win_prob": 0.1977, "exp_home_goals": 1.8, "exp_away_goals": 0.981, "most_likely_score": "1-1", "top_scores": [{"score": "1-1", "probability": 0.11528369175003908}, {"score": "1-0", "probability": 0.10566850780337352}, {"score": "2-0", "probability": 0.1004003284431795}, {"score": "2-1", "probability": 0.09849854992391806}, {"score": "0-0", "probability": 0.06781331643341713}], "btts": 0.528, "over_2_5": 0.526, "under_2_5": 0.474, "home_recent": ["D", "W", "W", "D", "D"], "away_recent": ["L", "L", "D", "L", "W"]}, {"fixture_id": 5795518, "home_team": "Chelsea", "away_team": "Leeds", "kickoff_utc": "2026-11-21T15:00:00+00:00", "home_win_prob": 0.4597, "draw_prob": 0.2682, "away_win_prob": 0.2721, "exp_home_goals": 1.524, "exp_away_goals": 1.118, "most_likely_score": "1-1", "top_scores": [{"score": "1-1", "probability": 0.1278565675635948}, {"score": "1-0", "probability": 0.10204519681902645}, {"score": "2-1", "probability": 0.09245952220594424}, {"score": "2-0", "probability": 0.08270371034669718}, {"score": "0-0", "probability": 0.07773847842102236}], "btts": 0.533, "over_2_5": 0.492, "under_2_5": 0.508, "home_recent": ["W", "W", "L", "W", "L"], "away_recent": ["L", "D", "D", "L", "W"]}, {"fixture_id": 5795519, "home_team": "Coventry", "away_team": "Crystal Palace", "kickoff_utc": "2026-11-21T15:00:00+00:00", "home_win_prob": 0.3813, "draw_prob": 0.262, "away_win_prob": 0.3567, "exp_home_goals": 1.459, "exp_away_goals": 1.404, "most_likely_score": "1-1", "top_scores": [{"score": "1-1", "probability": 0.12319693260481394}, {"score": "2-1", "probability": 0.08532238437373345}, {"score": "1-2", "probability": 0.08211281609889132}, {"score": "1-0", "probability": 0.07698942967795984}, {"score": "0-1", "probability": 0.07385759812354234}], "btts": 0.585, "over_2_5": 0.546, "under_2_5": 0.454, "home_recent": ["W", "L", "L", "W", "L"], "away_recent": ["W", "L", "L", "L", "L"]}, {"fixture_id": 5795524, "home_team": "Tottenham", "away_team": "Ipswich", "kickoff_utc": "2026-11-21T15:00:00+00:00", "home_win_prob": 0.5424, "draw_prob": 0.2361, "away_win_prob": 0.2216, "exp_home_goals": 1.878, "exp_away_goals": 1.132, "most_likely_score": "1-1", "top_scores": [{"score": "1-1", "probability": 0.11039912653641747}, {"score": "2-1", "probability": 0.09840014321841452}, {"score": "1-0", "probability": 0.08696587281353597}, {"score": "2-0", "probability": 0.08694118631119198}, {"score": "3-1", "probability": 0.06160367316080197}], "btts": 0.58, "over_2_5": 0.579, "under_2_5": 0.421, "home_recent": ["D", "W", "W", "W", "L"], "away_recent": ["W", "L", "D", "D", "L"]}, {"fixture_id": 5795523, "home_team": "Newcastle", "away_team": "Arsenal", "kickoff_utc": "2026-11-21T17:30:00+00:00", "home_win_prob": 0.1778, "draw_prob": 0.2542, "away_win_prob": 0.568, "exp_home_goals": 0.825, "exp_away_goals": 1.668, "most_likely_score": "0-1", "top_scores": [{"score": "0-1", "probability": 0.13180206446737225}, {"score": "1-1", "probability": 0.11983199659685922}, {"score": "0-2", "probability": 0.11501985031079258}, {"score": "1-2", "probability": 0.09486755356217223}, {"score": "0-0", "probability": 0.08875783301524388}], "btts": 0.462, "over_2_5": 0.454, "under_2_5": 0.546, "home_recent": ["L", "L", "W", "L", "D"], "away_recent": ["W", "W", "W", "W", "W"]}, {"fixture_id": 5795520, "home_team": "Hull", "away_team": "Brighton", "kickoff_utc": "2026-11-22T14:00:00+00:00", "home_win_prob": 0.1878, "draw_prob": 0.2625, "away_win_prob": 0.5498, "exp_home_goals": 0.83, "exp_away_goals": 1.6, "most_likely_score": "0-1", "top_scores": [{"score": "0-1", "probability": 0.13453850261319883}, {"score": "1-1", "probability": 0.12316221685303716}, {"score": "0-2", "probability": 0.11267561412237231}, {"score": "0-0", "probability": 0.0942407855342578}, {"score": "1-2", "probability": 0.09354552017150772}], "btts": 0.456, "over_2_5": 0.438, "under_2_5": 0.562, "home_recent": ["D", "L", "D", "D", "L"], "away_recent": ["W", "W", "L", "W", "W"]}, {"fixture_id": 5795521, "home_team": "Liverpool", "away_team": "Man United", "kickoff_utc": "2026-11-22T16:30:00+00:00", "home_win_prob": 0.5511, "draw_prob": 0.2231, "away_win_prob": 0.2258, "exp_home_goals": 2.042, "exp_away_goals": 1.253, "most_likely_score": "1-1", "top_scores": [{"score": "1-1", "probability": 0.09993981189431407}, {"score": "2-1", "probability": 0.09684222971751398}, {"score": "2-0", "probability": 0.07731039513226408}, {"score": "1-0", "probability": 0.07064160943083268}, {"score": "3-1", "probability": 0.06591311203214445}], "btts": 0.627, "over_2_5": 0.639, "under_2_5": 0.361, "home_recent": ["L", "W", "W", "L", "W"], "away_recent": ["D", "D", "L", "L", "D"]}, {"fixture_id": 5795517, "home_team": "Brentford", "away_team": "Everton", "kickoff_utc": "2026-11-23T20:00:00+00:00", "home_win_prob": 0.4844, "draw_prob": 0.2721, "away_win_prob": 0.2436, "exp_home_goals": 1.51, "exp_away_goals": 0.998, "most_likely_score": "1-1", "top_scores": [{"score": "1-1", "probability": 0.12930908195962748}, {"score": "1-0", "probability": 0.1164076163236419}, {"score": "2-0", "probability": 0.09282841787335562}, {"score": "2-1", "probability": 0.09263732993560131}, {"score": "0-0", "probability": 0.08804640543344446}], "btts": 0.498, "over_2_5": 0.458, "under_2_5": 0.542, "home_recent": ["D", "L", "D", "W", "L"], "away_recent": ["D", "L", "L", "W", "W"]}];
+    const RHO = -0.05359097869709277;
+    const DEFAULT_BETA = 0.1675;
+
+    let selectedIndex = 0;
+    let customDelta = 0.0;
+
+    function poissonPmf(k, lambda) {
+      if (k < 0 || lambda <= 0) return 0;
+      let logP = -lambda + k * Math.log(lambda);
+      for (let i = 2; i <= k; i++) logP -= Math.log(i);
+      return Math.exp(logP);
+    }
+
+    function tau(x, y, lam, mu, rho) {
+      if (x === 0 && y === 0) return 1.0 - lam * mu * rho;
+      if (x === 0 && y === 1) return 1.0 + lam * rho;
+      if (x === 1 && y === 0) return 1.0 + mu * rho;
+      if (x === 1 && y === 1) return 1.0 - rho;
+      return 1.0;
+    }
+
+    function computeMarkets(lam, mu, rho) {
+      const MAX_GOALS = 6;
+      let matrix = [];
+      let totalMass = 0.0;
+
+      for (let h = 0; h <= MAX_GOALS; h++) {
+        matrix[h] = [];
+        for (let a = 0; a <= MAX_GOALS; a++) {
+          let t = tau(h, a, lam, mu, rho);
+          if (t <= 0) t = 1e-6;
+          let p = poissonPmf(h, lam) * poissonPmf(a, mu) * t;
+          matrix[h][a] = p;
+          totalMass += p;
+        }
+      }
+
+      let pHome = 0.0, pDraw = 0.0, pAway = 0.0;
+      let btts = 0.0, over25 = 0.0;
+      let scores = [];
+
+      for (let h = 0; h <= MAX_GOALS; h++) {
+        for (let a = 0; a <= MAX_GOALS; a++) {
+          matrix[h][a] /= totalMass;
+          let prob = matrix[h][a];
+          if (h > a) pHome += prob;
+          else if (h === a) pDraw += prob;
+          else pAway += prob;
+
+          if (h > 0 && a > 0) btts += prob;
+          if (h + a > 2.5) over25 += prob;
+
+          scores.push({ score: `${h}-${a}`, prob: prob });
+        }
+      }
+
+      scores.sort((a, b) => b.prob - a.prob);
+
+      return {
+        pHome, pDraw, pAway,
+        btts, over25, under25: 1.0 - over25,
+        mostLikelyScore: scores[0].score,
+        topScores: scores.slice(0, 5)
+      };
+    }
+
+    function formatDate(isoStr) {
+      const d = new Date(isoStr);
+      return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }) + ' UTC';
+    }
+
+    function renderFixtureList() {
+      const listEl = document.getElementById('fixtures-list');
+      listEl.innerHTML = '';
+
+      MATCHES.forEach((m, idx) => {
+        const isSelected = idx === selectedIndex;
+        const card = document.createElement('div');
+        card.className = `p-3.5 rounded-xl border cursor-pointer transition-all ${
+          isSelected
+            ? 'bg-[var(--card)] border-emerald-500 ring-2 ring-emerald-500/20 shadow-md'
+            : 'bg-[var(--card)] border-[var(--border)] hover:border-emerald-500/50 hover:bg-[var(--content)] shadow-sm'
+        }`;
+        card.onclick = () => {
+          selectedIndex = idx;
+          customDelta = 0.0;
+          renderFixtureList();
+          renderInspector();
+        };
+
+        const pHomePct = Math.round(m.home_win_prob * 100);
+        const pDrawPct = Math.round(m.draw_prob * 100);
+        const pAwayPct = Math.round(m.away_win_prob * 100);
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between text-xs text-[var(--muted-foreground)] mb-1.5">
+            <span>${formatDate(m.kickoff_utc)}</span>
+            <span class="font-mono bg-[var(--content)] px-1.5 py-0.5 rounded border border-[var(--border)] text-[var(--foreground)] font-medium">${m.most_likely_score}</span>
+          </div>
+          <div class="flex items-center justify-between font-semibold text-sm mb-2">
+            <span class="truncate pr-1">${m.home_team}</span>
+            <span class="text-xs text-[var(--muted-foreground)] px-1">vs</span>
+            <span class="truncate pl-1 text-right">${m.away_team}</span>
+          </div>
+          <div class="w-full bg-[var(--content)] h-2 rounded-full overflow-hidden flex border border-[var(--border)]">
+            <div style="width: ${pHomePct}%" class="bg-emerald-500" title="Home: ${pHomePct}%"></div>
+            <div style="width: ${pDrawPct}%" class="bg-slate-400 dark:bg-slate-500" title="Draw: ${pDrawPct}%"></div>
+            <div style="width: ${pAwayPct}%" class="bg-indigo-500" title="Away: ${pAwayPct}%"></div>
+          </div>
+          <div class="flex justify-between text-[11px] font-mono text-[var(--muted-foreground)] mt-1">
+            <span class="text-emerald-500 font-semibold">${pHomePct}%</span>
+            <span>${pDrawPct}%</span>
+            <span class="text-indigo-500 font-semibold">${pAwayPct}%</span>
+          </div>
+        `;
+        listEl.appendChild(card);
+      });
+    }
+
+    function renderRecentBadges(arr) {
+      if (!arr || !arr.length) return '<span class="text-xs text-[var(--muted-foreground)]">N/A</span>';
+      return arr.map(res => {
+        const color = res === 'W' ? 'bg-emerald-500/20 text-emerald-500 border-emerald-500/30' :
+                      (res === 'D' ? 'bg-amber-500/20 text-amber-500 border-amber-500/30' : 'bg-rose-500/20 text-rose-500 border-rose-500/30');
+        return `<span class="inline-flex items-center justify-center w-5 h-5 text-[11px] font-bold rounded border ${color}">${res}</span>`;
+      }).join(' ');
+    }
+
+    function renderInspector() {
+      const m = MATCHES[selectedIndex];
+      const cardEl = document.getElementById('inspector-card');
+
+      const expHomeSim = Math.max(0.05, Math.min(10.0, m.exp_home_goals * Math.exp(DEFAULT_BETA * customDelta)));
+      const expAwaySim = Math.max(0.05, Math.min(10.0, m.exp_away_goals * Math.exp(-DEFAULT_BETA * customDelta)));
+      const sim = computeMarkets(expHomeSim, expAwaySim, RHO);
+
+      const pH_base = Math.round(m.home_win_prob * 100);
+      const pD_base = Math.round(m.draw_prob * 100);
+      const pA_base = Math.round(m.away_win_prob * 100);
+
+      const pH_sim = Math.round(sim.pHome * 100);
+      const pD_sim = Math.round(sim.pDraw * 100);
+      const pA_sim = Math.round(sim.pAway * 100);
+
+      const deltaH = pH_sim - pH_base;
+      const deltaA = pA_sim - pA_base;
+
+      cardEl.innerHTML = `
+        <div class="border-b border-[var(--border)] pb-4">
+          <div class="flex items-center justify-between text-xs text-[var(--muted-foreground)] mb-2">
+            <span>Premier League Forecast</span>
+            <span>${formatDate(m.kickoff_utc)}</span>
+          </div>
+          <div class="grid grid-cols-5 items-center gap-2">
+            <div class="col-span-2 text-left">
+              <h3 class="text-xl md:text-2xl font-bold truncate">${m.home_team}</h3>
+              <div class="mt-1 flex items-center gap-1">${renderRecentBadges(m.home_recent)}</div>
+            </div>
+            <div class="col-span-1 text-center font-mono font-bold text-lg text-[var(--muted-foreground)]">
+              vs
+            </div>
+            <div class="col-span-2 text-right">
+              <h3 class="text-xl md:text-2xl font-bold truncate">${m.away_team}</h3>
+              <div class="mt-1 flex items-center justify-end gap-1">${renderRecentBadges(m.away_recent)}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[var(--content)] border border-[var(--border)] rounded-xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">Win / Draw / Loss Probabilities</span>
+            ${customDelta !== 0 ? `
+              <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-500 font-medium border border-indigo-500/20">
+                Form Adjusted (&Delta; ${customDelta > 0 ? '+' : ''}${customDelta.toFixed(2)})
+              </span>
+            ` : '<span class="text-xs text-[var(--muted-foreground)]">Pure Dixon-Coles Baseline</span>'}
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 text-center">
+            <div class="p-3 bg-[var(--card)] rounded-lg border border-[var(--border)]">
+              <span class="text-xs text-[var(--muted-foreground)] block">${m.home_team}</span>
+              <span class="text-2xl font-black text-emerald-500">${pH_sim}%</span>
+              ${customDelta !== 0 ? `<span class="text-[11px] block ${deltaH >= 0 ? 'text-emerald-500' : 'text-rose-500'}">${deltaH >= 0 ? '+' : ''}${deltaH}% vs base</span>` : ''}
+            </div>
+            <div class="p-3 bg-[var(--card)] rounded-lg border border-[var(--border)]">
+              <span class="text-xs text-[var(--muted-foreground)] block">Draw</span>
+              <span class="text-2xl font-black text-slate-500 dark:text-slate-400">${pD_sim}%</span>
+              ${customDelta !== 0 ? `<span class="text-[11px] block text-[var(--muted-foreground)]">${pD_sim - pD_base >= 0 ? '+' : ''}${pD_sim - pD_base}%</span>` : ''}
+            </div>
+            <div class="p-3 bg-[var(--card)] rounded-lg border border-[var(--border)]">
+              <span class="text-xs text-[var(--muted-foreground)] block">${m.away_team}</span>
+              <span class="text-2xl font-black text-indigo-500">${pA_sim}%</span>
+              ${customDelta !== 0 ? `<span class="text-[11px] block ${deltaA >= 0 ? 'text-indigo-500' : 'text-rose-500'}">${deltaA >= 0 ? '+' : ''}${deltaA}% vs base</span>` : ''}
+            </div>
+          </div>
+
+          <div class="w-full bg-[var(--card)] h-3 rounded-full overflow-hidden flex border border-[var(--border)] mt-2">
+            <div style="width: ${pH_sim}%" class="bg-emerald-500 transition-all duration-300"></div>
+            <div style="width: ${pD_sim}%" class="bg-slate-400 dark:bg-slate-500 transition-all duration-300"></div>
+            <div style="width: ${pA_sim}%" class="bg-indigo-500 transition-all duration-300"></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl border border-[var(--border)] bg-[var(--content)] space-y-3">
+            <span class="text-xs font-semibold uppercase tracking-wider text-[var(--muted-foreground)] block">Goal Expectancy</span>
+            <div class="flex items-center justify-between text-sm py-1 border-b border-[var(--border)]">
+              <span>${m.home_team} Exp Goals</span>
+              <span class="font-mono font-bold text-emerald-500">${expHomeSim.toFixed(2)}</span>
+            </div>
+            <div class="flex items-center justify-between text-sm py-1 border-b border-[var(--border)]">
+              <span>${m.away_team} Exp Goals</span>
+              <span class="font-mono font-bold text-indigo-500">${expAwaySim.toFixed(2)}</span>
+            </div>
+            <div class="flex items-center justify-between text-sm py-1 border-b border-[var(--border)]">
+              <span>Both Teams To Score (BTTS)</span>
+              <span class="font-mono font-bold">${Math.round(sim.btts * 100)}%</span>
+            </div>
+            <div class="flex items-center justify-between text-sm py-1">
+              <span>Over / Under 2.5 Goals</span>
+              <span class="font-mono font-bold">${Math.round(sim.over25 * 100)}% / ${Math.round(sim.under25 * 100)}%</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl border border-[var(--border)] bg-[var(--content)] space-y-3">
+            <span class="text-xs font-semibold uppercase tracking-wider text-[var(--muted-foreground)] block">Top Scorelines</span>
+            <div class="space-y-1.5">
+              ${sim.topScores.map((s, idx) => `
+                <div class="flex items-center justify-between text-xs">
+                  <span class="font-mono font-bold w-10">${s.score}</span>
+                  <div class="flex-1 mx-3 bg-[var(--card)] h-2 rounded-full overflow-hidden border border-[var(--border)]">
+                    <div style="width: ${Math.round(s.prob * 500)}%" class="bg-cyan-500 h-full rounded-full"></div>
+                  </div>
+                  <span class="font-mono text-[var(--muted-foreground)] w-10 text-right">${(s.prob * 100).toFixed(1)}%</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl border border-indigo-500/30 bg-indigo-500/5 space-y-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="text-sm font-semibold text-indigo-400">Live Starter Form Simulator</h4>
+              <p class="text-xs text-[var(--muted-foreground)]">Simulate confirmed lineup sharpness difference (&beta; = 0.1675)</p>
+            </div>
+            <span class="font-mono text-sm font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+              ${customDelta > 0 ? '+' : ''}${customDelta.toFixed(2)}
+            </span>
+          </div>
+
+          <div class="space-y-1">
+            <input type="range" min="-2.0" max="2.0" step="0.05" value="${customDelta}"
+              id="delta-slider"
+              class="w-full accent-indigo-500 cursor-pointer"
+              oninput="onSliderChange(this.value)">
+            <div class="flex justify-between text-[11px] text-[var(--muted-foreground)] font-mono">
+              <span>Away Heavy Form (-2.0)</span>
+              <span>Neutral (0.0)</span>
+              <span>Home Heavy Form (+2.0)</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 pt-1">
+            <button onclick="setPreset(-1.0)" class="text-xs px-2.5 py-1 rounded bg-[var(--card)] border border-[var(--border)] hover:border-indigo-500 hover:text-indigo-400 transition-colors">
+              Away Edge (-1.0)
+            </button>
+            <button onclick="setPreset(0.0)" class="text-xs px-2.5 py-1 rounded bg-[var(--card)] border border-[var(--border)] hover:border-indigo-500 hover:text-indigo-400 transition-colors">
+              Reset (0.0)
+            </button>
+            <button onclick="setPreset(1.0)" class="text-xs px-2.5 py-1 rounded bg-[var(--card)] border border-[var(--border)] hover:border-indigo-500 hover:text-indigo-400 transition-colors">
+              Home Edge (+1.0)
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function onSliderChange(val) {
+      customDelta = parseFloat(val);
+      renderInspector();
+    }
+
+    function setPreset(val) {
+      customDelta = val;
+      renderInspector();
+    }
+
+    renderFixtureList();
+    renderInspector();
+  </script>
+</body>
+</html>

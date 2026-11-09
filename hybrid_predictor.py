@@ -53,6 +53,9 @@ def main():
     collect.add_argument('--within-minutes',type=int,default=90)
     collect.add_argument('--refresh-minutes',type=int,default=10)
     collect.add_argument('--lock-path',type=Path,help='Explicit path to lockfile')
+    collect.add_argument('--appearances',type=Path,default=Path('fotmob_player_appearances.csv'),help='FotMob player appearances CSV for form adjustment')
+    collect.add_argument('--adjust-with-lineup-form',action='store_true',help='Adjust Dixon-Coles goal rates using FotMob starting XI recent form')
+    collect.add_argument('--beta',type=float,default=0.1675,help='Scaling coefficient for starter form adjustment (default: 0.1675)')
     appearances_cmd = commands.add_parser('collect-appearances',help='Collect and validate player appearances from completed FotMob matches')
     appearances_cmd.add_argument('--results',type=Path,default=Path('current_premier_league_results.csv'))
     appearances_cmd.add_argument('--output',type=Path,default=Path('fotmob_player_appearances.csv'))
@@ -60,6 +63,11 @@ def main():
     appearances_cmd.add_argument('--delay',type=float,default=0.2,help='Delay in seconds between requests')
     uncertainty = commands.add_parser('uncertainty',help='Show paired date-block bootstrap uncertainty')
     uncertainty.add_argument('--reports',type=Path,default=Path('reports'))
+    dash_cmd = commands.add_parser('build-dashboard',help='Build interactive matchday dashboard HTML for GitHub Pages')
+    dash_cmd.add_argument('--output',type=Path,default=Path('docs/index.html'))
+    dash_cmd.add_argument('--fixtures',type=Path,default=Path('upcoming_premier_league_fixtures.csv'))
+    dash_cmd.add_argument('--max-fixtures',type=int,default=10)
+    refresh_cmd = commands.add_parser('refresh',help='Run automated update pipeline (fixtures, appearances, lineups, dashboard)')
     args = parser.parse_args()
     if args.command == 'audit':
         entries = inventory(Path('.'),args.output)
@@ -95,9 +103,12 @@ def main():
         from epl_predictor.collection import collect_lineups
         report, path = collect_lineups(args.fixtures,args.artifacts,args.players,args.player_id_map,
             args.archive_dir,args.output_dir,args.within_minutes,args.refresh_minutes,
-            lock_path=args.lock_path)
+            lock_path=args.lock_path, appearances_path=args.appearances,
+            adjust_probabilities=args.adjust_with_lineup_form, beta=args.beta)
         print(f"Collection {report['status']}: {report['archived_count']} archived, "
               f"{report['lineups_available']} with starters, {report['unresolved_players']} players to review.")
+        if report.get('adjust_with_lineup_form'):
+            print(f"Policy: {report['forecast_policy']}")
         if report['next_collection_at_utc']:
             print(f"Next collection window/retry (UTC): {report['next_collection_at_utc']}")
         print(f'Collection report: {path}')
@@ -114,6 +125,13 @@ def main():
               f"Saved to {report['output_path']}")
         if report['skipped_matches']:
             print(f"Skipped {len(report['skipped_matches'])} matches due to errors.")
+    elif args.command == 'build-dashboard':
+        from epl_predictor.dashboard import build_dashboard
+        out = build_dashboard(output_path=args.output, fixtures_path=args.fixtures, max_fixtures=args.max_fixtures)
+        print(f'Dashboard generated: {out}')
+    elif args.command == 'refresh':
+        from update_pipeline import run_pipeline
+        run_pipeline()
     else:
         from epl_predictor.predictor import Predictor
         inputs = {}

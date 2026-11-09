@@ -145,6 +145,8 @@ the cooldown if you want another capture. The collector acquires an exclusive pr
 lockfile (`.collector.lock` in `--output-dir` or via `--lock-path`) with stale-lock clearing
 (15-minute timeout) to safely prevent race conditions or corrupted archives if triggered
 concurrently. Network calls feature exponential backoff retry adapters (3 attempts on 429/5xx).
+Supply `--adjust-with-lineup-form` to automatically apply the cross-validated starter form
+adjustment ($\beta = 0.1675$) to archived prospective forecasts whenever starting lineups are retrieved.
 
 ## Review player identities
 
@@ -293,6 +295,7 @@ metadata and forecast probabilities remain strictly unchanged.
 - `reports/promotion_validation.json`: transition sample records and later-cohort errors.
 - `reports/permutation_importance.csv`: selection-period feature diagnostics.
 - `reports/run_manifest.json`: selection, config, cutoffs and source hashes.
+- `reports/matchday_12_dashboard.html`: interactive Matchday 12 fixture dashboard with live starter form simulation.
 - `epl_predictor/`: data, goal model, promotion, features, players, boosting,
   evaluation, workflow and inference modules.
 - `tests/test_hybrid.py`: synthetic unit/integration and leakage regression tests.

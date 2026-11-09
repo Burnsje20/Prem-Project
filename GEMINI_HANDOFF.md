@@ -27,7 +27,7 @@ git diff --check
 python hybrid_predictor.py --help
 ```
 
-The last full suite passed **79 tests** (including 5 appearance collection tests, 3 collector hardening tests, and 3 starter form adjustment tests).
+The last full suite passed **80 tests** (including 5 appearance collection tests, 4 collector hardening/form tests, and 3 starter form adjustment tests).
 Whitespace checks passed; Windows LF-to-CRLF notices are Git configuration warnings,
 not failed tests.
 
