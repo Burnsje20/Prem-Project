@@ -60,3 +60,45 @@ def ensemble_weight(y,dc,xgb):
         row = metrics(y,(1-weight)*dc+weight*xgb)
         rows.append({'xgb_weight':float(weight),**row})
     return min(rows,key=lambda r:(r['log_loss'],r['brier']))['xgb_weight'], rows
+
+
+def paired_block_bootstrap(y, p_a, p_b, dates, n_bootstraps=2000, seed=42, alpha=0.05):
+    """Paired block bootstrap over date blocks for log loss differences (loss_a - loss_b).
+
+    A negative difference means model A has lower (better) log loss than model B.
+    """
+    y = np.asarray(y, dtype=int)
+    p_a, p_b = probabilities(p_a), probabilities(p_b)
+    if len(y) != len(p_a) or len(y) != len(p_b):
+        raise ValueError('Mismatched target and prediction lengths')
+    dates = np.asarray(dates)
+    unique_dates = np.unique(dates)
+    if len(unique_dates) < 2:
+        raise ValueError('At least two date blocks are required for block bootstrap')
+
+    loss_a = -np.log(np.maximum(p_a[np.arange(len(y)), y], 1e-15))
+    loss_b = -np.log(np.maximum(p_b[np.arange(len(y)), y], 1e-15))
+    diff = loss_a - loss_b
+    date_map = {d: np.where(dates == d)[0] for d in unique_dates}
+
+    rng = np.random.default_rng(seed)
+    diffs = []
+    k = len(unique_dates)
+    for _ in range(n_bootstraps):
+        sampled_dates = rng.choice(unique_dates, size=k, replace=True)
+        sampled_diffs = np.concatenate([diff[date_map[d]] for d in sampled_dates])
+        diffs.append(float(np.mean(sampled_diffs)))
+
+    diffs = np.array(diffs)
+    lo = float(np.percentile(diffs, 100 * (alpha / 2)))
+    hi = float(np.percentile(diffs, 100 * (1 - alpha / 2)))
+    return {
+        'point_difference': float(np.mean(diff)),
+        'bootstrap_mean': float(np.mean(diffs)),
+        'std_error': float(np.std(diffs)),
+        'ci_lower_95': lo,
+        'ci_upper_95': hi,
+        'statistically_significant': bool((lo > 0) or (hi < 0)),
+        'n_blocks': k,
+        'n_bootstraps': n_bootstraps
+    }

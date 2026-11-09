@@ -18,7 +18,8 @@ This reads the saved model and cached upcoming fixtures and writes
 `hybrid_predictions.json`. It does not train or make network requests. Each forecast
 contains H/D/A probabilities, expected goals, top five scores, BTTS, over/under 2.5,
 the model/cutoff, promoted-team prior flags, player availability and evaluation metrics.
-JSON probabilities are fractions; terminal H/D/A values are percentages.
+JSON probabilities are fractions; terminal H/D/A values are percentages. Pass
+`--filter-future` to automatically skip any fixture scheduled before the model cutoff.
 
 Select a particular match:
 
@@ -36,6 +37,7 @@ fallback; there is no invented player rating or unsupported prediction-confidenc
 python hybrid_predictor.py audit
 python hybrid_predictor.py train --artifacts artifacts/hybrid_v2 --reports reports/hybrid_v2
 python hybrid_predictor.py predict --artifacts artifacts/hybrid_v2
+python hybrid_predictor.py uncertainty
 python -m unittest discover -v
 ```
 
@@ -132,6 +134,7 @@ sample must be established first. Unavailable player ablations are recorded expl
 
 - `reports/data_inventory.json`: all CSV schemas, nulls, dates, identifiers and hashes.
 - `reports/model_comparison.csv`: outcome/score loss, Brier, accuracy and calibration.
+- `reports/model_uncertainty.csv`: paired date-block bootstrap log loss uncertainty vs selected model.
 - `reports/evaluation_predictions.csv`: every out-of-sample probability with phase.
 - `reports/calibration.csv`: per-class probability bins and observed frequencies.
 - `reports/feature_ablations.csv`: comparable feature experiments.

@@ -9,7 +9,7 @@ from scipy.stats import poisson
 
 from epl_predictor.boosting import train_booster, predict_booster, load_booster
 from epl_predictor.data import validate, utc, team_name
-from epl_predictor.evaluation import metrics, ensemble_weight, temperature
+from epl_predictor.evaluation import metrics, ensemble_weight, temperature, paired_block_bootstrap
 from epl_predictor.features import FeatureBuilder, feature_columns
 from epl_predictor.goals import DixonColes, tau, score_matrix, outcomes, reconcile, markets
 from epl_predictor.players import ea_units, player_form, fotmob_units, map_player_ids, validate_ea
@@ -134,6 +134,71 @@ class FeatureTests(unittest.TestCase):
         self.assertEqual(prior.predict('CHA'),(0.,0.))
         self.assertEqual(len(prior.samples),0)
 
+    def test_promotion_synthetic_cohort_training_and_temporal_isolation(self):
+        def make_cohort(season, year, teams, goals):
+            matches = []
+            day = 1
+            for h in teams:
+                for a in teams:
+                    if h != a:
+                        matches.append({
+                            'date': f'{year}-09-{day:02d}T15:00:00Z', 'season': season,
+                            'home_team': h, 'away_team': a,
+                            'home_goals': goals.get((h, a), 1),
+                            'away_goals': goals.get((a, h), 1),
+                            'status': 'FT'
+                        })
+                        day += 1
+            return matches
+
+        pl_records = []
+        ch_records = []
+        # Season 1: 2021-22
+        pl_records += make_cohort('2021-22', 2021, ['A', 'B', 'C', 'D'], {('A','B'): 3, ('B','A'): 0})
+        ch_records += make_cohort('2021-22', 2021, ['P1', 'E', 'F', 'G'], {('P1','E'): 4, ('P1','F'): 3})
+        # Season 2: 2022-23 (P1 promoted replacing D)
+        pl_records += make_cohort('2022-23', 2022, ['A', 'B', 'C', 'P1'], {('P1','A'): 0, ('A','P1'): 3})
+        ch_records += make_cohort('2022-23', 2022, ['P2', 'D', 'F', 'G'], {('P2','D'): 4, ('P2','F'): 3})
+        # Season 3: 2023-24 (P2 promoted replacing C)
+        pl_records += make_cohort('2023-24', 2023, ['A', 'B', 'P1', 'P2'], {('P2','A'): 1, ('A','P2'): 2})
+        ch_records += make_cohort('2023-24', 2023, ['P3', 'C', 'F', 'G'], {('P3','C'): 3, ('P3','F'): 3})
+        # Season 4: 2024-25 (P3 promoted replacing P1)
+        pl_records += make_cohort('2024-25', 2024, ['A', 'B', 'P2', 'P3'], {('P3','A'): 0, ('A','P3'): 4})
+        ch_records += make_cohort('2024-25', 2024, ['P4', 'P1', 'F', 'G'], {('P4','P1'): 4, ('P4','F'): 3})
+        # Season 5: 2025-26 (P4 promoted replacing P2)
+        pl_records += make_cohort('2025-26', 2025, ['A', 'B', 'P3', 'P4'], {('P4','A'): 1, ('A','P4'): 3})
+        ch_records += make_cohort('2025-26', 2025, ['P5', 'P2', 'F', 'G'], {('P5','P2'): 4, ('P5','F'): 3})
+
+        pl = validate(pd.DataFrame(pl_records))
+        ch = validate(pd.DataFrame(ch_records))
+
+        # Target season 2026-27 with P5 promoted
+        prior = PromotionPrior().fit(pl, ch, '2026-27')
+        self.assertEqual(len(prior.samples), 4)
+        self.assertIsNotNone(prior.model)
+        pred_att, pred_def = prior.predict('P5')
+        self.assertNotEqual((pred_att, pred_def), (0.0, 0.0))
+        self.assertIn('P5', prior.promoted)
+
+        # Chronological diagnostics
+        diag = prior.diagnostics()
+        self.assertEqual(len(diag), 1)
+        self.assertEqual(diag[0]['season'], '2025-26')
+        self.assertEqual(diag[0]['team'], 'P4')
+        self.assertEqual(diag[0]['training_teams'], 3)
+
+        # Temporal isolation: Add future season 2026-27 outcomes with radical results
+        future_pl = pl_records + make_cohort('2026-27', 2026, ['A', 'B', 'P3', 'P5'], {('P5','A'): 10})
+        future_ch = ch_records + make_cohort('2026-27', 2026, ['P6', 'P4', 'F', 'G'], {('P6','F'): 10})
+        pl_future = validate(pd.DataFrame(future_pl))
+        ch_future = validate(pd.DataFrame(future_ch))
+
+        prior_with_future = PromotionPrior().fit(pl_future, ch_future, '2026-27')
+        self.assertEqual(prior.samples, prior_with_future.samples)
+        self.assertEqual(prior.predict('P5'), prior_with_future.predict('P5'))
+        self.assertEqual(prior.diagnostics(), prior_with_future.diagnostics())
+
+
 
 class PlayerTests(unittest.TestCase):
     def setUp(self):
@@ -231,6 +296,38 @@ class ModelIntegrationTests(unittest.TestCase):
             self.assertAlmostEqual(result['home_win_probability']+result['draw_probability']+result['away_win_probability'],1)
             fixtures['kickoff_utc'] = '2025-08-01'
             with self.assertRaises(ValueError):predictor.predict(fixtures)
+            # Test filter_future allows excluding past matches cleanly
+            self.assertEqual(predictor.predict(fixtures, filter_future=True), [])
+
+    def test_paired_block_bootstrap(self):
+        y = np.array([0, 1, 2, 0, 1, 2])
+        p1 = np.eye(3)[y] * 0.8 + 0.06666666666666667
+        dates = ['2025-08-01', '2025-08-01', '2025-08-08', '2025-08-08', '2025-08-15', '2025-08-15']
+        # Identical predictions should have 0 difference and non-significant result
+        res_self = paired_block_bootstrap(y, p1, p1, dates, n_bootstraps=200, seed=42)
+        self.assertAlmostEqual(res_self['point_difference'], 0.0)
+        self.assertAlmostEqual(res_self['std_error'], 0.0)
+        self.assertFalse(res_self['statistically_significant'])
+
+        # Worse predictions (uniform)
+        p_uniform = np.ones((6, 3)) / 3.0
+        res_comp = paired_block_bootstrap(y, p1, p_uniform, dates, n_bootstraps=200, seed=42)
+        self.assertLess(res_comp['point_difference'], 0.0)
+        self.assertLess(res_comp['ci_upper_95'], 0.0)
+        self.assertTrue(res_comp['statistically_significant'])
+
+        # Error cases
+        with self.assertRaises(ValueError):
+            paired_block_bootstrap(y, p1, p_uniform, ['2025-08-01'] * 6)
+        with self.assertRaises(ValueError):
+            paired_block_bootstrap(y[:3], p1, p_uniform, dates)
+
+    def test_predictor_artifact_integrity(self):
+        with tempfile.TemporaryDirectory() as temp:
+            folder = Path(temp)
+            with self.assertRaises(FileNotFoundError):
+                Predictor(folder)
+
 
 
 if __name__ == '__main__':

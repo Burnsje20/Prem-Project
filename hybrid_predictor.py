@@ -26,6 +26,9 @@ def main():
     predict.add_argument('--output',type=Path,default=Path('hybrid_predictions.json'))
     predict.add_argument('--players',type=Path,default=Path('players.csv'))
     predict.add_argument('--appearances',type=Path,help='Optional validated FotMob player-match CSV')
+    predict.add_argument('--filter-future',action='store_true',help='Filter fixtures to kickoff >= cutoff')
+    uncertainty = commands.add_parser('uncertainty',help='Show paired date-block bootstrap uncertainty')
+    uncertainty.add_argument('--reports',type=Path,default=Path('reports'))
     args = parser.parse_args()
     if args.command == 'audit':
         entries = inventory(Path('.'),args.output)
@@ -33,6 +36,14 @@ def main():
     elif args.command == 'train':
         from epl_predictor.workflow import train
         train(config_path=args.config,artifacts=args.artifacts,reports=args.reports)
+    elif args.command == 'uncertainty':
+        path = args.reports / 'model_uncertainty.csv'
+        if not path.exists():
+            parser.error(f'Uncertainty report not found: {path}')
+        d = pd.read_csv(path)
+        print('Test Period Paired Date-Block Bootstrap Uncertainty (vs Selected Dixon-Coles):')
+        cols = ['comparison_model','point_difference','std_error','ci_lower_95','ci_upper_95','statistically_significant']
+        print(d[cols].to_string(index=False))
     else:
         from epl_predictor.predictor import Predictor
         model = Predictor(args.artifacts)
@@ -43,7 +54,7 @@ def main():
                     if args.home else pd.read_csv(args.fixtures))
         players = pd.read_csv(args.players) if args.players.exists() else None
         appearances = pd.read_csv(args.appearances) if args.appearances else None
-        predictions = model.predict(fixtures,players,appearances)
+        predictions = model.predict(fixtures,players,appearances,filter_future=args.filter_future)
         args.output.parent.mkdir(parents=True,exist_ok=True)
         args.output.write_text(json.dumps(predictions,indent=2,allow_nan=False),encoding='utf-8')
         for result in predictions:

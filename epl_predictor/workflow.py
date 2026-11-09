@@ -7,10 +7,13 @@ import platform
 
 import numpy as np
 import pandas as pd
+import scipy
+import sklearn
+import xgboost
 
 from .boosting import train_booster, predict_booster
 from .data import clubs, inventory, load_data, utc
-from .evaluation import metrics, reliability, temperature, fit_temperature, ensemble_weight
+from .evaluation import metrics, reliability, temperature, fit_temperature, ensemble_weight, paired_block_bootstrap
 from .features import FeatureBuilder, feature_columns
 from .goals import DixonColes, score_matrix, outcomes, reconcile, markets
 from .promotion import PromotionPrior
@@ -183,6 +186,26 @@ def train(root=Path('.'), config_path=Path('hybrid_config.json'), artifacts=Path
         loss = metrics(changed.target,predict_booster(imp_model,changed,all_columns))['log_loss']
         importance.append({'feature':col,'permuted_log_loss_increase':loss-base_loss})
     pd.DataFrame(importance).sort_values('permuted_log_loss_increase',ascending=False).to_csv(reports/'permutation_importance.csv',index=False)
+    # Paired date-block bootstrap uncertainty on test period relative to selected model
+    test_mask = stages == 'test'
+    test_days = evaluation.day[test_mask].to_numpy()
+    uncertainty_rows = []
+    test_uncertainty = {}
+    if test_mask.any():
+        ref_p = predictions[selected][test_mask]
+        for name, p in predictions.items():
+            boot = paired_block_bootstrap(y[test_mask], ref_p, p[test_mask], test_days, seed=config['seed'])
+            row = {
+                'reference_model': selected,
+                'comparison_model': name,
+                'test_matches': int(test_mask.sum()),
+                'reference_log_loss': metrics(y[test_mask], ref_p)['log_loss'],
+                'comparison_log_loss': metrics(y[test_mask], p[test_mask])['log_loss'],
+                **boot
+            }
+            uncertainty_rows.append(row)
+            test_uncertainty[name] = boot
+        pd.DataFrame(uncertainty_rows).to_csv(reports / 'model_uncertainty.csv', index=False)
     cutoff = utc(config['as_of']).normalize()
     season = pl.season.max()
     roster = clubs(pl[pl.season == season])
@@ -197,18 +220,40 @@ def train(root=Path('.'), config_path=Path('hybrid_config.json'), artifacts=Path
     # Snapshot the exact match inputs so subsequent raw refreshes cannot silently change inference.
     pl.to_csv(artifacts/'pl_history.csv',index=False)
     ch.to_csv(artifacts/'championship_history.csv',index=False)
+    source_files = [root / 'hybrid_predictor.py'] + sorted((root / 'epl_predictor').glob('*.py'))
+    source_hashes = {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
+                     for p in source_files if p.exists()}
+    input_paths = [
+        root / 'premier_league_match_history.csv',
+        root / 'championship_match_history.csv',
+        root / 'current_premier_league_results.csv',
+        root / 'players.csv',
+        root / 'EPL_Match_Data_2000_2026.csv',
+        Path(config_path),
+        root / 'requirements.txt'
+    ]
     manifest = {'schema_version':1,'selected_model':selected,'cutoff':cutoff.isoformat(),
                 'trained_at':datetime.now(timezone.utc).isoformat(),'python':platform.python_version(),
+                'dependencies':{
+                    'python': platform.python_version(),
+                    'numpy': np.__version__,
+                    'scipy': scipy.__version__,
+                    'pandas': pd.__version__,
+                    'scikit-learn': sklearn.__version__,
+                    'xgboost': xgboost.__version__,
+                },
                 'config':config,'dc_settings':selected_dc,'xgb_settings':selected_xgb,
                 'feature_schemas':{'xgb_'+k:feature_columns(features,v) for k,v in GROUPS.items()},
                 'ensemble_weights':weights,'temperatures':temperatures,'teams':sorted(roster),
                 'selection_metrics':selection_scores[selected],
                 'test_metrics':next(r for r in comparisons if r['model']==selected and r['phase']=='test'),
+                'test_uncertainty':test_uncertainty,
                 'current_replay_metrics':next((r for r in comparisons if r['model']==selected and r['phase']=='current_replay'),None),
                 'fallback_model':'dixon_coles','fallback_reason':'Missing feature/schema or unknown club',
                 'player_model_status':'experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split',
                 'unavailable_ablations':['EA talent','FotMob player form','position-aware player units','EA + FotMob'],
-                'input_hashes':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [root/'premier_league_match_history.csv',root/'championship_match_history.csv',root/'current_premier_league_results.csv',root/'players.csv'] if p.exists()}}
+                'input_hashes':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in input_paths if p.exists()},
+                'source_hashes':source_hashes}
     write_json(artifacts/'manifest.json',manifest)
     write_json(reports/'run_manifest.json',manifest)
     print(pd.DataFrame(comparisons).query("phase == 'test'")[['model','matches','log_loss','brier','accuracy']].to_string(index=False),flush=True)

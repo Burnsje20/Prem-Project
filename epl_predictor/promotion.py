@@ -6,6 +6,16 @@ from sklearn.linear_model import Ridge
 from .data import clubs, season_before
 
 
+def is_complete_season(frame, min_matches=None):
+    """Check if a league season has finished all double round-robin fixtures."""
+    if frame.empty:
+        return False
+    if min_matches is not None:
+        return len(frame) == min_matches
+    n_teams = len(clubs(frame))
+    return n_teams >= 2 and len(frame) == n_teams * (n_teams - 1)
+
+
 def strengths(frame):
     """Log scoring/conceding strengths relative to the division scoring environment."""
     if frame.empty:
@@ -23,8 +33,10 @@ def strengths(frame):
 
 
 class PromotionPrior:
-    def __init__(self, alpha=1.0):
+    def __init__(self, alpha=1.0, min_matches_pl=None, min_matches_ch=None):
         self.alpha = alpha
+        self.min_matches_pl = min_matches_pl
+        self.min_matches_ch = min_matches_ch
 
     def fit(self, pl, championship, target_season, target_teams=None):
         self.target_season = target_season
@@ -35,7 +47,9 @@ class PromotionPrior:
             current_pl = pl[pl.season == season]
             prior_ch = championship[championship.season == prev]
             # Complete league seasons only. Partial-season outcomes are never targets.
-            if len(current_pl) != 380 or len(prior_pl) != 380 or len(prior_ch) != 552:
+            if not is_complete_season(current_pl, self.min_matches_pl) or \
+               not is_complete_season(prior_pl, self.min_matches_pl) or \
+               not is_complete_season(prior_ch, self.min_matches_ch):
                 continue
             inputs, outputs = strengths(prior_ch), strengths(current_pl)
             for team in sorted((clubs(current_pl) - clubs(prior_pl)) & set(inputs)):

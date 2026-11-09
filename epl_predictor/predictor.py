@@ -17,8 +17,12 @@ from .players import ea_units, fotmob_units
 class Predictor:
     def __init__(self, artifact_dir='artifacts/hybrid_v1'):
         self.folder = Path(artifact_dir)
+        required_files = ['manifest.json', 'dixon_coles.json', 'pl_history.csv', 'championship_history.csv']
+        missing = [f for f in required_files if not (self.folder / f).exists()]
+        if missing:
+            raise FileNotFoundError(f'Missing required artifact files in {artifact_dir}: {missing}')
         self.manifest = json.loads((self.folder/'manifest.json').read_text(encoding='utf-8'))
-        if self.manifest['schema_version'] != 1:
+        if self.manifest.get('schema_version') != 1:
             raise ValueError('Unsupported artifact schema')
         self.cutoff = utc(self.manifest['cutoff'])
         self.dc = DixonColes.load(self.folder/'dixon_coles.json')
@@ -28,12 +32,16 @@ class Predictor:
             raise ValueError('Artifact contains results after its cutoff')
         self.boosters = {}
 
-    def predict(self, fixtures, ea=None, appearances=None):
+    def predict(self, fixtures, ea=None, appearances=None, filter_future=False):
         fixtures = fixtures.copy()
         for col in ['home_team','away_team']:
             fixtures[col] = fixtures[col].map(team_name)
         fixtures['kickoff_utc'] = pd.to_datetime(fixtures.kickoff_utc,utc=True,format='mixed')
-        if (fixtures.kickoff_utc < self.cutoff).any():
+        if filter_future:
+            fixtures = fixtures[fixtures.kickoff_utc >= self.cutoff].reset_index(drop=True)
+            if fixtures.empty:
+                return []
+        elif (fixtures.kickoff_utc < self.cutoff).any():
             raise ValueError('Cannot predict before the saved model cutoff; use chronological evaluation')
         if fixtures.home_team.eq(fixtures.away_team).any():
             raise ValueError('Home and away clubs must differ')

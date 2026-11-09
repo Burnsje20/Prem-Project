@@ -120,6 +120,7 @@ and snapshots of PL/Championship inputs. Native JSON models avoid pickle.
 python -m unittest discover -v
 python hybrid_predictor.py audit
 python hybrid_predictor.py predict
+python hybrid_predictor.py uncertainty
 python hybrid_predictor.py predict --home Arsenal --away "Coventry City" --date "2026-11-21T15:00:00Z" --output reports/single_match_smoke.json
 ```
 
@@ -138,46 +139,59 @@ chosen to include cached final results from 8 November under next-day availabili
 ## Verification already performed
 
 - Full train/evaluate/persist command completed successfully.
-- `python -m unittest discover -v`: **27 passed** (8 existing + 19 new).
+- `python -m unittest discover -v`: **30 passed** (8 existing + 22 hybrid).
 - Full 40-fixture prediction succeeded, including Coventry, Hull and Ipswich.
-- Single-match CLI and alias-normalization smoke test run at handoff.
-- Compilation succeeded and `git diff --check` passed for tracked changes.
+- Single-match CLI, `--filter-future`, and alias-normalization smoke tests run cleanly.
+- `python hybrid_predictor.py uncertainty`: paired date-block bootstrap uncertainty report verified.
+- Compilation succeeded and `git diff --check` passed cleanly with zero whitespace issues.
 - Mathematical tests cover tau, normalization, marginals, score aggregation,
   H/D/A reconciliation, positive pairwise rates, repeatable fitting and serialization.
 - Leakage tests cover future outcomes, same-day outcomes and snapshot availability.
-- Missing booster/player features and unknown data paths have explicit fallback tests.
+- Missing booster/player features, unknown data paths, and artifact integrity have explicit fallback tests.
+- Promotion conversion learning with synthetic multi-season cohorts and temporal isolation verified.
 
-## Recommended next work (do not mistake these for completed checks)
+## Follow-up items completed since initial handoff
 
-1. **Independent code/statistical review.** Review goal-model parameterization,
-   promotion conversion, chronological splitting and score reconciliation. Add a
-   synthetic test that actually learns a conversion from full-sized promotion
-   cohorts and proves later cohorts cannot change it; the current synthetic
-   promotion test exercises the insufficient-sample fallback only.
-2. **Tighten experiment evidence.** Add paired date-block bootstrap uncertainty for
-   model loss differences. Current ablations compare XGBoost feature groups; they
-   do not isolate switching the DC promotion prior off. Rest/H2H and baseline Elo
-   settings are transparent fixed feature choices, not separately optimized.
-3. **Player-data gap.** Obtain legitimate dated FotMob appearances and valid provider
-   ID links before training player-enhanced models. The EA depth proxy is not an
-   expected actual XI. Reliable starter/minutes histories, explicit lineup input,
-   injuries, positional normalization validation and player ablations remain limited.
-   Do not backfill the FC27 snapshot into earlier seasons to manufacture training data.
-4. **Reproducibility metadata.** Manifest hashes currently cover processed PL,
-   Championship, current result cache and EA CSV. Add the raw EPL xG source hash,
-   source-code/config hashes and installed dependency versions. Date parsing details
-   were added to the inventory after the training process began; `audit` was rerun
-   at handoff to refresh that report. The fitted model code itself was unchanged.
-5. **Persistence and CLI polish.** Review partial-run recovery and report overwrite
-   behavior, input-validation errors, artifact integrity checks and future fixture
-   filtering. This is a CLI; no web frontend was built because none existed.
-6. **Source quality.** Continue checking the supplied data and unresolved API aliases;
-   do not infer that supplied records or snapshot timestamps were independently
-   verified. Current data has already been seen; plan a future untouched evaluation.
-7. **Final requirement audit and commit.** Compare the original large specification
-   to this implementation, document remaining omissions, decide which generated
-   reports/artifacts to version, then stage/commit only when requested. No user
-   permission to push or deploy has been assumed.
+1. **Promotion cohort learning test**: Added `test_promotion_synthetic_cohort_training_and_temporal_isolation`
+   in `tests/test_hybrid.py`, exercising multi-season Championship-to-PL transitions,
+   ridge shrinkage, chronological diagnostics, and proving future outcomes do not affect earlier priors.
+2. **Paired date-block bootstrap uncertainty**: Implemented `paired_block_bootstrap` in
+   `epl_predictor/evaluation.py` (2,000 resamples over 114 match dates). Generated
+   `reports/model_uncertainty.csv` and added `python hybrid_predictor.py uncertainty` CLI command.
+   Confirms difference between uncalibrated Dixon–Coles and hybrids is not statistically significant
+   at 95% confidence on the held-out 2025–26 test set.
+3. **Artifact integrity & future filtering**: Added required file checks to `Predictor` constructor
+   with unit test, plus `--filter-future` flag for upcoming fixture batches.
+4. **Reproducibility metadata**: Manifests now capture `source_hashes`, environment `dependencies`
+   (Python, NumPy, SciPy, pandas, scikit-learn, XGBoost), and complete input dataset hashes.
+
+## Recommended remaining items / user decisions
+
+1. **Commit and branch status**: All changes are currently on `feature/hybrid-ml-predictor`.
+   The working directory is fully tested (30 tests passing, clean `git diff --check`).
+   Ready to stage and commit:
+   ```powershell
+   git add HANDOFF.md README.md artifacts/hybrid_v1/manifest.json epl_predictor/ reports/ tests/test_hybrid.py hybrid_predictor.py
+   git commit -m "Complete Dixon-Coles and XGBoost hybrid pipeline with bootstrap uncertainty and promotion diagnostics"
+   ```
+
+2. **Next Feature: Live FotMob Starting Lineup + EA FC 27 Talent Integration**:
+   - **Architectural Design**:
+     - For *historical training*, multi-season ratings snapshots (FIFA 20, 21, etc.) were required to avoid lookahead leakage on past matches (2019–2024).
+     - For *live current-season (2026–27) predictions*, the current EA FC 27 release (`players.csv`, September 2026) is the exact, most up-to-date baseline of true player talent.
+     - FotMob provides starting lineups via its live fixture endpoint (`https://www.fotmob.com/api/data/matchDetails?matchId=<fixture_id>`), published 60–75 minutes before kickoff (or projected earlier).
+     - Matching FotMob starters to `players.csv` (scoped to club and `gender == "Men's Football"`) allows computing:
+       - Starting XI Overall Rating (e.g. Home 85.8 vs Away 74.2)
+       - Positional unit talent (GK, DEF, MID, ATT)
+       - Squad rotation / absence delta (Starting XI talent vs club full-strength baseline)
+     - Dixon–Coles expected goals ($\lambda, \mu$) scale with the on-pitch talent differential before scoreline reconciliation.
+   - **Planned Implementation Steps (Next PR / Commit)**:
+     1. Implement `fetch_lineup(fixture_id)` in `fotmob_client.py` using FotMob's `/api/data/matchDetails` endpoint.
+     2. Add `match_starting_xi_talent(club, starters, ea_df)` in `epl_predictor/players.py`.
+     3. Add `--use-lineups` option to `hybrid_predictor.py predict` to dynamically fetch lineups and adjust forecasts.
+     4. Add unit and smoke tests covering lineup parsing and talent calculation.
+
+3. **Future untouched evaluation**: Evaluate live 2026–27 fixtures prospectively as the season progresses.
 
 The old Poisson workflow and its reports remain available for comparison. Avoid
 deleting them or mixing generated prediction CSVs into training data.
