@@ -269,16 +269,17 @@ used as identity. Transfers use the latest available club observation.
 
 ```powershell
 python hybrid_predictor.py predict --appearances fotmob_player_appearances.csv
+python hybrid_predictor.py predict --home Arsenal --away Chelsea --date 2026-11-21T12:30:00Z --fixture-id 123 --use-lineups --adjust-with-lineup-form
 ```
 
 The module computes five/ten-appearance ratings, minutes/recency weighting, long-term
-form, sample sizes, position-based shrinkage and unit form. Shrinkage uses two
-equivalent games as an experimental default. Reliable starting-XI histories, injury
-histories, positional normalization experiments and player-enhanced model training
-remain data-limited. Player summaries are exported as **experimental context** and
-do not change the selected prediction. Adding a file alone does not constitute a
-validated player-enhanced model; a separate chronological training/validation/test
-sample must be established first. Unavailable player ablations are recorded explicitly.
+form, sample sizes, position-based shrinkage and unit form. When `--adjust-with-lineup-form`
+is supplied with `--use-lineups`, confirmed starting XI player ratings from prior appearances
+are aggregated into team starter form. Goal rates are scaled by the net starter form difference
+($\lambda_{adj} = \lambda \cdot e^{\beta \Delta}$, $\mu_{adj} = \mu \cdot e^{-\beta \Delta}$, with cross-validated $\beta = 0.1675$).
+The baseline Dixon-Coles forecast is preserved in `baseline_forecast` alongside the adjusted
+probabilities. Without `--adjust-with-lineup-form`, lineup context is attached as observational
+metadata and forecast probabilities remain strictly unchanged.
 
 ## Reports and implementation
 

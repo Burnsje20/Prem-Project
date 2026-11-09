@@ -246,3 +246,62 @@ def fotmob_units(frame, cutoff):
         row['fm_team_form'] = float(np.average(players.smoothed_rating,weights=players.expected_minutes))
         result[team] = row
     return result
+
+
+def starting_xi_fotmob_form(starters, appearances_frame, cutoff, n_matches=5, default_rating=6.80):
+    """Calculate minutes-weighted recent form for a list of starters.
+
+    Guarantees no lookahead: only includes completed matches with date < cutoff
+    and available_at <= cutoff. Unrated players default to the league average rating.
+    """
+    if appearances_frame is None or not starters:
+        return {'starter_count': len(starters), 'rated_count': 0, 'mean_starter_form': default_rating,
+                'unit_forms': {}, 'players': []}
+    d = validate_appearances(appearances_frame)
+    cutoff = utc(cutoff)
+    d = d[(d.date < cutoff) & (d.available_at <= cutoff) & (d.minutes > 0)]
+
+    player_forms = []
+    unit_groups = {'GK': [], 'DEF': [], 'MID': [], 'ATT': []}
+    rated_count = 0
+
+    for s in starters:
+        pid = str(s.get('id') if s.get('id') is not None else s.get('player_id', ''))
+        name = s.get('name') or s.get('player_name', f'Player {pid}')
+        pos = s.get('position')
+        u = unit(pos) if pos else None
+
+        matches = d[d.player_id.eq(pid) & d.rating.notna()]
+        if len(matches) > 0:
+            rec = matches.tail(n_matches)
+            rating = float(np.average(rec.rating, weights=np.maximum(rec.minutes, 1)))
+            rated_count += 1
+            sample = len(rec)
+            if not u and len(matches):
+                u = matches.iloc[-1].unit
+        else:
+            rating = default_rating
+            sample = 0
+
+        p_entry = {
+            'player_id': pid,
+            'name': name,
+            'unit': u,
+            'form': round(rating, 3),
+            'sample_matches': sample,
+            'is_default': sample == 0
+        }
+        player_forms.append(p_entry)
+        if u in unit_groups:
+            unit_groups[u].append(rating)
+
+    mean_form = float(np.mean([p['form'] for p in player_forms])) if player_forms else default_rating
+    unit_forms = {u: float(np.mean(vals)) if vals else None for u, vals in unit_groups.items()}
+
+    return {
+        'starter_count': len(starters),
+        'rated_count': rated_count,
+        'mean_starter_form': round(mean_form, 4),
+        'unit_forms': unit_forms,
+        'players': player_forms
+    }

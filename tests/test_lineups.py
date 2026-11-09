@@ -46,7 +46,17 @@ def forecast():
     return {'fixture_id': 123, 'home_team': 'Arsenal', 'away_team': 'Chelsea',
             'kickoff_utc': KICKOFF, 'home_win_probability': .5,
             'draw_probability': .3, 'away_win_probability': .2,
-            'most_likely_score': '1-0', 'expected_home_goals': 1.5}
+            'most_likely_score': '1-0', 'expected_home_goals': 1.5,
+            'expected_away_goals': 1.0, 'model': 'dixon_coles'}
+
+
+def appearances_data():
+    return pd.DataFrame([
+        {'player_id': str(i), 'match_id': f'match_{i}', 'date': '2026-11-10 15:00:00+00:00',
+         'available_at': '2026-11-11 00:00:00+00:00', 'team': 'Arsenal',
+         'position': 'CM', 'minutes': 90, 'rating': 7.5 + (i % 3) * 0.5}
+        for i in range(1, 12)
+    ])
 
 
 class LineupClientTests(unittest.TestCase):
@@ -218,6 +228,66 @@ class LineupIntegrationTests(unittest.TestCase):
                 self.assertIn('live_lineup_context', json.loads(output.read_text())[0])
                 client.return_value.fetch_lineup.assert_called_once_with(123)
                 client.return_value.session.close.assert_called_once()
+
+    def test_starter_form_calculation(self):
+        from epl_predictor.players import starting_xi_fotmob_form
+        starters = [{'player_id': str(i), 'name': f'Player {i}', 'position': 'CM'} for i in range(1, 12)]
+        apps = appearances_data()
+        form_info = starting_xi_fotmob_form(starters, apps, NOW)
+        self.assertEqual(form_info['starter_count'], 11)
+        self.assertEqual(form_info['rated_count'], 11)
+        self.assertGreater(form_info['mean_starter_form'], 7.0)
+        self.assertIn('MID', form_info['unit_forms'])
+
+        # Test unrated starter default
+        unrated = [{'player_id': '999', 'name': 'Debut Player', 'position': 'ST'}]
+        unrated_info = starting_xi_fotmob_form(unrated, apps, NOW)
+        self.assertEqual(unrated_info['rated_count'], 0)
+        self.assertEqual(unrated_info['mean_starter_form'], 6.80)
+        self.assertTrue(unrated_info['players'][0]['is_default'])
+
+    def test_adjust_probabilities_with_starter_form(self):
+        client = self.client()
+        initial = forecast()
+        apps = appearances_data()
+        records = [forecast()]
+        result = add_live_lineup_context(records, client, ea_data(), bridge_data(), now=NOW,
+                                        appearances=apps, adjust_probabilities=True, beta=0.1675)
+        self.assertEqual(len(result), 1)
+        adj = result[0]['starter_form_adjustment']
+        self.assertTrue(adj['applied'])
+        self.assertEqual(adj['beta'], 0.1675)
+        self.assertIn('baseline_forecast', result[0])
+        self.assertEqual(result[0]['baseline_forecast']['home_win_probability'], initial['home_win_probability'])
+        self.assertNotEqual(result[0]['home_win_probability'], initial['home_win_probability'])
+        self.assertTrue(result[0]['live_lineup_context']['used_in_model'])
+        self.assertIn('starter_form', result[0]['model'])
+        # Probabilities sum to 1.0
+        prob_sum = result[0]['home_win_probability'] + result[0]['draw_probability'] + result[0]['away_win_probability']
+        self.assertAlmostEqual(prob_sum, 1.0, places=6)
+
+    def test_cli_adjust_with_lineup_form(self):
+        from hybrid_predictor import main
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder) / 'forecast_adj.json'
+            apps_path = Path(folder) / 'apps.csv'
+            appearances_data().to_csv(apps_path, index=False)
+            args = ['hybrid_predictor.py', 'predict', '--home', 'Arsenal', '--away', 'Chelsea',
+                    '--date', KICKOFF, '--fixture-id', '123', '--players', str(Path(folder) / 'absent.csv'),
+                    '--appearances', str(apps_path), '--use-lineups', '--adjust-with-lineup-form',
+                    '--output', str(output)]
+            with patch('epl_predictor.predictor.Predictor') as model, patch('fotmob_client.FotMobClient') as client:
+                model.return_value.manifest = {'selected_model': 'dixon_coles'}
+                model.return_value.dc.rho = -0.05
+                model.return_value.predict.return_value = [forecast()]
+                client.return_value.fetch_lineup.return_value = FotMobClient._parse_lineup(payload(), 123, NOW)
+                with patch('epl_predictor.lineups.datetime') as clock:
+                    clock.now.return_value = NOW
+                    with patch('sys.argv', args): main()
+                saved = json.loads(output.read_text())[0]
+                self.assertIn('starter_form_adjustment', saved)
+                self.assertTrue(saved['starter_form_adjustment']['applied'])
+                self.assertIn('baseline_forecast', saved)
 
 
 if __name__ == '__main__':

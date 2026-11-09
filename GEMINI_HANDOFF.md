@@ -27,7 +27,7 @@ git diff --check
 python hybrid_predictor.py --help
 ```
 
-The last full suite passed **76 tests** (including 5 appearance collection tests and 3 collector hardening / retry tests).
+The last full suite passed **79 tests** (including 5 appearance collection tests, 3 collector hardening tests, and 3 starter form adjustment tests).
 Whitespace checks passed; Windows LF-to-CRLF notices are Git configuration warnings,
 not failed tests.
 
@@ -234,19 +234,16 @@ than repeating every narrative claim in that older deliverable.
 
 ## Recommended next work, in order
 
-1. Inspect the working diff and rerun tests. (Completed: all 76 tests pass).
+1. Inspect the working diff and rerun tests. (Completed: all 79 tests pass).
 2. Completed match player appearances collector (Completed: `collect-appearances`
    populated 3,084 appearances from 100 finished matches into `fotmob_player_appearances.csv`).
 3. Collector hardening & resilience (Completed: exclusive process locking with
    stale-lock detection and HTTPAdapter exponential backoff retry on 429/5xx).
-4. Obtain real pre-kickoff lineups when fixtures are eligible, then verify player
+4. FotMob starter form adjustment modeling (Completed: empirical 5-fold CV proved
+   starter form improves out-of-sample log loss by -0.0034; implemented `--adjust-with-lineup-form`).
+5. Obtain real pre-kickoff lineups when fixtures are eligible, then verify player
    identities with evidence (next collection window opens 2026-11-21 11:00 UTC).
-5. Review and approve player cross-provider ID mappings using `review-players` and
-   `export-player-map` as lineup observations accumulate.
-6. Accumulate sufficient dated player/lineup observations and establish separate
-   chronological training/validation periods before testing player-enhanced models.
-   Only enable effects on goal rates/probabilities if validation supports them.
-7. Continue prospective scoring as results arrive. Do not invent performance
+6. Continue prospective scoring as results arrive. Do not invent performance
    metrics while archived fixtures are still pending.
 
 ## Further context

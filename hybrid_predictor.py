@@ -28,6 +28,8 @@ def main():
     predict.add_argument('--appearances',type=Path,help='Optional validated FotMob player-match CSV')
     predict.add_argument('--filter-future',action='store_true',help='Filter fixtures to kickoff >= cutoff')
     predict.add_argument('--use-lineups',action='store_true',help='Fetch live FotMob lineup context; does not adjust probabilities')
+    predict.add_argument('--adjust-with-lineup-form',action='store_true',help='Adjust goal rates using FotMob starting XI recent form')
+    predict.add_argument('--beta',type=float,default=0.1675,help='Scaling coefficient for starter form adjustment (default: 0.1675)')
     predict.add_argument('--fixture-id',type=int,help='FotMob match ID when using --home/--away')
     predict.add_argument('--player-id-map',type=Path,help='Reviewed CSV crosswalk with ea_id,fotmob_id columns')
     predict.add_argument('--archive-dir',type=Path,help='Also save a non-overwriting, timestamped pre-match archive')
@@ -130,12 +132,15 @@ def main():
             parser.error('Live single-match lookup requires --fixture-id and --date')
         if args.player_id_map and not args.use_lineups:
             parser.error('--player-id-map requires --use-lineups')
+        if args.adjust_with_lineup_form and not args.use_lineups:
+            parser.error('--adjust-with-lineup-form requires --use-lineups')
         fixtures = (pd.DataFrame([{'home_team':args.home,'away_team':args.away,
                                   'fixture_id':args.fixture_id,
                                   'kickoff_utc':args.date or model.manifest['cutoff']}])
                     if args.home else pd.read_csv(args.fixtures))
         players = pd.read_csv(args.players) if args.players.exists() else None
-        appearances = pd.read_csv(args.appearances) if args.appearances else None
+        app_path = args.appearances or (Path('fotmob_player_appearances.csv') if Path('fotmob_player_appearances.csv').exists() else None)
+        appearances = pd.read_csv(app_path) if app_path and Path(app_path).exists() else None
         predictions = model.predict(fixtures,players,appearances,filter_future=args.filter_future)
         if args.use_lineups:
             from fotmob_client import FotMobClient
@@ -143,10 +148,17 @@ def main():
             bridge = pd.read_csv(args.player_id_map,dtype=str) if args.player_id_map else None
             client = FotMobClient()
             try:
-                add_live_lineup_context(predictions,client,players,bridge)
+                add_live_lineup_context(predictions,client,players,bridge,
+                                        appearances=appearances,
+                                        adjust_probabilities=args.adjust_with_lineup_form,
+                                        beta=args.beta,
+                                        rho=getattr(model.dc, 'rho', 0.0))
             finally:
                 client.session.close()
-            print('Live lineups are experimental context only; forecast probabilities are unchanged.')
+            if args.adjust_with_lineup_form:
+                print(f'Live lineups with FotMob starter form adjustment applied (beta={args.beta}).')
+            else:
+                print('Live lineups are experimental context only; forecast probabilities are unchanged.')
         if args.archive_dir:
             from epl_predictor.prospective import archive_predictions
             path = archive_predictions(predictions,args.archive_dir,inputs)
@@ -154,9 +166,16 @@ def main():
         args.output.parent.mkdir(parents=True,exist_ok=True)
         args.output.write_text(json.dumps(predictions,indent=2,allow_nan=False),encoding='utf-8')
         for result in predictions:
-            print(f"{result['home_team']} vs {result['away_team']}: "
-                  f"H {result['home_win_probability']:.1%} / D {result['draw_probability']:.1%} / "
-                  f"A {result['away_win_probability']:.1%}; score {result['most_likely_score']}")
+            if result.get('starter_form_adjustment', {}).get('applied'):
+                base = result['baseline_forecast']
+                adj = result['starter_form_adjustment']
+                print(f"{result['home_team']} vs {result['away_team']} (Form Adjusted: H form {adj['home_starter_form']:.2f} vs A form {adj['away_starter_form']:.2f}, diff {adj['form_diff']:+.2f}):")
+                print(f"  Baseline:      H {base['home_win_probability']:.1%} / D {base['draw_probability']:.1%} / A {base['away_win_probability']:.1%}; score {base['most_likely_score']}")
+                print(f"  Form-Adjusted: H {result['home_win_probability']:.1%} / D {result['draw_probability']:.1%} / A {result['away_win_probability']:.1%}; score {result['most_likely_score']}")
+            else:
+                print(f"{result['home_team']} vs {result['away_team']}: "
+                      f"H {result['home_win_probability']:.1%} / D {result['draw_probability']:.1%} / "
+                      f"A {result['away_win_probability']:.1%}; score {result['most_likely_score']}")
         print(f"Model: {model.manifest['selected_model']}; saved {len(predictions)} forecasts to {args.output}")
 
 

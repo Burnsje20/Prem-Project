@@ -1,14 +1,65 @@
-"""Explicit opt-in live context. The validated forecast remains untouched."""
+"""Explicit opt-in live context and validated starter form adjustment."""
 from datetime import datetime, timezone
 
+import numpy as np
 import requests
 
 from .data import team_name, utc
-from .players import match_starting_xi_talent, validate_player_bridge
+from .goals import markets, outcomes, reconcile, score_matrix
+from .players import match_starting_xi_talent, starting_xi_fotmob_form, validate_player_bridge
 
 
-def add_live_lineup_context(predictions, client, ea=None, bridge=None, now=None):
-    """Enrich forecast records without training or changing their probabilities.
+def adjust_prediction_with_starter_form(prediction, home_starters, away_starters,
+                                       appearances, rho=0.0, beta=0.1675):
+    """Adjust goal rates and outcome probabilities based on FotMob starter form difference.
+
+    lambda_adj = lambda_base * exp(beta * (home_form - away_form))
+    mu_adj = mu_base * exp(-beta * (home_form - away_form))
+    """
+    cutoff = utc(prediction['kickoff_utc'])
+    home_form = starting_xi_fotmob_form(home_starters, appearances, cutoff)
+    away_form = starting_xi_fotmob_form(away_starters, appearances, cutoff)
+
+    form_diff = home_form['mean_starter_form'] - away_form['mean_starter_form']
+
+    if 'baseline_forecast' not in prediction:
+        prediction['baseline_forecast'] = {
+            'home_win_probability': prediction['home_win_probability'],
+            'draw_probability': prediction['draw_probability'],
+            'away_win_probability': prediction['away_win_probability'],
+            'expected_home_goals': prediction['expected_home_goals'],
+            'expected_away_goals': prediction['expected_away_goals'],
+            'most_likely_score': prediction['most_likely_score'],
+        }
+
+    lam_base = prediction['expected_home_goals']
+    mu_base = prediction['expected_away_goals']
+
+    lam_adj = float(np.clip(lam_base * np.exp(beta * form_diff), 0.05, 10.0))
+    mu_adj = float(np.clip(mu_base * np.exp(-beta * form_diff), 0.05, 10.0))
+
+    matrix = score_matrix(lam_adj, mu_adj, rho=rho)
+    coherent = reconcile(matrix, outcomes(matrix))
+    stats = markets(coherent)
+
+    prediction.update(stats)
+    prediction['starter_form_adjustment'] = {
+        'applied': True,
+        'beta': beta,
+        'home_starter_form': home_form['mean_starter_form'],
+        'away_starter_form': away_form['mean_starter_form'],
+        'form_diff': round(form_diff, 4),
+        'home_form_details': home_form,
+        'away_form_details': away_form
+    }
+    prediction['player_features_used_in_model'] = True
+    prediction['model'] = f"{prediction['model']}+starter_form"
+    return prediction
+
+
+def add_live_lineup_context(predictions, client, ea=None, bridge=None, now=None,
+                            appearances=None, adjust_probabilities=False, beta=0.1675, rho=0.0):
+    """Enrich forecast records with live lineups and optional FotMob starter form adjustment.
 
     Capture time is evidence of availability, not the provider publication time.
     Today's lineups must never be retroactively used for a historical prediction.
@@ -51,6 +102,22 @@ def add_live_lineup_context(predictions, client, ea=None, bridge=None, now=None)
             has_starters = any(snapshot[s]['starters'] for s in ['home', 'away'])
             context['status'] = 'available' if has_starters else 'unavailable'
             context['reason'] = None if has_starters else 'Provider has not supplied starters'
+
+            if appearances is not None and has_starters:
+                for side in ['home', 'away']:
+                    if snapshot[side]['starters']:
+                        context[side]['starter_form'] = starting_xi_fotmob_form(
+                            snapshot[side]['starters'], appearances, fetched)
+
+            if adjust_probabilities and appearances is not None and has_starters:
+                adjust_prediction_with_starter_form(
+                    result, snapshot['home']['starters'], snapshot['away']['starters'],
+                    appearances, rho=rho, beta=beta)
+                context['used_in_model'] = True
+                context['model_policy'] = f'Adjusted by FotMob recent starter form (beta={beta})'
+            elif has_starters and appearances is not None:
+                context['used_in_model'] = False
+                context['model_policy'] = 'FotMob starter form attached as context; probabilities unchanged'
         except requests.HTTPError as error:
             context['reason'] = f'FotMob HTTP error: {error.response.status_code if error.response is not None else "unknown"}'
             if error.response is not None and error.response.status_code in {401, 403, 429}:
