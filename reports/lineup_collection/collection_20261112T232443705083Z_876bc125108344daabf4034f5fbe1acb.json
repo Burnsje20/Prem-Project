@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-12T23:24:43.705083+00:00",
+  "status": "idle",
+  "within_minutes": 90,
+  "refresh_minutes": 10,
+  "eligible_fixture_ids": [],
+  "skipped": [
+    {
+      "fixture_id": "5795522",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795515",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795516",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795518",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795519",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795524",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795523",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795520",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795521",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795517",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795533",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795531",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795532",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795530",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795528",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795526",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795527",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795529",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795534",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795525",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795539",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795538",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795540",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795541",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795542",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795535",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795536",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795537",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795543",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795544",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795548",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795545",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795546",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795550",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795551",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795553",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795547",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795549",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795552",
+      "reason": "outside_window"
+    },
+    {
+      "fixture_id": "5795554",
+      "reason": "outside_window"
+    }
+  ],
+  "next_collection_at_utc": "2026-11-21T11:00:00+00:00",
+  "archive": null,
+  "review": null,
+  "archived_count": 0,
+  "lineups_available": 0,
+  "unresolved_players": 0,
+  "lineup_statuses": [],
+  "source_hashes": {
+    "epl_predictor/__init__.py": "8f4ce026f1059d696bd9a93cfcfb5c300cabf0f882504039eb8a206acb589fd5",
+    "epl_predictor/appearances.py": "ba412198289f2574cc833b4b0be9a19b2804a4b28117243e3fe99d1e578a81e2",
+    "epl_predictor/boosting.py": "c6244724bf6a189e7c903934f0343c9ac63bd5fe29d40438636d5b78bd499f20",
+    "epl_predictor/collection.py": "85a4a72bbe6df31b605847d975c91ed53a6403326c2ac340dfa6b8913518603b",
+    "epl_predictor/dashboard.py": "391f11fbd3a8f1994ad4972e25d7a99141d3ccbc20e500287ad49d93df83d21a",
+    "epl_predictor/data.py": "cf2f7d431093127abb52fed7fce66d70fa6f3e768d342cab009db91b3c320596",
+    "epl_predictor/evaluation.py": "692c26ab106a2d6804960219c787c3de7209ef2d9c744338cbc085de1ec0238d",
+    "epl_predictor/features.py": "59947b5dd53ceeb6b0089f05fcb074ff14f359ee75d320729a9df4b16fa5d1aa",
+    "epl_predictor/goals.py": "f6a75a1da6f7d24fde8122277e4c31c6696b72e688180f04f2d26640c279c4d5",
+    "epl_predictor/lineups.py": "85db6b1ea9ea8d09f5256c09526a1abf45df5b3b95a716bd4242f8c82c7a810a",
+    "epl_predictor/player_review.py": "35baa477f4b0d9816ff161f83ea6eb7f14163a324b07eb8375cc97001b85fcd3",
+    "epl_predictor/players.py": "48e4b13a3cd3c6558662beff743e1d1bb4ae272b4e3ab02bb460b4b090980ebb",
+    "epl_predictor/predictor.py": "f8de8e1e7c4b92f49d5a19b106f3171339d06e447d3c9beb4b7b20702d86e4f7",
+    "epl_predictor/promotion.py": "2df163c7604b1cd9824ec371c9fa4934a820263ab37a8752150498e01a35d8c4",
+    "epl_predictor/prospective.py": "ba6a4430399aa4593ee5a4c13c0b488eea4fd43bb34747e1cf9cfdcbd120a5bf",
+    "epl_predictor/workflow.py": "1113f42453d57431c8543bc229cff9c9788fcb9be210592d476243bc3d3b89de",
+    "fotmob_client.py": "f1a53da60a92502c102f1ea457e89ebb5c914018fefa7ff2918dab4ea65d4d7c",
+    "hybrid_predictor.py": "9370f833357409ff7bbdd09ef0b3d42a5d88a3adbf7af4c3af459de9012429be",
+    "poisson_distribution.py": "fe01b3f18e5cc0f9fd81bdb37175134ee96e8008a954a3f5729589ce92bccee1",
+    "artifacts/hybrid_v1/championship_history.csv": "210b4bc65cc01dfcdfb492ae1051d845db0c13a566ea4a5ce72f6f82d94e1adc",
+    "artifacts/hybrid_v1/dixon_coles.json": "b4aaf816283eee6788bbbb7c01d13a95d524a8410129b24a26dd2e03689e8a98",
+    "artifacts/hybrid_v1/manifest.json": "8e766ad028b18aac059c33ecf21f7f9c4cb833ef51ca7d96d64021c577c9cecb",
+    "artifacts/hybrid_v1/pl_history.csv": "7a4db6bd71494f0903897e6bcfef99cb145310f8db128a6dbc838921f1136d0f",
+    "artifacts/hybrid_v1/xgb_base.json": "3e91934d9e4e4449889fd93a08ece78317d873fa3ee40ba928fa6f4ddbe1ac24",
+    "artifacts/hybrid_v1/xgb_base_promotion.json": "7093fd65b8f9804ebabe7a1b2c727666770f908112fa68f38fb2c86304125407",
+    "artifacts/hybrid_v1/xgb_base_rest.json": "e3f516a5e826504f844c61aded2aac1c219c097c0ddb28f7adb757bb889b41a1",
+    "artifacts/hybrid_v1/xgb_base_xg.json": "fd25bf71486e886fc28ecf25901262ccc8830501d0f9218fb04b839585317850",
+    "artifacts/hybrid_v1/xgb_full.json": "1914dd75ba48f780edc30d263c789bedb3269b5723d7d8ff5ea1c8873f708cff",
+    "fotmob_player_appearances.csv": "6a02099017b7654cddabfbb17ded4d78fb2e6f8394257aa7b0514e7a0d98cd4e",
+    "players.csv": "09ebc78d22b75ac598991aca66058ce559edd5a6ea8eb009e8cc380139f264d1",
+    "upcoming_premier_league_fixtures.csv": "655d7c2736dc64084a051e904e1eaca1e8f5abd80e85d1a2f8d111eadcbadfc2"
+  },
+  "forecast_policy": "FotMob starter form adjustment applied (beta=0.1675)",
+  "adjust_with_lineup_form": true,
+  "finished_at": "2026-11-12T23:24:43.725614+00:00"
+}
