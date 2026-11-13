@@ -39,3 +39,7 @@ fixture_id,kickoff_utc,season,home_team,away_team,status,source
 5795549,2026-12-06T14:00:00+00:00,2026-27,Everton,Fulham,Scheduled,fotmob
 5795552,2026-12-06T14:00:00+00:00,2026-27,Newcastle,Sunderland,Scheduled,fotmob
 5795554,2026-12-06T16:30:00+00:00,2026-27,Tottenham,Arsenal,Scheduled,fotmob
+5795559,2026-12-12T15:00:00+00:00,2026-27,Fulham,Brentford,Scheduled,fotmob
+5795561,2026-12-12T15:00:00+00:00,2026-27,Ipswich,Newcastle,Scheduled,fotmob
+5795562,2026-12-12T15:00:00+00:00,2026-27,Liverpool,Leeds,Scheduled,fotmob
+5795563,2026-12-12T17:30:00+00:00,2026-27,Man City,Chelsea,Scheduled,fotmob
