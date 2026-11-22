@@ -1,6 +1,4 @@
 fixture_id,kickoff_utc,season,home_team,away_team,status,source
-5795520,2026-11-22T14:00:00+00:00,2026-27,Hull,Brighton,Scheduled,fotmob
-5795521,2026-11-22T16:30:00+00:00,2026-27,Liverpool,Man United,Scheduled,fotmob
 5795517,2026-11-23T20:00:00+00:00,2026-27,Brentford,Everton,Scheduled,fotmob
 5795533,2026-11-27T20:00:00+00:00,2026-27,Nottingham,Chelsea,Scheduled,fotmob
 5795531,2026-11-28T15:00:00+00:00,2026-27,Leeds,Coventry,Scheduled,fotmob
@@ -51,3 +49,4 @@ fixture_id,kickoff_utc,season,home_team,away_team,status,source
 5795573,2026-12-20T14:00:00+00:00,2026-27,Nottingham,Everton,Scheduled,fotmob
 5795574,2026-12-20T14:00:00+00:00,2026-27,Sunderland,Crystal Palace,Scheduled,fotmob
 5795566,2026-12-20T16:30:00+00:00,2026-27,Arsenal,Man United,Scheduled,fotmob
+5795569,2026-12-21T20:00:00+00:00,2026-27,Chelsea,Aston Villa,Scheduled,fotmob
