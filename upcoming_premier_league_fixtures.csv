@@ -49,3 +49,10 @@ fixture_id,kickoff_utc,season,home_team,away_team,status,source
 5795574,2026-12-20T14:00:00+00:00,2026-27,Sunderland,Crystal Palace,Scheduled,fotmob
 5795566,2026-12-20T16:30:00+00:00,2026-27,Arsenal,Man United,Scheduled,fotmob
 5795569,2026-12-21T20:00:00+00:00,2026-27,Chelsea,Aston Villa,Scheduled,fotmob
+5795575,2026-12-26T12:30:00+00:00,2026-27,Aston Villa,Leeds,Scheduled,fotmob
+5795578,2026-12-26T15:00:00+00:00,2026-27,Everton,Sunderland,Scheduled,fotmob
+5795579,2026-12-26T15:00:00+00:00,2026-27,Fulham,Brighton,Scheduled,fotmob
+5795581,2026-12-26T15:00:00+00:00,2026-27,Ipswich,Brentford,Scheduled,fotmob
+5795584,2026-12-26T15:00:00+00:00,2026-27,Tottenham,Bournemouth,Scheduled,fotmob
+5795580,2026-12-26T17:30:00+00:00,2026-27,Hull,Liverpool,Scheduled,fotmob
+5795583,2026-12-26T20:00:00+00:00,2026-27,Newcastle,Man City,Scheduled,fotmob

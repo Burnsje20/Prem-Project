@@ -1,0 +1,400 @@
+{
+  "schema_version": 1,
+  "kind": "player_id_review",
+  "instructions": "Verify identities independently, set ea_id, approved=true and review_note. Candidates are not verified. Unapproved rows are never exported.",
+  "source_hashes": {
+    "archives/prospective/forecast_20261127T195241982058Z_78283cb358cc40f0857f063a6747f56c.json": "4fc6fabeb880c5c576be5a79e5716fcc212be34d153c7f0eeff466b5965451f6"
+  },
+  "decisions": [
+    {
+      "fotmob_id": "113836",
+      "names": [
+        "Danny Welbeck"
+      ],
+      "clubs": [
+        "Chelsea"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "186146"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "156008",
+      "names": [
+        "Jordan Henderson"
+      ],
+      "clubs": [
+        "Chelsea"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "183711"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "181069",
+      "names": [
+        "Matz Sels"
+      ],
+      "clubs": [
+        "Nottingham"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "199641"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "268375",
+      "names": [
+        "Emiliano Mart\u00ednez"
+      ],
+      "clubs": [
+        "Chelsea"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "620027",
+      "names": [
+        "Xaver Schlager"
+      ],
+      "clubs": [
+        "Nottingham"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "233195"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "766611",
+      "names": [
+        "Nikola Milenkovi\u0107"
+      ],
+      "clubs": [
+        "Nottingham"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "238095"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "789502",
+      "names": [
+        "Morgan Gibbs-White"
+      ],
+      "clubs": [
+        "Nottingham"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "236015"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "843040",
+      "names": [
+        "Pedro Neto"
+      ],
+      "clubs": [
+        "Chelsea"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "238616"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "859282",
+      "names": [
+        "Daniel Mu\u00f1oz"
+      ],
+      "clubs": [
+        "Nottingham"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "883080",
+      "names": [
+        "Morgan Rogers"
+      ],
+      "clubs": [
+        "Chelsea"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "260247"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "917802",
+      "names": [
+        "Wesley Fofana"
+      ],
+      "clubs": [
+        "Chelsea"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "248695"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "988805",
+      "names": [
+        "Pep Chavarr\u00eda"
+      ],
+      "clubs": [
+        "Chelsea"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "258371"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "1078788",
+      "names": [
+        "Neco Williams"
+      ],
+      "clubs": [
+        "Nottingham"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "243057"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "1082102",
+      "names": [
+        "Igor Jesus"
+      ],
+      "clubs": [
+        "Nottingham"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "79402"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "1096353",
+      "names": [
+        "Cole Palmer"
+      ],
+      "clubs": [
+        "Chelsea"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "257534"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "1107648",
+      "names": [
+        "James McAtee"
+      ],
+      "clubs": [
+        "Nottingham"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "264349"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "1113903",
+      "names": [
+        "Liam Delap"
+      ],
+      "clubs": [
+        "Nottingham"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "1137668",
+      "names": [
+        "Mois\u00e9s Caicedo"
+      ],
+      "clubs": [
+        "Chelsea"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "256079"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "1190867",
+      "names": [
+        "Rom\u00e9o Lavia"
+      ],
+      "clubs": [
+        "Chelsea"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "263620"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "1391209",
+      "names": [
+        "Jair Cunha"
+      ],
+      "clubs": [
+        "Nottingham"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "79629"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "1400216",
+      "names": [
+        "Josh Acheampong"
+      ],
+      "clubs": [
+        "Chelsea"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "71651"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    },
+    {
+      "fotmob_id": "1458711",
+      "names": [
+        "Murillo"
+      ],
+      "clubs": [
+        "Nottingham"
+      ],
+      "fixture_ids": [
+        "5795533"
+      ],
+      "candidate_ea_ids": [
+        "278016"
+      ],
+      "ea_id": null,
+      "approved": false,
+      "review_note": ""
+    }
+  ]
+}

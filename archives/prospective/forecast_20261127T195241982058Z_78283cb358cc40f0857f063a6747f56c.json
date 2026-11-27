@@ -1,0 +1,912 @@
+{
+  "schema_version": 1,
+  "kind": "prospective_forecasts",
+  "captured_at": "2026-11-27T19:52:41.982058+00:00",
+  "run_id": "78283cb358cc40f0857f063a6747f56c",
+  "source_hashes": {
+    "epl_predictor/__init__.py": "8f4ce026f1059d696bd9a93cfcfb5c300cabf0f882504039eb8a206acb589fd5",
+    "epl_predictor/appearances.py": "ba412198289f2574cc833b4b0be9a19b2804a4b28117243e3fe99d1e578a81e2",
+    "epl_predictor/boosting.py": "c6244724bf6a189e7c903934f0343c9ac63bd5fe29d40438636d5b78bd499f20",
+    "epl_predictor/collection.py": "85a4a72bbe6df31b605847d975c91ed53a6403326c2ac340dfa6b8913518603b",
+    "epl_predictor/dashboard.py": "391f11fbd3a8f1994ad4972e25d7a99141d3ccbc20e500287ad49d93df83d21a",
+    "epl_predictor/data.py": "cf2f7d431093127abb52fed7fce66d70fa6f3e768d342cab009db91b3c320596",
+    "epl_predictor/evaluation.py": "692c26ab106a2d6804960219c787c3de7209ef2d9c744338cbc085de1ec0238d",
+    "epl_predictor/features.py": "59947b5dd53ceeb6b0089f05fcb074ff14f359ee75d320729a9df4b16fa5d1aa",
+    "epl_predictor/goals.py": "f6a75a1da6f7d24fde8122277e4c31c6696b72e688180f04f2d26640c279c4d5",
+    "epl_predictor/lineups.py": "85db6b1ea9ea8d09f5256c09526a1abf45df5b3b95a716bd4242f8c82c7a810a",
+    "epl_predictor/player_review.py": "35baa477f4b0d9816ff161f83ea6eb7f14163a324b07eb8375cc97001b85fcd3",
+    "epl_predictor/players.py": "48e4b13a3cd3c6558662beff743e1d1bb4ae272b4e3ab02bb460b4b090980ebb",
+    "epl_predictor/predictor.py": "f8de8e1e7c4b92f49d5a19b106f3171339d06e447d3c9beb4b7b20702d86e4f7",
+    "epl_predictor/promotion.py": "2df163c7604b1cd9824ec371c9fa4934a820263ab37a8752150498e01a35d8c4",
+    "epl_predictor/prospective.py": "ba6a4430399aa4593ee5a4c13c0b488eea4fd43bb34747e1cf9cfdcbd120a5bf",
+    "epl_predictor/workflow.py": "1113f42453d57431c8543bc229cff9c9788fcb9be210592d476243bc3d3b89de",
+    "fotmob_client.py": "f1a53da60a92502c102f1ea457e89ebb5c914018fefa7ff2918dab4ea65d4d7c",
+    "hybrid_predictor.py": "9370f833357409ff7bbdd09ef0b3d42a5d88a3adbf7af4c3af459de9012429be",
+    "poisson_distribution.py": "fe01b3f18e5cc0f9fd81bdb37175134ee96e8008a954a3f5729589ce92bccee1",
+    "artifacts/hybrid_v1/championship_history.csv": "210b4bc65cc01dfcdfb492ae1051d845db0c13a566ea4a5ce72f6f82d94e1adc",
+    "artifacts/hybrid_v1/dixon_coles.json": "b4aaf816283eee6788bbbb7c01d13a95d524a8410129b24a26dd2e03689e8a98",
+    "artifacts/hybrid_v1/manifest.json": "8e766ad028b18aac059c33ecf21f7f9c4cb833ef51ca7d96d64021c577c9cecb",
+    "artifacts/hybrid_v1/pl_history.csv": "7a4db6bd71494f0903897e6bcfef99cb145310f8db128a6dbc838921f1136d0f",
+    "artifacts/hybrid_v1/xgb_base.json": "3e91934d9e4e4449889fd93a08ece78317d873fa3ee40ba928fa6f4ddbe1ac24",
+    "artifacts/hybrid_v1/xgb_base_promotion.json": "7093fd65b8f9804ebabe7a1b2c727666770f908112fa68f38fb2c86304125407",
+    "artifacts/hybrid_v1/xgb_base_rest.json": "e3f516a5e826504f844c61aded2aac1c219c097c0ddb28f7adb757bb889b41a1",
+    "artifacts/hybrid_v1/xgb_base_xg.json": "fd25bf71486e886fc28ecf25901262ccc8830501d0f9218fb04b839585317850",
+    "artifacts/hybrid_v1/xgb_full.json": "1914dd75ba48f780edc30d263c789bedb3269b5723d7d8ff5ea1c8873f708cff",
+    "fotmob_player_appearances.csv": "6a02099017b7654cddabfbb17ded4d78fb2e6f8394257aa7b0514e7a0d98cd4e",
+    "players.csv": "09ebc78d22b75ac598991aca66058ce559edd5a6ea8eb009e8cc380139f264d1",
+    "upcoming_premier_league_fixtures.csv": "66afbd75240f33179e3707b76f5703499df241d1e80d44ecf3b4fa9f240b9041"
+  },
+  "predictions": [
+    {
+      "home_team": "Nottingham",
+      "away_team": "Chelsea",
+      "fixture_id": 5795533,
+      "kickoff_utc": "2026-11-27T20:00:00+00:00",
+      "home_win_probability": 0.34963309246619373,
+      "draw_probability": 0.26531949224575047,
+      "away_win_probability": 0.38504741528805564,
+      "most_likely_outcome": "A",
+      "expected_home_goals": 1.3612347401908276,
+      "expected_away_goals": 1.4393450146505475,
+      "most_likely_score": "1-1",
+      "top_five_scorelines": [
+        {
+          "score": "1-1",
+          "probability": 0.12545663705874505
+        },
+        {
+          "score": "1-2",
+          "probability": 0.08569520276707758
+        },
+        {
+          "score": "0-1",
+          "probability": 0.08109457057757968
+        },
+        {
+          "score": "2-1",
+          "probability": 0.08104470150425645
+        },
+        {
+          "score": "1-0",
+          "probability": 0.07634743286986709
+        }
+      ],
+      "both_teams_to_score": 0.573729121647382,
+      "over_2_5": 0.5306845044062387,
+      "under_2_5": 0.4693154955937612,
+      "probability_units": "fraction (multiply by 100 for percent)",
+      "model": "dixon_coles+starter_form",
+      "data_cutoff": "2026-11-09T00:00:00+00:00",
+      "trained_at": "2026-11-08T23:28:36.921676+00:00",
+      "fallback_reason": null,
+      "promotion_prior_teams": [],
+      "score_distribution": "H/D/A-region reconciliation of goal model; all markets use the same matrix",
+      "player_features_used_in_model": true,
+      "player_model_status": "experimental: one EA snapshot; no dated FotMob appearances; no independent player training/validation split",
+      "player_context": {
+        "Nottingham": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 81.0,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 81.0,
+            "ea_DEF_talent": 81.0,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 81.0,
+            "ea_MID_talent": 78.86666666666666,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 79.66666666666667,
+            "ea_ATT_talent": 76.46666666666665,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 78.66666666666667
+          },
+          "fotmob": {
+            "lineups_estimated": true,
+            "rated_players": 21,
+            "fm_GK_form": 6.572553847749843,
+            "fm_DEF_form": 6.95544457806524,
+            "fm_MID_form": 7.087376256118367,
+            "fm_ATT_form": 6.80396170383999,
+            "fm_team_form": 6.949622783647687
+          }
+        },
+        "Chelsea": {
+          "ea": {
+            "lineups_estimated": true,
+            "talent_proxy": "position_depth",
+            "unknown_positions": 0,
+            "snapshot_available": true,
+            "ea_GK_talent": 79.75,
+            "ea_GK_players": 1,
+            "ea_GK_overall": 80.0,
+            "ea_DEF_talent": 82.53333333333333,
+            "ea_DEF_players": 3,
+            "ea_DEF_overall": 82.0,
+            "ea_MID_talent": 84.46666666666667,
+            "ea_MID_players": 3,
+            "ea_MID_overall": 85.66666666666667,
+            "ea_ATT_talent": 79.73333333333333,
+            "ea_ATT_players": 3,
+            "ea_ATT_overall": 80.66666666666667
+          },
+          "fotmob": {
+            "lineups_estimated": true,
+            "rated_players": 23,
+            "fm_GK_form": 6.849691290678405,
+            "fm_DEF_form": 7.004387850143412,
+            "fm_MID_form": 7.227486308097358,
+            "fm_ATT_form": 7.228630598014857,
+            "fm_team_form": 7.08332652539035
+          }
+        }
+      },
+      "explanation_inputs": {
+        "goal_model_home_log_advantage": 0.21708291173332495,
+        "pre_match_elo_difference": -54.73865098536703,
+        "home_prior_league_matches": 162,
+        "away_prior_league_matches": 276,
+        "interpretation": "Observed inputs and fitted coefficients; not a causal attribution"
+      },
+      "evaluation": {
+        "selection": {
+          "matches": 380,
+          "log_loss": 0.9746605156306195,
+          "brier": 0.5828390055000492,
+          "accuracy": 0.5210526315789473,
+          "calibration_ece": 0.03864373781952092
+        },
+        "test": {
+          "model": "dixon_coles",
+          "phase": "test",
+          "matches": 380,
+          "log_loss": 1.037000361761227,
+          "brier": 0.6247041846237398,
+          "accuracy": 0.46842105263157896,
+          "calibration_ece": 0.046038591896550546,
+          "score_log_loss": 2.8999564721627005,
+          "exact_score_accuracy": 0.10526315789473684,
+          "selected": true
+        }
+      },
+      "live_lineup_context": {
+        "status": "available",
+        "used_in_model": true,
+        "reason": null,
+        "snapshot": {
+          "fixture_id": 5795533,
+          "source": "fotmob",
+          "fetched_at": "2026-11-27T19:52:41.835003+00:00",
+          "kickoff_utc": "2026-11-27T20:00:00+00:00",
+          "provider_lineup_type": "standard",
+          "status": "prematch",
+          "home": {
+            "team": "Nottingham",
+            "team_id": 10203,
+            "status": "provided_unverified",
+            "starters": [
+              {
+                "player_id": "181069",
+                "name": "Matz Sels"
+              },
+              {
+                "player_id": "1391209",
+                "name": "Jair Cunha"
+              },
+              {
+                "player_id": "766611",
+                "name": "Nikola Milenkovi\u0107"
+              },
+              {
+                "player_id": "1458711",
+                "name": "Murillo"
+              },
+              {
+                "player_id": "859282",
+                "name": "Daniel Mu\u00f1oz"
+              },
+              {
+                "player_id": "1107648",
+                "name": "James McAtee"
+              },
+              {
+                "player_id": "620027",
+                "name": "Xaver Schlager"
+              },
+              {
+                "player_id": "1078788",
+                "name": "Neco Williams"
+              },
+              {
+                "player_id": "789502",
+                "name": "Morgan Gibbs-White"
+              },
+              {
+                "player_id": "1113903",
+                "name": "Liam Delap"
+              },
+              {
+                "player_id": "1082102",
+                "name": "Igor Jesus"
+              }
+            ]
+          },
+          "away": {
+            "team": "Chelsea",
+            "team_id": 8455,
+            "status": "provided_unverified",
+            "starters": [
+              {
+                "player_id": "268375",
+                "name": "Emiliano Mart\u00ednez"
+              },
+              {
+                "player_id": "1400216",
+                "name": "Josh Acheampong"
+              },
+              {
+                "player_id": "917802",
+                "name": "Wesley Fofana"
+              },
+              {
+                "player_id": "1137668",
+                "name": "Mois\u00e9s Caicedo"
+              },
+              {
+                "player_id": "988805",
+                "name": "Pep Chavarr\u00eda"
+              },
+              {
+                "player_id": "1190867",
+                "name": "Rom\u00e9o Lavia"
+              },
+              {
+                "player_id": "156008",
+                "name": "Jordan Henderson"
+              },
+              {
+                "player_id": "843040",
+                "name": "Pedro Neto"
+              },
+              {
+                "player_id": "1096353",
+                "name": "Cole Palmer"
+              },
+              {
+                "player_id": "883080",
+                "name": "Morgan Rogers"
+              },
+              {
+                "player_id": "113836",
+                "name": "Danny Welbeck"
+              }
+            ]
+          }
+        },
+        "model_policy": "Adjusted by FotMob recent starter form (beta=0.1675)",
+        "home": {
+          "starter_count": 11,
+          "matched_count": 0,
+          "coverage": 0.0,
+          "xi_overall": null,
+          "matched_overall": null,
+          "units": {},
+          "same_unit_depth_baseline": null,
+          "rotation_delta": null,
+          "matches": [],
+          "unmatched": [
+            {
+              "player_id": "181069",
+              "name": "Matz Sels",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "199641"
+              ]
+            },
+            {
+              "player_id": "1391209",
+              "name": "Jair Cunha",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "79629"
+              ]
+            },
+            {
+              "player_id": "766611",
+              "name": "Nikola Milenkovi\u0107",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "238095"
+              ]
+            },
+            {
+              "player_id": "1458711",
+              "name": "Murillo",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "278016"
+              ]
+            },
+            {
+              "player_id": "859282",
+              "name": "Daniel Mu\u00f1oz",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": []
+            },
+            {
+              "player_id": "1107648",
+              "name": "James McAtee",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "264349"
+              ]
+            },
+            {
+              "player_id": "620027",
+              "name": "Xaver Schlager",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "233195"
+              ]
+            },
+            {
+              "player_id": "1078788",
+              "name": "Neco Williams",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "243057"
+              ]
+            },
+            {
+              "player_id": "789502",
+              "name": "Morgan Gibbs-White",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "236015"
+              ]
+            },
+            {
+              "player_id": "1113903",
+              "name": "Liam Delap",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": []
+            },
+            {
+              "player_id": "1082102",
+              "name": "Igor Jesus",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "79402"
+              ]
+            }
+          ],
+          "identity_policy": "reviewed_id_bridge_only",
+          "baseline_policy": "best available same-unit counts, not a known full-strength XI",
+          "starter_form": {
+            "starter_count": 11,
+            "rated_count": 11,
+            "mean_starter_form": 6.9005,
+            "unit_forms": {
+              "GK": 6.38,
+              "DEF": 6.978173398117219,
+              "MID": 7.122057519591571,
+              "ATT": 6.561547944677736
+            },
+            "players": [
+              {
+                "player_id": "181069",
+                "name": "Matz Sels",
+                "unit": "GK",
+                "form": 6.38,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "1391209",
+                "name": "Jair Cunha",
+                "unit": "DEF",
+                "form": 7.164,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "766611",
+                "name": "Nikola Milenkovi\u0107",
+                "unit": "DEF",
+                "form": 6.54,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "1458711",
+                "name": "Murillo",
+                "unit": "DEF",
+                "form": 7.26,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "859282",
+                "name": "Daniel Mu\u00f1oz",
+                "unit": "MID",
+                "form": 7.05,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "1107648",
+                "name": "James McAtee",
+                "unit": "MID",
+                "form": 7.079,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "620027",
+                "name": "Xaver Schlager",
+                "unit": "MID",
+                "form": 7.14,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "1078788",
+                "name": "Neco Williams",
+                "unit": "DEF",
+                "form": 6.949,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "789502",
+                "name": "Morgan Gibbs-White",
+                "unit": "MID",
+                "form": 7.22,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "1113903",
+                "name": "Liam Delap",
+                "unit": "ATT",
+                "form": 6.708,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "1082102",
+                "name": "Igor Jesus",
+                "unit": "ATT",
+                "form": 6.415,
+                "sample_matches": 5,
+                "is_default": false
+              }
+            ]
+          }
+        },
+        "away": {
+          "starter_count": 11,
+          "matched_count": 0,
+          "coverage": 0.0,
+          "xi_overall": null,
+          "matched_overall": null,
+          "units": {},
+          "same_unit_depth_baseline": null,
+          "rotation_delta": null,
+          "matches": [],
+          "unmatched": [
+            {
+              "player_id": "268375",
+              "name": "Emiliano Mart\u00ednez",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": []
+            },
+            {
+              "player_id": "1400216",
+              "name": "Josh Acheampong",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "71651"
+              ]
+            },
+            {
+              "player_id": "917802",
+              "name": "Wesley Fofana",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "248695"
+              ]
+            },
+            {
+              "player_id": "1137668",
+              "name": "Mois\u00e9s Caicedo",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "256079"
+              ]
+            },
+            {
+              "player_id": "988805",
+              "name": "Pep Chavarr\u00eda",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "258371"
+              ]
+            },
+            {
+              "player_id": "1190867",
+              "name": "Rom\u00e9o Lavia",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "263620"
+              ]
+            },
+            {
+              "player_id": "156008",
+              "name": "Jordan Henderson",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "183711"
+              ]
+            },
+            {
+              "player_id": "843040",
+              "name": "Pedro Neto",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "238616"
+              ]
+            },
+            {
+              "player_id": "1096353",
+              "name": "Cole Palmer",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "257534"
+              ]
+            },
+            {
+              "player_id": "883080",
+              "name": "Morgan Rogers",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "260247"
+              ]
+            },
+            {
+              "player_id": "113836",
+              "name": "Danny Welbeck",
+              "reason": "No reviewed ID link",
+              "candidate_ea_ids": [
+                "186146"
+              ]
+            }
+          ],
+          "identity_policy": "reviewed_id_bridge_only",
+          "baseline_policy": "best available same-unit counts, not a known full-strength XI",
+          "starter_form": {
+            "starter_count": 11,
+            "rated_count": 11,
+            "mean_starter_form": 7.2241,
+            "unit_forms": {
+              "GK": 7.162068965517242,
+              "DEF": 7.291751011099778,
+              "MID": 7.303574378898389,
+              "ATT": 6.954864864864865
+            },
+            "players": [
+              {
+                "player_id": "268375",
+                "name": "Emiliano Mart\u00ednez",
+                "unit": "GK",
+                "form": 7.162,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "1400216",
+                "name": "Josh Acheampong",
+                "unit": "DEF",
+                "form": 7.354,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "917802",
+                "name": "Wesley Fofana",
+                "unit": "DEF",
+                "form": 7.504,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "1137668",
+                "name": "Mois\u00e9s Caicedo",
+                "unit": "MID",
+                "form": 7.317,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "988805",
+                "name": "Pep Chavarr\u00eda",
+                "unit": "DEF",
+                "form": 7.017,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "1190867",
+                "name": "Rom\u00e9o Lavia",
+                "unit": "MID",
+                "form": 7.332,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "156008",
+                "name": "Jordan Henderson",
+                "unit": "MID",
+                "form": 7.305,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "843040",
+                "name": "Pedro Neto",
+                "unit": "ATT",
+                "form": 7.58,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "1096353",
+                "name": "Cole Palmer",
+                "unit": "MID",
+                "form": 7.298,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "883080",
+                "name": "Morgan Rogers",
+                "unit": "MID",
+                "form": 7.266,
+                "sample_matches": 5,
+                "is_default": false
+              },
+              {
+                "player_id": "113836",
+                "name": "Danny Welbeck",
+                "unit": "ATT",
+                "form": 6.33,
+                "sample_matches": 3,
+                "is_default": false
+              }
+            ]
+          }
+        }
+      },
+      "baseline_forecast": {
+        "home_win_probability": 0.3840208394826016,
+        "draw_probability": 0.26535156450977043,
+        "away_win_probability": 0.35062759600762816,
+        "expected_home_goals": 1.4370540005467713,
+        "expected_away_goals": 1.3634048799336702,
+        "most_likely_score": "1-1"
+      },
+      "starter_form_adjustment": {
+        "applied": true,
+        "beta": 0.1675,
+        "home_starter_form": 6.9005,
+        "away_starter_form": 7.2241,
+        "form_diff": -0.3236,
+        "home_form_details": {
+          "starter_count": 11,
+          "rated_count": 11,
+          "mean_starter_form": 6.9005,
+          "unit_forms": {
+            "GK": 6.38,
+            "DEF": 6.978173398117219,
+            "MID": 7.122057519591571,
+            "ATT": 6.561547944677736
+          },
+          "players": [
+            {
+              "player_id": "181069",
+              "name": "Matz Sels",
+              "unit": "GK",
+              "form": 6.38,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "1391209",
+              "name": "Jair Cunha",
+              "unit": "DEF",
+              "form": 7.164,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "766611",
+              "name": "Nikola Milenkovi\u0107",
+              "unit": "DEF",
+              "form": 6.54,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "1458711",
+              "name": "Murillo",
+              "unit": "DEF",
+              "form": 7.26,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "859282",
+              "name": "Daniel Mu\u00f1oz",
+              "unit": "MID",
+              "form": 7.05,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "1107648",
+              "name": "James McAtee",
+              "unit": "MID",
+              "form": 7.079,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "620027",
+              "name": "Xaver Schlager",
+              "unit": "MID",
+              "form": 7.14,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "1078788",
+              "name": "Neco Williams",
+              "unit": "DEF",
+              "form": 6.949,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "789502",
+              "name": "Morgan Gibbs-White",
+              "unit": "MID",
+              "form": 7.22,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "1113903",
+              "name": "Liam Delap",
+              "unit": "ATT",
+              "form": 6.708,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "1082102",
+              "name": "Igor Jesus",
+              "unit": "ATT",
+              "form": 6.415,
+              "sample_matches": 5,
+              "is_default": false
+            }
+          ]
+        },
+        "away_form_details": {
+          "starter_count": 11,
+          "rated_count": 11,
+          "mean_starter_form": 7.2241,
+          "unit_forms": {
+            "GK": 7.162068965517242,
+            "DEF": 7.291751011099778,
+            "MID": 7.303574378898389,
+            "ATT": 6.954864864864865
+          },
+          "players": [
+            {
+              "player_id": "268375",
+              "name": "Emiliano Mart\u00ednez",
+              "unit": "GK",
+              "form": 7.162,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "1400216",
+              "name": "Josh Acheampong",
+              "unit": "DEF",
+              "form": 7.354,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "917802",
+              "name": "Wesley Fofana",
+              "unit": "DEF",
+              "form": 7.504,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "1137668",
+              "name": "Mois\u00e9s Caicedo",
+              "unit": "MID",
+              "form": 7.317,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "988805",
+              "name": "Pep Chavarr\u00eda",
+              "unit": "DEF",
+              "form": 7.017,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "1190867",
+              "name": "Rom\u00e9o Lavia",
+              "unit": "MID",
+              "form": 7.332,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "156008",
+              "name": "Jordan Henderson",
+              "unit": "MID",
+              "form": 7.305,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "843040",
+              "name": "Pedro Neto",
+              "unit": "ATT",
+              "form": 7.58,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "1096353",
+              "name": "Cole Palmer",
+              "unit": "MID",
+              "form": 7.298,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "883080",
+              "name": "Morgan Rogers",
+              "unit": "MID",
+              "form": 7.266,
+              "sample_matches": 5,
+              "is_default": false
+            },
+            {
+              "player_id": "113836",
+              "name": "Danny Welbeck",
+              "unit": "ATT",
+              "form": 6.33,
+              "sample_matches": 3,
+              "is_default": false
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "content_sha256": "8eb67f3bb4958c0d14de95565a372d350c2a0d2fc8c50b1343e19a5358dae852"
+}
